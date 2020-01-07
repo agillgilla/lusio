@@ -14,7 +14,7 @@ import time
 
 import examples_tkvlc
 
-def playPauseVideo(event):
+def play_pause_video(event):
     global playing
     if playing:
         player.pause()
@@ -23,14 +23,17 @@ def playPauseVideo(event):
         player.play()
         playing = True
 
-def stopVideo(event):
+def stop_video(event):
     player.stop()
 
-def fastForward(*unused):
+def fast_forward():
     player.player.set_rate(2)
 
-def rewind(*unused):
-    player.player.set_rate(-1)
+def step_forward(step_size):
+    player.OnSkip(step_size)
+
+def step_backward(step_size):
+    player.OnSkip(-step_size)
 
 def quit(event):
     player.stop()
@@ -60,14 +63,10 @@ def down(event):
 def left(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, -1)
-    elif screen == Screens.Player:
-        rewind(None)
 
 def right(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, 1)
-    elif screen == Screens.Player:
-        fastForward(None)
 
 def select(event):
     global screen
@@ -163,6 +162,20 @@ class ThreadedServer(object):
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
 
+        self.command_switch = {
+            "p": play_pause_video,
+            "s": stop_video,
+            "q": exit,
+            "up": up,
+            "down": down,
+            "left": left,
+            "right": right,
+            "select": select,
+            "back": back,
+            #"ff": fastForward,
+            #"rewind": rewind
+        }
+
     def listen(self):
         self.sock.listen(5)
         while True:
@@ -209,27 +222,21 @@ class ThreadedServer(object):
                 return False
 
     def exec_command(self, command):
-        switcher = {
-            "p": playPauseVideo,
-            "s": stopVideo,
-            "q": exit,
-            "up": up,
-            "down": down,
-            "left": left,
-            "right": right,
-            "select": select,
-            "back": back,
-            "ff": fastForward,
-            "rewind": rewind
-        }
-        # Get the function from switcher dictionary
-        command_func = switcher.get(command, None)
+        # Get the function from command switcher dictionary
+        command_func = self.command_switch.get(command, None)
 
         if command_func != None:
             #print("Executing command: " + command)
             command_func(None)
         else:
-            print("Unknown command: " + command)
+            if "sf" in command:
+                step_size = int(command.split(':')[1])
+                step_forward(step_size)
+            elif "sb" in command:
+                step_size = int(command.split(':')[1])
+                step_backward(step_size)
+            else:
+                print("Unknown command: " + command)
 
 server_obj = ThreadedServer('', 65432)
 
@@ -343,7 +350,7 @@ class PanelGrid(object):
                 return
             self.scroll_up()
         
-        print("Moving selection from: (" + str(selected_row) + ", " + str(selected_col) + ") to: (" + str(new_row) + ", " + str(new_col) + ")")
+        #print("Moving selection from: (" + str(selected_row) + ", " + str(selected_col) + ") to: (" + str(new_row) + ", " + str(new_col) + ")")
         self.selected_panel = [new_row, new_col]
 
         self.grid[selected_row][selected_col].tk_object.config(background="#000000")
@@ -609,8 +616,8 @@ curr_show_manager = None
 # Where functions used to be
 
 # binding keyboard shortcuts to buttons on window
-root.bind("<p>", playPauseVideo)
-root.bind("<s>", stopVideo)
+root.bind("<p>", play_pause_video)
+root.bind("<s>", stop_video)
 root.bind("<q>", exit)
 root.bind('<Up>', up)
 root.bind('<Down>', down)
@@ -618,6 +625,8 @@ root.bind('<Left>', left)
 root.bind('<Right>', right)
 root.bind('<space>', select)
 root.bind('<Escape>', back)
+root.bind('<a>', lambda unused: step_backward(5))
+root.bind('<d>', lambda unused: step_forward(5))
 
 media_dir = 'D:\VIDEOS\MOVIES'
 #media_dir = 'F:\MOVIES'

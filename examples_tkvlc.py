@@ -418,6 +418,12 @@ class Player(tk.Frame):
         if not self._geometry:
             self.OnResize()
 
+    def OnSkip(self, seconds):
+        if self.player:
+            curr_time = self.player.get_time()
+            delta_millis = seconds * 1e3
+            self.player.set_time(int(curr_time + delta_millis))
+
     def OnTime(self, *unused):
         if self.player:
             t = self.timeVar.get()
