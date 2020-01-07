@@ -212,8 +212,12 @@ class Player(tk.Frame):
         args = []
         if _isLinux:
             args.append('--no-xlib')
+        #args.append('--no-sub-autodetect-file')
+        #args.append(['--sub-track', '200'])
         self.Instance = vlc.Instance(args)
         self.player = self.Instance.media_player_new()
+
+
 
         self.parent.bind("<Configure>", self.OnConfigure)  # catch window resize, etc.
         self.parent.update()
@@ -297,6 +301,18 @@ class Player(tk.Frame):
             m = self.Instance.media_new(str(video))  # Path, unicode
             self.player.set_media(m)
             #self.parent.title("tkVLCplayer - %s" % (basename(video),))
+
+            print("Loaded media: " + str(video))
+
+            print("Available sub tracks:")
+            print(self.player.video_get_spu())
+
+            subtrack = -1
+            result = self.player.video_set_spu(subtrack)
+            print("Return value of set_spu({}): ".format(subtrack) + str(result))
+
+            result2 = self.player.video_set_subtitle_file("")
+            print("Return value of set_subtitle_file(\"\"): " + str(result2))
 
             # set the window id where to render VLC's video output
             h = self.videopanel.winfo_id()  # .winfo_visualid()?

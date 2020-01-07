@@ -16,7 +16,7 @@ try:
 
     while True:
         # Send data
-        message = input()
+        message = input() + "\n"
         print('Sending: "' + message + '"')
         sock.sendall(message.encode())
 
@@ -31,6 +31,7 @@ try:
             amount_received += len(data)
             print('Received {!r}'.format(data.decode()))
         '''
+        
         
 
 finally:
