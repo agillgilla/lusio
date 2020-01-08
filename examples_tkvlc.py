@@ -123,12 +123,14 @@ class Player(tk.Frame):
     _geometry = ''
     _stopped  = None
 
-    def __init__(self, parent, title=None, video=''):
+    def __init__(self, parent, title=None, video='', show_scrubber=True):
         tk.Frame.__init__(self, parent)
 
         self.parent = parent  # == root
         #self.parent.title(title or "tkVLCplayer")
         self.video = expanduser(video)
+
+        self.show_scrubber = show_scrubber
 
         # Menu Bar
         #   File Menu
@@ -193,19 +195,20 @@ class Player(tk.Frame):
         buttons.pack(side=tk.BOTTOM)
 
         
-        # panel to hold player time slider
-        self.timers = ttk.Frame(self.parent, style='new.TFrame')
-        self.timeVar = tk.DoubleVar()
-        self.timeSliderLast = 0
-        self.timeSlider = tk.Scale(self.timers, variable=self.timeVar, command=self.OnTime,
-                                   from_=0, to=1000, orient=tk.HORIZONTAL, length=500,
-                                   showvalue=0)  # label='Time',
-        self.timeSlider.pack(side=tk.BOTTOM, fill=tk.X, expand=1)
-        #self.timeSlider.grid()#side=tk.BOTTOM, fill=tk.X, expand=1)
-        
-        self.timeSliderUpdate = time.time()
-        self.timers.pack(side=tk.BOTTOM, fill=tk.X)
-        #timers.grid()#side=tk.BOTTOM, fill=tk.X)
+        if self.show_scrubber:
+            # panel to hold player time slider
+            self.timers = ttk.Frame(self.parent, style='new.TFrame')
+            self.timeVar = tk.DoubleVar()
+            self.timeSliderLast = 0
+            self.timeSlider = tk.Scale(self.timers, variable=self.timeVar, command=self.OnTime,
+                                       from_=0, to=1000, orient=tk.HORIZONTAL, length=500,
+                                       showvalue=0)  # label='Time',
+            self.timeSlider.pack(side=tk.BOTTOM, fill=tk.X, expand=1)
+            #self.timeSlider.grid()#side=tk.BOTTOM, fill=tk.X, expand=1)
+            
+            self.timeSliderUpdate = time.time()
+            self.timers.pack(side=tk.BOTTOM, fill=tk.X)
+            #timers.grid()#side=tk.BOTTOM, fill=tk.X)
         
 
         # VLC player
@@ -387,7 +390,8 @@ class Player(tk.Frame):
             self.player.stop()
             self._Pause_Play(None)
             # reset the time slider
-            self.timeSlider.set(0)
+            if self.show_scrubber:
+                self.timeSlider.set(0)
             self._stopped = True
         # XXX on macOS libVLC prints these error messages:
         # [h264 @ 0x7f84fb061200] get_buffer() failed
@@ -402,7 +406,7 @@ class Player(tk.Frame):
             # since the self.player.get_length may change while
             # playing, re-set the timeSlider to the correct range
             t = self.player.get_length() * 1e-3  # to seconds
-            if t > 0:
+            if self.show_scrubber and t > 0:
                 self.timeSlider.config(to=t)
 
                 t = self.player.get_time() * 1e-3  # to seconds
@@ -427,7 +431,7 @@ class Player(tk.Frame):
     def OnTime(self, *unused):
         if self.player:
             t = self.timeVar.get()
-            if self.timeSliderLast != int(t):
+            if self.show_scrubber and self.timeSliderLast != int(t):
                 # this is a hack. The timer updates the time slider.
                 # This change causes this rtn (the 'slider has changed' rtn)
                 # to be invoked.  I can't tell the difference between when

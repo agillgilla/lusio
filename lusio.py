@@ -86,7 +86,7 @@ def select(event):
             details_pane.destroy()
             grid.pack_forget()
 
-            player = examples_tkvlc.Player(frame, video=video_file)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+            player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
             player.OnPlay()
 
             screen = Screens.Player
