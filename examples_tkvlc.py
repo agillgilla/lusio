@@ -247,7 +247,8 @@ class Player(tk.Frame):
         """
         self.player.stop()
         self.videopanel.destroy()
-        self.timers.destroy()
+        if self.show_scrubber:
+            self.timers.destroy()
 
     def OnFullScreen(self, *unused):
         """Toggle full screen, macOS only.

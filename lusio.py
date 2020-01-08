@@ -434,8 +434,13 @@ class ShowManager:
         #for child in frame.winfo_children():
         #    print(child)
 
+        self.episodes_per_page = 20
+        self.episode_scroll_num = 0
+
         self.list_frame = tk.Frame(frame)
         self.list_frame.config(background="#000000")
+        #self.list_frame.grid_rowconfigure(0, weight=1)
+        self.list_frame.grid_columnconfigure(0, weight=1)
 
         # List of three-tuples containing season name, tk object, and list of episode filenames
         self.season_labels = []
@@ -478,7 +483,8 @@ class ShowManager:
                 season_label[1].config(background="#FFFFFF")
                 season_label[1].config(foreground="#000000")
 
-            season_label[1].pack(side='top', fill=tk.X)
+            season_label[1].grid(row=season_idx, column=0, sticky=E+W)
+            #season_label[1].pack(side='top', fill=tk.X)
 
     def move_season_selection(self, delta_row):
         new_selection_idx = self.selected_season_idx + delta_row
@@ -503,7 +509,8 @@ class ShowManager:
 
     def destroy_seasons(self):
         for season_label in self.season_labels:
-            season_label[1].pack_forget()
+            #season_label[1].pack_forget()
+            season_label[1].grid_forget()
 
 
     def draw_episodes(self):
@@ -516,9 +523,14 @@ class ShowManager:
         self.season_title_label.config(font=("Calibri", 32))
         self.season_title_label.config(background="#444444")
         self.season_title_label.config(foreground="#FFFFFF")
-        self.season_title_label.pack(side='top', fill=tk.X)
+        #self.season_title_label.pack(side='top', fill=tk.X)
+        self.season_title_label.grid(row=0, column=0, sticky=E+W)
         
-        for episode_idx, episode_tuple in enumerate(episodes_list):
+        curr_grid_row = 1
+
+        for episode_idx in range(self.episode_scroll_num, min(self.episode_scroll_num + self.episodes_per_page, len(episodes_list))):
+            episode_tuple = episodes_list[episode_idx]
+
             if episode_idx == self.selected_episode_idx:
                 episode_tuple[1].config(background="#FFFFFF")
                 episode_tuple[1].config(foreground="#000000")
@@ -526,7 +538,10 @@ class ShowManager:
                 episode_tuple[1].config(background="#000000")
                 episode_tuple[1].config(foreground="#FFFFFF")
 
-            episode_tuple[1].pack(side='top', fill=tk.X)
+            #episode_tuple[1].pack(side='top', fill=tk.X)
+            episode_tuple[1].grid(row=curr_grid_row, column=0, sticky=E+W)
+
+            curr_grid_row += 1
 
     def move_episode_selection(self, delta_row):
         new_selection_idx = self.selected_episode_idx + delta_row
@@ -535,6 +550,13 @@ class ShowManager:
 
         if new_selection_idx >= len(episodes_list) or new_selection_idx < 0:
             return
+
+        if new_selection_idx >= self.episode_scroll_num + self.episodes_per_page:
+            print("Scrolling down...")
+            self.scroll_episodes_down()
+        elif new_selection_idx < self.episode_scroll_num:
+            print("Scrolling up...")
+            self.scroll_episodes_up()
 
         curr_selected_label = episodes_list[self.selected_episode_idx][1]
         curr_selected_label.config(background="#000000")
@@ -546,6 +568,32 @@ class ShowManager:
         new_selected_label.config(background="#FFFFFF")
         new_selected_label.config(foreground="#000000")
 
+    def scroll_episodes_down(self):
+        #episodes_list = self.season_labels[self.selected_season_idx][2]
+
+        #episodes_list[self.episode_scroll_num][1].grid_forget()
+        #print("Loading: " + episodes_list[self.episode_scroll_num + self.episodes_per_page][0])
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page][1].pack(side='top', fill=tk.X)
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page][1].grid(row=self.episode_scroll_num + self.episodes_per_page, column=0, sticky=E+W)
+        self.destroy_episodes()
+
+        self.episode_scroll_num += 1
+
+        self.draw_episodes()
+
+    def scroll_episodes_up(self):
+        #episodes_list = self.season_labels[self.selected_season_idx][2]
+
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page - 1][1].grid_forget()
+        #episodes_list[self.episode_scroll_num - 1][1].pack(side='top', fill=tk.X)
+        #episodes_list[self.episode_scroll_num - 1][1].grid(row=self.episode_scroll_num + 1, column=0, sticky=E+W)
+
+        self.destroy_episodes()
+
+        self.episode_scroll_num -= 1
+
+        self.draw_episodes()
+
     def select_episode(self):
         self.destroy_episodes()
         
@@ -555,15 +603,15 @@ class ShowManager:
         return self.season_labels[self.selected_season_idx][2][self.selected_episode_idx][2]
 
     def destroy_episodes(self):
-        self.season_title_label.pack_forget()
+        self.season_title_label.grid_forget()
 
         episodes_list = self.season_labels[self.selected_season_idx][2]
         for episode_tuple in episodes_list:
-            episode_tuple[1].pack_forget()
+            episode_tuple[1].grid_forget()
 
     def destroy(self):
         for season_label in self.season_labels:
-            season_label[1].pack_forget()
+            season_label[1].grid_forget()
 
         self.list_frame.pack_forget()
 
