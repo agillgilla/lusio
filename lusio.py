@@ -27,13 +27,16 @@ def stop_video(event):
     player.stop()
 
 def fast_forward():
-    player.player.set_rate(2)
+    if screen == Screens.Player:
+        player.player.set_rate(2)
 
 def step_forward(step_size):
-    player.OnSkip(step_size)
+    if screen == Screens.Player:
+        player.OnSkip(step_size)
 
 def step_backward(step_size):
-    player.OnSkip(-step_size)
+    if screen == Screens.Player:
+        player.OnSkip(-step_size)
 
 def quit(event):
     player.stop()
