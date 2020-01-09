@@ -15,16 +15,10 @@ import time
 import examples_tkvlc
 
 def play_pause_video(event):
-    global playing
-    if playing:
-        player.pause()
-        playing = False
-    else:
-        player.play()
-        playing = True
+    player.OnPause()
 
 def stop_video(event):
-    player.stop()
+    player.OnStop()
 
 def fast_forward():
     if screen == Screens.Player:
@@ -116,7 +110,7 @@ def select(event):
 
         details_pane.destroy()
 
-        player = examples_tkvlc.Player(frame, video=video_file)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+        player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
         player.OnPlay()
 
         screen = Screens.Player
@@ -521,7 +515,7 @@ class ShowManager:
 
         self.season_title_label = tk.Label(self.list_frame, text=season_title, borderwidth=5, relief="solid")
         self.season_title_label.config(font=("Calibri", 32))
-        self.season_title_label.config(background="#444444")
+        self.season_title_label.config(background=episode_title_bg)
         self.season_title_label.config(foreground="#FFFFFF")
         #self.season_title_label.pack(side='top', fill=tk.X)
         self.season_title_label.grid(row=0, column=0, sticky=E+W)
@@ -688,6 +682,7 @@ panel_scale = .38
 title_padding = 3
 details_pane = None
 details_pane_bg = "#333333"
+episode_title_bg = "#333333"
 title_info = None
 details_pane_width = 450
 highlight_thickness = 8
