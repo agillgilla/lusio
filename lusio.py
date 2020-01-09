@@ -14,23 +14,23 @@ import time
 
 import examples_tkvlc
 
-def playPauseVideo(event):
-    global playing
-    if playing:
-        player.pause()
-        playing = False
-    else:
-        player.play()
-        playing = True
+def play_pause_video(event):
+    player.OnPause()
 
-def stopVideo(event):
-    player.stop()
+def stop_video(event):
+    player.OnStop()
 
-def fastForward(*unused):
-    player.player.set_rate(2)
+def fast_forward():
+    if screen == Screens.Player:
+        player.player.set_rate(2)
 
-def rewind(*unused):
-    player.player.set_rate(-1)
+def step_forward(step_size):
+    if screen == Screens.Player:
+        player.OnSkip(step_size)
+
+def step_backward(step_size):
+    if screen == Screens.Player:
+        player.OnSkip(-step_size)
 
 def quit(event):
     player.stop()
@@ -60,14 +60,10 @@ def down(event):
 def left(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, -1)
-    elif screen == Screens.Player:
-        rewind(None)
 
 def right(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, 1)
-    elif screen == Screens.Player:
-        fastForward(None)
 
 def select(event):
     global screen
@@ -87,7 +83,7 @@ def select(event):
             details_pane.destroy()
             grid.pack_forget()
 
-            player = examples_tkvlc.Player(frame, video=video_file)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+            player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
             player.OnPlay()
 
             screen = Screens.Player
@@ -114,7 +110,7 @@ def select(event):
 
         details_pane.destroy()
 
-        player = examples_tkvlc.Player(frame, video=video_file)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+        player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
         player.OnPlay()
 
         screen = Screens.Player
@@ -163,6 +159,20 @@ class ThreadedServer(object):
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
 
+        self.command_switch = {
+            "p": play_pause_video,
+            "s": stop_video,
+            "q": exit,
+            "up": up,
+            "down": down,
+            "left": left,
+            "right": right,
+            "select": select,
+            "back": back,
+            #"ff": fastForward,
+            #"rewind": rewind
+        }
+
     def listen(self):
         self.sock.listen(5)
         while True:
@@ -209,27 +219,21 @@ class ThreadedServer(object):
                 return False
 
     def exec_command(self, command):
-        switcher = {
-            "p": playPauseVideo,
-            "s": stopVideo,
-            "q": exit,
-            "up": up,
-            "down": down,
-            "left": left,
-            "right": right,
-            "select": select,
-            "back": back,
-            "ff": fastForward,
-            "rewind": rewind
-        }
-        # Get the function from switcher dictionary
-        command_func = switcher.get(command, None)
+        # Get the function from command switcher dictionary
+        command_func = self.command_switch.get(command, None)
 
         if command_func != None:
             #print("Executing command: " + command)
             command_func(None)
         else:
-            print("Unknown command: " + command)
+            if "sf" in command:
+                step_size = int(command.split(':')[1])
+                step_forward(step_size)
+            elif "sb" in command:
+                step_size = int(command.split(':')[1])
+                step_backward(step_size)
+            else:
+                print("Unknown command: " + command)
 
 server_obj = ThreadedServer('', 65432)
 
@@ -343,7 +347,7 @@ class PanelGrid(object):
                 return
             self.scroll_up()
         
-        print("Moving selection from: (" + str(selected_row) + ", " + str(selected_col) + ") to: (" + str(new_row) + ", " + str(new_col) + ")")
+        #print("Moving selection from: (" + str(selected_row) + ", " + str(selected_col) + ") to: (" + str(new_row) + ", " + str(new_col) + ")")
         self.selected_panel = [new_row, new_col]
 
         self.grid[selected_row][selected_col].tk_object.config(background="#000000")
@@ -424,8 +428,13 @@ class ShowManager:
         #for child in frame.winfo_children():
         #    print(child)
 
+        self.episodes_per_page = 20
+        self.episode_scroll_num = 0
+
         self.list_frame = tk.Frame(frame)
         self.list_frame.config(background="#000000")
+        #self.list_frame.grid_rowconfigure(0, weight=1)
+        self.list_frame.grid_columnconfigure(0, weight=1)
 
         # List of three-tuples containing season name, tk object, and list of episode filenames
         self.season_labels = []
@@ -468,7 +477,8 @@ class ShowManager:
                 season_label[1].config(background="#FFFFFF")
                 season_label[1].config(foreground="#000000")
 
-            season_label[1].pack(side='top', fill=tk.X)
+            season_label[1].grid(row=season_idx, column=0, sticky=E+W)
+            #season_label[1].pack(side='top', fill=tk.X)
 
     def move_season_selection(self, delta_row):
         new_selection_idx = self.selected_season_idx + delta_row
@@ -493,7 +503,8 @@ class ShowManager:
 
     def destroy_seasons(self):
         for season_label in self.season_labels:
-            season_label[1].pack_forget()
+            #season_label[1].pack_forget()
+            season_label[1].grid_forget()
 
 
     def draw_episodes(self):
@@ -504,11 +515,16 @@ class ShowManager:
 
         self.season_title_label = tk.Label(self.list_frame, text=season_title, borderwidth=5, relief="solid")
         self.season_title_label.config(font=("Calibri", 32))
-        self.season_title_label.config(background="#444444")
+        self.season_title_label.config(background=episode_title_bg)
         self.season_title_label.config(foreground="#FFFFFF")
-        self.season_title_label.pack(side='top', fill=tk.X)
+        #self.season_title_label.pack(side='top', fill=tk.X)
+        self.season_title_label.grid(row=0, column=0, sticky=E+W)
         
-        for episode_idx, episode_tuple in enumerate(episodes_list):
+        curr_grid_row = 1
+
+        for episode_idx in range(self.episode_scroll_num, min(self.episode_scroll_num + self.episodes_per_page, len(episodes_list))):
+            episode_tuple = episodes_list[episode_idx]
+
             if episode_idx == self.selected_episode_idx:
                 episode_tuple[1].config(background="#FFFFFF")
                 episode_tuple[1].config(foreground="#000000")
@@ -516,7 +532,10 @@ class ShowManager:
                 episode_tuple[1].config(background="#000000")
                 episode_tuple[1].config(foreground="#FFFFFF")
 
-            episode_tuple[1].pack(side='top', fill=tk.X)
+            #episode_tuple[1].pack(side='top', fill=tk.X)
+            episode_tuple[1].grid(row=curr_grid_row, column=0, sticky=E+W)
+
+            curr_grid_row += 1
 
     def move_episode_selection(self, delta_row):
         new_selection_idx = self.selected_episode_idx + delta_row
@@ -525,6 +544,13 @@ class ShowManager:
 
         if new_selection_idx >= len(episodes_list) or new_selection_idx < 0:
             return
+
+        if new_selection_idx >= self.episode_scroll_num + self.episodes_per_page:
+            print("Scrolling down...")
+            self.scroll_episodes_down()
+        elif new_selection_idx < self.episode_scroll_num:
+            print("Scrolling up...")
+            self.scroll_episodes_up()
 
         curr_selected_label = episodes_list[self.selected_episode_idx][1]
         curr_selected_label.config(background="#000000")
@@ -536,6 +562,32 @@ class ShowManager:
         new_selected_label.config(background="#FFFFFF")
         new_selected_label.config(foreground="#000000")
 
+    def scroll_episodes_down(self):
+        #episodes_list = self.season_labels[self.selected_season_idx][2]
+
+        #episodes_list[self.episode_scroll_num][1].grid_forget()
+        #print("Loading: " + episodes_list[self.episode_scroll_num + self.episodes_per_page][0])
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page][1].pack(side='top', fill=tk.X)
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page][1].grid(row=self.episode_scroll_num + self.episodes_per_page, column=0, sticky=E+W)
+        self.destroy_episodes()
+
+        self.episode_scroll_num += 1
+
+        self.draw_episodes()
+
+    def scroll_episodes_up(self):
+        #episodes_list = self.season_labels[self.selected_season_idx][2]
+
+        #episodes_list[self.episode_scroll_num + self.episodes_per_page - 1][1].grid_forget()
+        #episodes_list[self.episode_scroll_num - 1][1].pack(side='top', fill=tk.X)
+        #episodes_list[self.episode_scroll_num - 1][1].grid(row=self.episode_scroll_num + 1, column=0, sticky=E+W)
+
+        self.destroy_episodes()
+
+        self.episode_scroll_num -= 1
+
+        self.draw_episodes()
+
     def select_episode(self):
         self.destroy_episodes()
         
@@ -545,15 +597,15 @@ class ShowManager:
         return self.season_labels[self.selected_season_idx][2][self.selected_episode_idx][2]
 
     def destroy_episodes(self):
-        self.season_title_label.pack_forget()
+        self.season_title_label.grid_forget()
 
         episodes_list = self.season_labels[self.selected_season_idx][2]
         for episode_tuple in episodes_list:
-            episode_tuple[1].pack_forget()
+            episode_tuple[1].grid_forget()
 
     def destroy(self):
         for season_label in self.season_labels:
-            season_label[1].pack_forget()
+            season_label[1].grid_forget()
 
         self.list_frame.pack_forget()
 
@@ -609,8 +661,8 @@ curr_show_manager = None
 # Where functions used to be
 
 # binding keyboard shortcuts to buttons on window
-root.bind("<p>", playPauseVideo)
-root.bind("<s>", stopVideo)
+root.bind("<p>", play_pause_video)
+root.bind("<s>", stop_video)
 root.bind("<q>", exit)
 root.bind('<Up>', up)
 root.bind('<Down>', down)
@@ -618,6 +670,8 @@ root.bind('<Left>', left)
 root.bind('<Right>', right)
 root.bind('<space>', select)
 root.bind('<Escape>', back)
+root.bind('<a>', lambda unused: step_backward(5))
+root.bind('<d>', lambda unused: step_forward(5))
 
 #media_dir = 'D:\VIDEOS\MOVIES'
 media_dir = '/media/pi/Samsung_T5/MOVIES'
@@ -628,6 +682,7 @@ panel_scale = .38
 title_padding = 3
 details_pane = None
 details_pane_bg = "#333333"
+episode_title_bg = "#333333"
 title_info = None
 details_pane_width = 450
 highlight_thickness = 8
