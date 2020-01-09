@@ -619,8 +619,8 @@ root.bind('<Right>', right)
 root.bind('<space>', select)
 root.bind('<Escape>', back)
 
-media_dir = 'D:\VIDEOS\MOVIES'
-#media_dir = 'F:\MOVIES'
+#media_dir = 'D:\VIDEOS\MOVIES'
+media_dir = '/media/pi/Samsung_T5/MOVIES'
 images_dir = 'titles'
 
 panel_grid = []
