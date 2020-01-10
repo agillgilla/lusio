@@ -650,6 +650,7 @@ for x in range(5):
 
 root.wm_title("LUSIO")
 root.config(background="#000000")
+root.config(cursor='none')
 root.attributes('-fullscreen', True)
 
 #player = vlc.MediaPlayer("bloopers.mp4")
