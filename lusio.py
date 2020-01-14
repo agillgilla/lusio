@@ -14,31 +14,68 @@ import time
 
 import examples_tkvlc
 
+_isLinux = sys.platform.startswith('linux')
+force_vlc = False
+
+use_omx = (not force_vlc) and _isLinux
+if use_omx:
+    from omxplayer.player import OMXPlayer
+    from pathlib import Path
+
+using_omx = False
+
 def play_pause_video(event):
-    player.OnPause()
+    global using_omx
+    if using_omx:
+        omx_player.pause()
+    else:
+        vlc_player.OnPause()
 
 def stop_video(event):
-    player.OnStop()
+    global using_omx
+    if using_omx:
+        omx_player.stop()
+    else:
+        vlc_player.OnStop()
 
 def fast_forward():
     if screen == Screens.Player:
-        player.player.set_rate(2)
+        global using_omx
+        if using_omx:
+            omx_player.rate(2)
+        else:
+            vlc_player.player.set_rate(2)
 
 def step_forward(step_size):
     if screen == Screens.Player:
-        player.OnSkip(step_size)
+        global using_omx
+        if using_omx:
+            omx_player.seek(step_size)
+        else:
+            vlc_player.OnSkip(step_size)
 
 def step_backward(step_size):
     if screen == Screens.Player:
-        player.OnSkip(-step_size)
+        global using_omx
+        if using_omx:
+            omx_player.seek(-step_size)
+        else:
+            vlc_player.OnSkip(-step_size)
 
 def quit(event):
-    player.stop()
+    global using_omx
+    if using_omx:
+        omxplayer.quit()
+    else:
+        vlc_player.stop()
     root.destroy()
 
 def exit(*unused):
-    if playing:
-        player.stop()
+    if vlc_player != None:
+        vlc_player.OnDestroy()
+    global using_omx
+    if using_omx:
+        omxplayer.quit()
     root.destroy()
 
 def up(event):
@@ -67,7 +104,7 @@ def right(event):
 
 def select(event):
     global screen
-    global player
+    global vlc_player
     
     if screen == Screens.MainSelect:
         
@@ -83,8 +120,17 @@ def select(event):
             details_pane.destroy()
             grid.pack_forget()
 
-            player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
-            player.OnPlay()
+            global using_omx
+
+            if use_omx and video_file.endswith(".mp4"):
+                omx_play(video_file)
+
+                using_omx = True
+            else:
+                vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)
+                vlc_player.OnPlay()
+
+                using_omx = False
 
             screen = Screens.Player
         else:
@@ -110,12 +156,12 @@ def select(event):
 
         details_pane.destroy()
 
-        player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
-        player.OnPlay()
+        vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+        vlc_player.OnPlay()
 
         screen = Screens.Player
     elif screen == Screens.Player:
-        player.stop()
+        vlc_player.stop()
     else:
         print("UNKNOWN SCREEN!")
 
@@ -141,14 +187,25 @@ def back(event):
 
         screen = Screens.ShowSeasonSelect
     elif screen == Screens.Player:
-        global player
-        if player != None:
-            player.OnDestroy()
+        global vlc_player
+        if vlc_player != None:
+            vlc_player.OnDestroy()
+        global using_omx
+        if using_omx:
+            omx_player.quit()
+            using_omx = False
 
         draw_details_pane()
         draw_titles_grid()
 
         screen = Screens.MainSelect
+
+
+def omx_play(file):
+    file_path = Path(file)
+
+    omx_player = OMXPlayer(file_path)
+
 
 
 class ThreadedServer(object):
@@ -653,7 +710,8 @@ root.config(background="#000000")
 root.attributes('-fullscreen', True)
 
 #player = vlc.MediaPlayer("bloopers.mp4")
-player = None
+vlc_player = None
+omx_player = None
 playing = False
 
 curr_show_manager = None
