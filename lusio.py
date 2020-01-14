@@ -707,6 +707,7 @@ for x in range(5):
 
 root.wm_title("LUSIO")
 root.config(background="#000000")
+root.config(cursor='none')
 root.attributes('-fullscreen', True)
 
 #player = vlc.MediaPlayer("bloopers.mp4")
@@ -731,8 +732,8 @@ root.bind('<Escape>', back)
 root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
 
-media_dir = 'D:\VIDEOS\MOVIES'
-#media_dir = 'F:\MOVIES'
+#media_dir = 'D:\VIDEOS\MOVIES'
+media_dir = '/media/pi/Samsung_T5/MOVIES'
 images_dir = 'titles'
 
 panel_grid = []
