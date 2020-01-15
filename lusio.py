@@ -27,7 +27,10 @@ using_omx = False
 def play_pause_video(event):
     global using_omx
     if using_omx:
-        omx_player.pause()
+        if omx_player.is_playing():
+            omx_player.pause()
+        else:
+            omx_player.play()
     else:
         vlc_player.OnPause()
 
@@ -65,7 +68,7 @@ def step_backward(step_size):
 def quit(event):
     global using_omx
     if using_omx:
-        omxplayer.quit()
+        omx_player.quit()
     else:
         vlc_player.stop()
     root.destroy()
@@ -75,7 +78,7 @@ def exit(*unused):
         vlc_player.OnDestroy()
     global using_omx
     if using_omx:
-        omxplayer.quit()
+        omx_player.quit()
     root.destroy()
 
 def up(event):
@@ -203,7 +206,7 @@ def back(event):
 
 def omx_play(file):
     file_path = Path(file)
-
+    global omx_player
     omx_player = OMXPlayer(file_path)
 
 
@@ -733,7 +736,8 @@ root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
 
 #media_dir = 'D:\VIDEOS\MOVIES'
-media_dir = '/media/pi/Samsung_T5/MOVIES'
+media_dir = '/media/pi/Samsung_T51/MOVIES'
+#media_dir = '/home/pi/Desktop/test_media'
 images_dir = 'titles'
 
 panel_grid = []
