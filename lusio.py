@@ -161,8 +161,13 @@ def select(event):
 
         details_pane.destroy()
 
-        vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
-        vlc_player.OnPlay()
+        if use_omx and video_file.endswith(".mp4"):
+                omx_play(video_file)
+
+                using_omx = True
+        else:
+            vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
+            vlc_player.OnPlay()
 
         screen = Screens.Player
     elif screen == Screens.Player:
