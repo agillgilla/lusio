@@ -215,6 +215,10 @@ class Player(tk.Frame):
         args = []
         if _isLinux:
             args.append('--no-xlib')
+            #args.append('-V omxil_vout')
+            #args.append('--codec omxil')
+        print("VLC ARGS:")
+        print(args)
         #args.append('--no-sub-autodetect-file')
         #args.append(['--sub-track', '200'])
         self.Instance = vlc.Instance(args)
