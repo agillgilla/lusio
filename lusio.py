@@ -18,7 +18,11 @@ import examples_tkvlc
 
 import os
 
-time.sleep(10)
+_isLinux = sys.platform.startswith('linux')
+force_vlc = False
+
+if _isLinux:
+    time.sleep(10)
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -30,8 +34,7 @@ logging.basicConfig(filename='logfile.log', level=logging.DEBUG, format='[%(leve
 
 logging.info("Running now...")
 
-_isLinux = sys.platform.startswith('linux')
-force_vlc = False
+
 
 use_omx = (not force_vlc) and _isLinux
 if use_omx:
