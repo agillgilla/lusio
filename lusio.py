@@ -93,6 +93,14 @@ def exit(*unused):
         omx_player.quit()
     root.destroy()
 
+from subprocess import call
+
+def power(event):
+    if _isLinux:
+        call("sudo shutdown -h now", shell=True)
+    else:
+        print("Power down only supported on Linux.")
+
 def up(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(-1, 0)
@@ -246,6 +254,7 @@ class ThreadedServer(object):
             "right": right,
             "select": select,
             "back": back,
+            "power": power,
             #"ff": fastForward,
             #"rewind": rewind
         }
@@ -752,9 +761,15 @@ root.bind('<Escape>', back)
 root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
 
-#media_dir = 'D:\VIDEOS\MOVIES'
-media_dir = '/media/pi/Samsung_T5/MOVIES'
-#media_dir = '/home/pi/Desktop/test_media'
+media_dir = None
+
+if _isLinux:
+    media_dir = '/media/pi/Samsung_T5/MOVIES'
+    #media_dir = '/home/pi/Desktop/test_media'
+else:
+    media_dir = 'D:\VIDEOS\MOVIES'
+
+>>>>>>> 50bf1c4a1741787ceea92744a2b0affe10c4f72d
 images_dir = 'titles'
 
 panel_grid = []
