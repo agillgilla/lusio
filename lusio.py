@@ -769,7 +769,6 @@ if _isLinux:
 else:
     media_dir = 'D:\VIDEOS\MOVIES'
 
->>>>>>> 50bf1c4a1741787ceea92744a2b0affe10c4f72d
 images_dir = 'titles'
 
 panel_grid = []
