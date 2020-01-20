@@ -428,6 +428,9 @@ class PanelGrid(object):
 
         if new_col >= self.num_cols or new_col < 0:
             return
+        elif (new_row == len(self.grid) - 1) and (new_col >= len(self.grid[len(self.grid) - 1])):
+            # Last row isn't fully filled
+            return
         elif new_row >= self.num_rows + self.scroll_row:
             if self.scroll_row >= len(self.grid) - self.num_rows:
                 return
