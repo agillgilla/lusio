@@ -18,6 +18,8 @@ import examples_tkvlc
 
 import os
 
+time.sleep(10)
+
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
