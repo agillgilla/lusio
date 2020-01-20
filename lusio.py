@@ -16,15 +16,17 @@ import time
 
 import examples_tkvlc
 
-from datetime import datetime
-now = datetime.now()
-print("Running at: " + now.strftime("%m/%d/%Y %H:%M:%S"))
-
 import os
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
+
+import logging
+
+logging.basicConfig(filename='logfile.log', level=logging.DEBUG, format='[%(levelname)s]: %(asctime)s - %(message)s')
+
+logging.info("Running now...")
 
 _isLinux = sys.platform.startswith('linux')
 force_vlc = False
