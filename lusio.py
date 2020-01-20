@@ -16,6 +16,16 @@ import time
 
 import examples_tkvlc
 
+from datetime import datetime
+now = datetime.now()
+print("Running at: " + now.strftime("%m/%d/%Y %H:%M:%S"))
+
+import os
+
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 _isLinux = sys.platform.startswith('linux')
 force_vlc = False
 
@@ -743,7 +753,7 @@ root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
 
 #media_dir = 'D:\VIDEOS\MOVIES'
-media_dir = '/media/pi/Samsung_T51/MOVIES'
+media_dir = '/media/pi/Samsung_T5/MOVIES'
 #media_dir = '/home/pi/Desktop/test_media'
 images_dir = 'titles'
 
