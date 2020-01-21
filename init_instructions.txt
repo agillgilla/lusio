@@ -1,0 +1,17 @@
+1. Enable ssh in settings (Raspberry Pi Configuration)
+2. Add a file called lusio.desktop to /home/pi/.config/autostart/ with contents:
+	[Desktop Entry]
+	Name=Lusio
+	Type=Application
+	Exec=/usr/bin/python3 /home/pi/lusio/lusio.py
+3. Disable screen blanking:
+	sudo apt install xscreensaver
+
+	This may take a few minutes.
+
+Once this has been installed, you can find the screensaver application under the Preferences option on the main desktop menu. This provides many options for setting up the screensaver, or disabling it completely.
+
+4. Clone https://github.com/agillgilla/lusio.git into /home/pi/lusio/
+5. Install required packages with pip3:
+	pip3 install python-vlc
+	pip3 install omxplayer-wrapper
