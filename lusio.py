@@ -269,12 +269,17 @@ def back(event):
             screen = Screens.MainSelect
 
 
-def play_video(video_file):
+def play_video(video_file, resume=False):
     global using_omx
-
+    global times_db
+    
     if use_omx and video_file.endswith(".mp4"):
-        omx_play(video_file)
+        if resume:
+            curr_time = times_db.get(video_file)
 
+            omx_play(video_file, start_pos=int(float(curr_time)))
+        else:
+            omx_play(video_file)
         using_omx = True
     else:
         global vlc_player
@@ -289,15 +294,25 @@ def play_video(video_file):
     global screen
     screen = Screens.Player
 
+    if resume:
+        curr_time = times_db.get(video_file)
+
+        if not using_omx:
+            vlc_player.SetTime(int(curr_time))
+
+
 
 def init_times_db():
     global times_db
     times_db = pickledb.load('times.db', True)
 
-def omx_play(file):
+def omx_play(file, start_pos=None):
     file_path = Path(file)
     global omx_player
-    omx_player = OMXPlayer(file_path)
+    if start_pos == None:
+        omx_player = OMXPlayer(file_path)
+    else:
+        omx_player = OMXPlayer(file_path, args='--pos {0}'.format(time.strftime('%H:%M:%S', time.gmtime(start_pos))))
 
 def save_video_position():
     if screen == Screens.Player:
@@ -311,23 +326,7 @@ def save_video_position():
 
         global times_db
         times_db.set(curr_video, str(curr_time))
-
-def resume_video():
-    global curr_video
-
-    if screen == Screens.Player:
-        global times_db
-        if times_db.exists(curr_video):
-            curr_time = times_db.get(curr_video)
-
-            global using_omx
-            if using_omx:
-                omx_player.set_position(int(curr_time))
-            else:
-                vlc_player.SetTime(int(curr_time))
-
-
-
+                
 class ThreadedServer(object):
     def __init__(self, host, port):
         self.host = host
@@ -855,10 +854,7 @@ class PlaybackDialog(object):
         details_pane.destroy()
         grid.pack_forget()
 
-        play_video(self.video_file)
-
-        if self.resume_selected:
-            resume_video()
+        play_video(self.video_file, resume=self.resume_selected)
 
     def destroy(self):
         self.resume_button.grid_forget()
