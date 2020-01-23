@@ -433,6 +433,15 @@ class Player(tk.Frame):
             delta_millis = seconds * 1e3
             self.player.set_time(int(curr_time + delta_millis))
 
+    def GetTime(self):
+        if self.player:
+            return self.player.get_time()
+
+    def SetTime(self, seconds):
+        if self.player:
+            time = seconds * 1e3
+            self.player.set_time(int(time))
+
     def OnTime(self, *unused):
         if self.player:
             t = self.timeVar.get()

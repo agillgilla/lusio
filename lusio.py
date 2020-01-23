@@ -2,7 +2,6 @@
 
 import tkinter as tk
 from tkinter import *
-
 from PIL import ImageTk, Image
 
 # VLC NEEDS TO BE INSTALLED
@@ -13,10 +12,12 @@ import os
 import socket
 import threading
 import time
+import os
+
+import pickledb
 
 import examples_tkvlc
 
-import os
 
 _isLinux = sys.platform.startswith('linux')
 force_vlc = False
@@ -34,14 +35,17 @@ logging.basicConfig(filename='logfile.log', level=logging.DEBUG, format='[%(leve
 
 logging.info("Running now...")
 
-
-
+# Variable used to know if we are using omxplayer of vlc (for mp4 files)
 use_omx = (not force_vlc) and _isLinux
 if use_omx:
     from omxplayer.player import OMXPlayer
     from pathlib import Path
-
+# Variable used to know if we are currently playing something with omxplayer
 using_omx = False
+# Variable used to know what video we are currently playing
+curr_video = None
+# Variable for reference to video times key value store
+times_db = None
 
 def play_pause_video(event):
     global using_omx
@@ -85,6 +89,7 @@ def step_backward(step_size):
             vlc_player.OnSkip(-step_size)
 
 def quit(event):
+    save_video_position()
     global using_omx
     if using_omx:
         omx_player.quit()
@@ -93,6 +98,7 @@ def quit(event):
     root.destroy()
 
 def exit(*unused):
+    save_video_position()
     if vlc_player != None:
         vlc_player.OnDestroy()
     global using_omx
@@ -103,6 +109,7 @@ def exit(*unused):
 from subprocess import call
 
 def power(event):
+    save_video_position()
     if _isLinux:
         call("sudo shutdown -h now", shell=True)
     else:
@@ -115,6 +122,8 @@ def up(event):
         curr_show_manager.move_season_selection(-1)
     elif screen == Screens.ShowEpisodeSelect:
         curr_show_manager.move_episode_selection(-1)
+    elif screen == Screens.PlaybackDialog:
+        curr_playback_dialog.move_selection(-1)
 
 def down(event):
     if screen == Screens.MainSelect:
@@ -123,6 +132,8 @@ def down(event):
         curr_show_manager.move_season_selection(1)
     elif screen == Screens.ShowEpisodeSelect:
         curr_show_manager.move_episode_selection(1)
+    elif screen == Screens.PlaybackDialog:
+        curr_playback_dialog.move_selection(1)
 
 def left(event):
     if screen == Screens.MainSelect:
@@ -135,6 +146,7 @@ def right(event):
 def select(event):
     global screen
     global vlc_player
+    global curr_playback_dialog
     
     if screen == Screens.MainSelect:
         
@@ -146,23 +158,21 @@ def select(event):
         
         video_file = titles_grid.get_video()
 
+        # Movie
         if video_file != None:
-            details_pane.destroy()
-            grid.pack_forget()
+            if times_db.exists(video_file):
+                grid.pack_forget()
 
-            global using_omx
+                curr_playback_dialog = PlaybackDialog(video_file, False)
+                curr_playback_dialog.draw()
 
-            if use_omx and video_file.endswith(".mp4"):
-                omx_play(video_file)
-
-                using_omx = True
+                screen = Screens.PlaybackDialog
             else:
-                vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)
-                vlc_player.OnPlay()
+                details_pane.destroy()
+                grid.pack_forget()
 
-                using_omx = False
-
-            screen = Screens.Player
+                play_video(video_file)
+        # TV Show    
         else:
             # We need to destroy and recreate the details pane??? WHY??
             grid.pack_forget()
@@ -184,19 +194,24 @@ def select(event):
 
         curr_show_manager.select_episode()
 
-        details_pane.destroy()
+        if times_db.exists(video_file):
+            grid.pack_forget()
 
-        if use_omx and video_file.endswith(".mp4"):
-                omx_play(video_file)
+            curr_playback_dialog = PlaybackDialog(video_file, True)
+            curr_playback_dialog.draw()
 
-                using_omx = True
+            screen = Screens.PlaybackDialog
+
         else:
-            vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)#"D:\VIDEOS\MOVIES\American Sniper.mp4")
-            vlc_player.OnPlay()
+            details_pane.destroy()
 
-        screen = Screens.Player
+            play_video(video_file)
+
+    elif screen == Screens.PlaybackDialog:
+        curr_playback_dialog.select()
     elif screen == Screens.Player:
-        vlc_player.stop()
+        pass
+        #vlc_player.stop()
     else:
         print("UNKNOWN SCREEN!")
 
@@ -222,6 +237,8 @@ def back(event):
 
         screen = Screens.ShowSeasonSelect
     elif screen == Screens.Player:
+        save_video_position()
+
         global vlc_player
         if vlc_player != None:
             vlc_player.OnDestroy()
@@ -234,12 +251,80 @@ def back(event):
         draw_titles_grid()
 
         screen = Screens.MainSelect
+    elif screen == Screens.PlaybackDialog:
+        if curr_playback_dialog.is_for_show():
+            curr_playback_dialog.destroy()
 
+            curr_show_manager.draw_seasons()
+            curr_show_manager.destroy_seasons()
+        
+            curr_show_manager.draw_episodes()
+
+            screen = Screens.ShowEpisodeSelect
+        else:
+            curr_playback_dialog.destroy()
+
+            draw_titles_grid()
+
+            screen = Screens.MainSelect
+
+
+def play_video(video_file):
+    global using_omx
+
+    if use_omx and video_file.endswith(".mp4"):
+        omx_play(video_file)
+
+        using_omx = True
+    else:
+        global vlc_player
+        vlc_player = examples_tkvlc.Player(frame, video=video_file, show_scrubber=False)
+        vlc_player.OnPlay()
+
+        using_omx = False
+
+    global curr_video
+    curr_video = video_file
+
+    global screen
+    screen = Screens.Player
+
+
+def init_times_db():
+    global times_db
+    times_db = pickledb.load('times.db', True)
 
 def omx_play(file):
     file_path = Path(file)
     global omx_player
     omx_player = OMXPlayer(file_path)
+
+def save_video_position():
+    if screen == Screens.Player:
+        global using_omx
+        curr_time = None
+        if using_omx:
+            curr_time = omx_player.position()
+        else:
+            curr_time_millis = vlc_player.GetTime()
+            curr_time = curr_time_millis // 1000
+
+        global times_db
+        times_db.set(curr_video, str(curr_time))
+
+def resume_video():
+    global curr_video
+
+    if screen == Screens.Player:
+        global times_db
+        if times_db.exists(curr_video):
+            curr_time = times_db.get(curr_video)
+
+            global using_omx
+            if using_omx:
+                omx_player.set_position(int(curr_time))
+            else:
+                vlc_player.SetTime(int(curr_time))
 
 
 
@@ -705,6 +790,83 @@ class ShowManager:
 
         self.list_frame.pack_forget()
 
+class PlaybackDialog(object):
+    def __init__(self, video_file, is_show):
+        self.video_file = video_file
+        self.is_show = is_show
+
+        global frame
+
+        self.options_frame = tk.Frame(frame)
+        self.options_frame.config(background="#000000")
+        self.options_frame.grid_columnconfigure(0, weight=1)
+
+        self.resume_button = tk.Label(self.options_frame, text="Resume Playback", borderwidth=5, relief="solid")
+        self.resume_button.config(font=("Calibri", 24))
+        self.resume_button.config(background="#000000")
+        self.resume_button.config(foreground="#FFFFFF")
+        self.restart_button = tk.Label(self.options_frame, text="Start From Beginning", borderwidth=5, relief="solid")
+        self.restart_button.config(font=("Calibri", 24))
+        self.restart_button.config(background="#000000")
+        self.restart_button.config(foreground="#FFFFFF")
+
+        self.resume_selected = True
+
+    def draw(self):
+        self.options_frame.pack(side='right', fill=tk.BOTH, expand=True)
+
+        if self.resume_selected:
+            self.resume_button.config(background="#FFFFFF")
+            self.resume_button.config(foreground="#000000")
+        else:
+            self.restart_button.config(background="#FFFFFF")
+            self.restart_button.config(foreground="#000000")
+        
+        self.resume_button.grid(row=0, column=0, sticky=E+W)
+        self.restart_button.grid(row=1, column=0, sticky=E+W)
+
+    def move_selection(self, delta_row):
+        if self.resume_selected and delta_row > 0:
+            self.resume_selected = False
+            self.resume_button.config(background="#000000")
+            self.resume_button.config(foreground="#FFFFFF")
+            self.restart_button.config(background="#FFFFFF")
+            self.restart_button.config(foreground="#000000")
+        elif (not self.resume_selected) and delta_row < 0:
+            self.resume_selected = True
+            self.resume_button.config(background="#FFFFFF")
+            self.resume_button.config(foreground="#000000")
+            self.restart_button.config(background="#000000")
+            self.restart_button.config(foreground="#FFFFFF")
+
+    def reset_selection(self):
+        self.resume_selected = True
+        self.resume_button.config(background="#FFFFFF")
+        self.resume_button.config(foreground="#000000")
+        self.restart_button.config(background="#000000")
+        self.restart_button.config(foreground="#FFFFFF")
+
+    def is_for_show(self):
+        return self.is_show
+
+    def select(self):
+        self.destroy()
+
+        details_pane.destroy()
+        grid.pack_forget()
+
+        play_video(self.video_file)
+
+        if self.resume_selected:
+            resume_video()
+
+    def destroy(self):
+        self.resume_button.grid_forget()
+        self.restart_button.grid_forget()
+
+        self.options_frame.pack_forget()
+
+
 class FullScreenApp(object):
     def __init__(self, master, **kwargs):
         self.master=master
@@ -756,6 +918,8 @@ playing = False
 
 curr_show_manager = None
 
+curr_playback_dialog = None
+
 # Where functions used to be
 
 # binding keyboard shortcuts to buttons on window
@@ -796,7 +960,7 @@ num_cols = 6
 
 from enum import Enum
 
-Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Player')
+Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Player PlaybackDialog')
 
 screen = Screens.MainSelect
 
@@ -843,7 +1007,7 @@ draw_details_pane()
 
 draw_titles_grid()
 
-
+init_times_db()
 
 #b = Button(grid, text="QUIT", command=exit)
 #b.grid(column=int(num_cols/2), row=0)

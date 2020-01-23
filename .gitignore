@@ -2,3 +2,4 @@ __pycache__/
 bloopers.mp4
 logfile.log
 log_err
+*.db

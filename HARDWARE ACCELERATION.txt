@@ -1,0 +1,4 @@
+First follow this tutorial:
+https://www.raspberrypi.org/forums/viewtopic.php?f=66&t=59814&sid=65d833a90f1ee134cb57523599e1c8aa
+
+vlc.Instance("vlc -V omxil_vout --codec omxil")
