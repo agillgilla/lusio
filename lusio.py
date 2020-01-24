@@ -12,7 +12,6 @@ import os
 import socket
 import threading
 import time
-import os
 
 import pickledb
 
@@ -39,6 +38,7 @@ logging.info("Running now...")
 use_omx = (not force_vlc) and _isLinux
 if use_omx:
     from omxplayer.player import OMXPlayer
+    from omxplayer.player import OMXPlayerDeadError
     from pathlib import Path
 # Variable used to know if we are currently playing something with omxplayer
 using_omx = False
@@ -317,14 +317,19 @@ def omx_play(file, start_pos=None):
 def save_video_position():
     if screen == Screens.Player:
         global using_omx
+        global times_db
         curr_time = None
         if using_omx:
-            curr_time = omx_player.position()
+            try:
+                curr_time = omx_player.position()
+            except OMXPlayerDeadError as oplde:
+                if times_db.exists(curr_video):
+                    times_db.rem(curr_video)
+                return
         else:
             curr_time_millis = vlc_player.GetTime()
             curr_time = curr_time_millis // 1000
 
-        global times_db
         times_db.set(curr_video, str(curr_time))
                 
 class ThreadedServer(object):
@@ -392,6 +397,8 @@ class ThreadedServer(object):
             except Exception as e:
                 print("Closing client:")
                 print(e)
+                import traceback
+                print(traceback.format_exc())
                 client.close()
                 return False
 
