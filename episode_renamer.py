@@ -8,11 +8,11 @@ file_suffix = '.mp4'
 
 new_episodes_file = open('new_filenames.txt', 'r')
 
-for folder, subs, files in os.walk('D:\VIDEOS\MOVIES\Monk'):
+for folder, subs, files in os.walk('F:\MOVIES\Monk'):
 	#print(folder)
 	#print(subs)
 	#print(files)
-	for file in files:
+	for file in sorted(files):
 		if file.endswith(file_suffix):
 			season_episode_pair = file.split(season_delimiter)
 			season_episode_pair = season_episode_pair[1].split(episode_delimiter)
@@ -27,8 +27,6 @@ for folder, subs, files in os.walk('D:\VIDEOS\MOVIES\Monk'):
 				episode_str = '0' + episode_str
 
 			#new_filename = season_delimiter + season_str + episode_delimiter + episode_str + file_suffix
-			
-			#os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
 
 			episode_name = new_episodes_file.readline().rstrip()
 
