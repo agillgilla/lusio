@@ -473,7 +473,7 @@ class PanelGrid(object):
         curr_row = 0
         curr_col = 0
 
-        for filename in sorted(os.listdir(media_dir)):
+        for filename in sorted(os.listdir(media_dir), key=lambda x: ''.join(x.split())):
             if filename.endswith(".mp4") or filename.endswith(".mkv") or os.path.isdir(os.path.join(media_dir, filename)): 
                 title = filename
                 video_file = None

@@ -16,3 +16,8 @@ Once this has been installed, you can find the screensaver application under the
 	pip3 install python-vlc
 	pip3 install omxplayer-wrapper
 	pip3 install pickledb
+6. Disable HDMI-CEC because the Pi breaks it (at least on our Samsung TV):
+   Add the following lines to /boot/config/txt:
+
+       hdmi_ignore_cec_init=1
+       hdmi_ignore_cec=1
