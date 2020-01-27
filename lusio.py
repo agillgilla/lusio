@@ -947,6 +947,8 @@ else:
     media_dir = 'D:\VIDEOS\MOVIES'
 
 images_dir = 'titles'
+logo_image_file = os.path.join('logo', 'lusio_logo.jpg')
+tk_logo_img = None
 
 panel_grid = []
 panel_scale = .38
@@ -993,6 +995,22 @@ def draw_details_pane():
     title_info.config(background=details_pane_bg)
     title_info.config(fg="#FFFFFF")
     title_info.pack(side="top", fill='both')
+
+
+
+    global tk_logo_img
+    logo_img = Image.open(logo_image_file)
+    logo_img_width = logo_img.size[0]
+    logo_img_height = logo_img.size[1]
+    logo_img_scale = details_pane_width / logo_img_width
+
+    logo_img = logo_img.resize((int(logo_img_width * logo_img_scale), int(logo_img_height * logo_img_scale)), Image.ANTIALIAS)
+    tk_logo_img = ImageTk.PhotoImage(logo_img)
+
+    logo_ref = [tk_logo_img]
+
+    logo_image_label = tk.Label(details_pane, image=tk_logo_img, background=details_pane_bg)# width=int(img_width * panel_scale + highlight_thickness), height=int(img_height * panel_scale + highlight_thickness))
+    logo_image_label.pack(side='bottom', fill=tk.X, anchor='s')
 
 
 def draw_titles_grid():
