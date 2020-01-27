@@ -634,7 +634,7 @@ class ShowManager:
                 episodes_list = []
                 for episode in os.listdir(subdir):
                     if episode.endswith(".mp4") or episode.endswith(".mkv"):
-                        episode_label = tk.Label(self.list_frame, text=episode[:-4], borderwidth=5, relief="solid")
+                        episode_label = tk.Label(self.list_frame, text=episode[:-4], borderwidth=5, relief="solid", anchor='w', padx=show_padding)
                         episode_label.config(font=("Calibri", 24))
                         episode_label.config(background="#000000")
                         episode_label.config(foreground="#FFFFFF")
@@ -643,7 +643,7 @@ class ShowManager:
                         #print(episodes_list[-1])
 
                 
-                season_label = tk.Label(self.list_frame, text=season, borderwidth=5, relief="solid")
+                season_label = tk.Label(self.list_frame, text=season, borderwidth=5, relief="solid", anchor='w', padx=show_padding)
                 season_label.config(font=("Calibri", 32))
                 season_label.config(background="#000000")
                 season_label.config(foreground="#FFFFFF")
@@ -700,7 +700,7 @@ class ShowManager:
         season_title = self.season_labels[self.selected_season_idx][0]
         episodes_list = self.season_labels[self.selected_season_idx][2]
 
-        self.season_title_label = tk.Label(self.list_frame, text=season_title, borderwidth=5, relief="solid")
+        self.season_title_label = tk.Label(self.list_frame, text=season_title, borderwidth=5, relief="solid", anchor='w', padx=show_padding)
         self.season_title_label.config(font=("Calibri", 32))
         self.season_title_label.config(background=episode_title_bg)
         self.season_title_label.config(foreground="#FFFFFF")
@@ -960,6 +960,7 @@ highlight_thickness = 8
 highlight_color = "#FFFFFF"
 num_rows = 3
 num_cols = 6
+show_padding = 50
 
 from enum import Enum
 
