@@ -632,7 +632,7 @@ class ShowManager:
                 season = filename
 
                 episodes_list = []
-                for episode in os.listdir(subdir):
+                for episode in sorted(os.listdir(subdir)):
                     if episode.endswith(".mp4") or episode.endswith(".mkv"):
                         episode_label = tk.Label(self.list_frame, text=episode[:-4], borderwidth=5, relief="solid", anchor='w', padx=show_padding)
                         episode_label.config(font=("Calibri", 24))
