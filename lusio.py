@@ -91,7 +91,7 @@ def step_backward(step_size):
 def send_omx_info_cmd():
     omx_player.action(5)
 
-def toggle_info():
+def toggle_info(*unused):
     if screen == Screens.Player:
         global using_omx
         if using_omx:
