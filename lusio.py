@@ -88,6 +88,18 @@ def step_backward(step_size):
         else:
             vlc_player.OnSkip(-step_size)
 
+def send_omx_info_cmd():
+    omx_player.action(5)
+
+def toggle_info():
+    if screen == Screens.Player:
+        global using_omx
+        if using_omx:
+            send_omx_info_cmd()
+            threading.Timer(delay, send_omx_info_cmd).start()
+        else:
+            print("Info not supported on vlc yet")
+
 def quit(event):
     save_video_position()
     global using_omx
@@ -344,6 +356,7 @@ class ThreadedServer(object):
             "p": play_pause_video,
             "s": stop_video,
             "q": exit,
+            "i": toggle_info,
             "up": up,
             "down": down,
             "left": left,
