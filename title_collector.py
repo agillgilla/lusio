@@ -21,10 +21,10 @@ def get_imdb_img(title, camel_case=True):
     output_filename = titles_folder + "/" + title_spaced + ".jpg"
     
     if os.path.exists(output_filename):
-        print("Skipping " + output_filename)
+        print("\tSkipping " + output_filename)
         return True
 
-    print("Searching for: " + title_spaced)
+    print("\tSearching for: " + title_spaced)
 
     search_url = "https://www.themoviedb.org/search"
     search_params = {'query':title_spaced, 'language':'en-US'}
@@ -54,7 +54,7 @@ def get_imdb_img(title, camel_case=True):
         return False
     
     img_src_url = title_img_src.decode()
-    print(img_src_url)
+    print("\t" + str(img_src_url))
     
 
     urllib.request.urlretrieve(img_src_url, output_filename)
@@ -67,18 +67,18 @@ failed_titles = []
 
 for filename in os.listdir(directory):
     if filename.endswith(".mp4") or filename.endswith(".mkv"): 
-        print(os.path.join(directory, filename))
+        #print(os.path.join(directory, filename))
         title = filename[:-4]
         
         print("Fetching " + title + "...")
-        if get_imdb_img(title):
-            print("Sucessfully fetched " + title)
+        if get_imdb_img(title, camel_case=False):
+            print("...Sucessfully fetched " + title)
         else:
-            print("Failed to fetch " + title)
+            print("...Failed to fetch " + title)
             failed_titles.append(title)
 
     elif os.path.isdir(os.path.join(directory, filename)):
-        print(os.path.join(directory, filename))
+        #print(os.path.join(directory, filename))
         title = filename
         
         print("Fetching " + title + "...")
