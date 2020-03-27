@@ -48,21 +48,23 @@ curr_video = None
 times_db = None
 
 def play_pause_video(event):
-    global using_omx
-    if using_omx:
-        if omx_player.is_playing():
-            omx_player.pause()
+    if screen == Screens.Player:
+        global using_omx
+        if using_omx:
+            if omx_player.is_playing():
+                omx_player.pause()
+            else:
+                omx_player.play()
         else:
-            omx_player.play()
-    else:
-        vlc_player.OnPause()
+            vlc_player.OnPause()
 
 def stop_video(event):
-    global using_omx
-    if using_omx:
-        omx_player.stop()
-    else:
-        vlc_player.OnStop()
+    if screen == Screens.Player:
+        global using_omx
+        if using_omx:
+            omx_player.stop()
+        else:
+            vlc_player.OnStop()
 
 def fast_forward():
     if screen == Screens.Player:
