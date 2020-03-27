@@ -96,7 +96,7 @@ def toggle_info(*unused):
         global using_omx
         if using_omx:
             send_omx_info_cmd()
-            threading.Timer(delay, send_omx_info_cmd).start()
+            threading.Timer(5.0, send_omx_info_cmd).start()
         else:
             print("Info not supported on vlc yet")
 
@@ -410,6 +410,8 @@ class ThreadedServer(object):
             except Exception as e:
                 print("Closing client:")
                 print(e)
+                logging.error("Closing client:")
+                logging.error(e)
                 import traceback
                 print(traceback.format_exc())
                 client.close()
