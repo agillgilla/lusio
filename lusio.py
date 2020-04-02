@@ -961,7 +961,7 @@ if _isLinux:
 else:
     media_dir = 'D:\VIDEOS\MOVIES'
 
-images_dir = 'titles'
+images_dir = 'posters'
 logo_image_file = os.path.join('logo', 'lusio_logo.jpg')
 tk_logo_img = None
 
@@ -985,7 +985,7 @@ Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Player 
 
 screen = Screens.MainSelect
 
-titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, 'titles')
+titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir)
 
 details_title = StringVar()
 
