@@ -702,7 +702,8 @@ class ShowManager:
 
     def select_season(self):
         self.destroy_seasons()
-        
+        self.episode_scroll_num = 0
+
         self.draw_episodes()
 
     def destroy_seasons(self):
