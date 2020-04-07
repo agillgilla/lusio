@@ -359,6 +359,7 @@ def search(*unused, query=None):
     global curr_search_screen
 
     if query is None:
+        # Command just sent on GUI (either to open search screen or search again)
         if screen == Screens.MainSelect:
             curr_search_screen = SearchScreen()
             curr_search_screen.draw()
@@ -375,6 +376,12 @@ def search(*unused, query=None):
 
             screen = Screens.Search
 
+            curr_search_screen.typing = False
+            curr_search_screen.entry_string.set(query)
+            curr_search_screen.search()
+            
+            root.focus()
+        elif screen == Screens.Search:
             curr_search_screen.typing = False
             curr_search_screen.entry_string.set(query)
             curr_search_screen.search()
@@ -506,7 +513,6 @@ class ThreadedServer(object):
                 step_backward(step_size)
             elif "f" in command:
                 query = command.split(':')[1]
-                print(query)
                 search(query=query)
             else:
                 print("Unknown command: " + command)
@@ -1176,7 +1182,6 @@ class SearchScreen(object):
             self.search_list_frame.columnconfigure(i, weight=1, minsize=panel_scale*panel_img_width + title_padding*2)
 
         self.entry_string = StringVar()
-        self.entry_string.trace("w", lambda name, index, mode, sv=self.entry_string: self.entry_changed())
 
         self.search_entry = tk.Entry(self.search_list_frame, textvariable=self.entry_string, borderwidth=5)
         self.search_entry.config(font=("Calibri", 32))
@@ -1188,11 +1193,6 @@ class SearchScreen(object):
 
         self.typing = False
         self.showing_hint = True
-
-    def entry_changed(self):
-        if self.typing and self.showing_hint:
-            self.entry_string.set(self.entry_string.get()[-1:])
-            self.showing_hint = False
 
     def start_typing(self):
         self.search_entry.focus()
@@ -1208,7 +1208,6 @@ class SearchScreen(object):
 
         self.search_entry.grid(row=0, column=0, sticky=E+W, columnspan=num_cols)
 
-        self.search_entry.insert(0, 'Search...')
         if not _isLinux:
             self.search_entry.focus()
             self.typing = True
