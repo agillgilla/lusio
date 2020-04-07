@@ -102,16 +102,10 @@ def toggle_info(*unused):
         else:
             print("Info not supported on vlc yet")
 
-def quit(event):
-    save_video_position()
-    global using_omx
-    if using_omx:
-        omx_player.quit()
-    else:
-        vlc_player.stop()
-    root.destroy()
-
 def exit(*unused):
+    if screen == Screens.Search and curr_search_screen != None and curr_search_screen.typing:
+        return
+
     save_video_position()
     if vlc_player != None:
         vlc_player.OnDestroy()
@@ -138,6 +132,9 @@ def up(event):
         curr_show_manager.move_episode_selection(-1)
     elif screen == Screens.PlaybackDialog:
         curr_playback_dialog.move_selection(-1)
+    elif screen == Screens.Search:
+        if not curr_search_screen.typing:
+            curr_search_screen.results_grid.move_selection(-1, 0)
 
 def down(event):
     if screen == Screens.MainSelect:
@@ -148,19 +145,29 @@ def down(event):
         curr_show_manager.move_episode_selection(1)
     elif screen == Screens.PlaybackDialog:
         curr_playback_dialog.move_selection(1)
+    elif screen == Screens.Search:
+        if not curr_search_screen.typing:
+            curr_search_screen.results_grid.move_selection(1, 0)
 
 def left(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, -1)
+    elif screen == Screens.Search:
+        if not curr_search_screen.typing:
+            curr_search_screen.results_grid.move_selection(0, -1)
 
 def right(event):
     if screen == Screens.MainSelect:
         titles_grid.move_selection(0, 1)
+    elif screen == Screens.Search:
+        if not curr_search_screen.typing:
+            curr_search_screen.results_grid.move_selection(0, 1)
 
 def select(event):
     global screen
     global vlc_player
     global curr_playback_dialog
+    global curr_show_manager
     
     if screen == Screens.MainSelect:
         
@@ -192,8 +199,6 @@ def select(event):
             grid.pack_forget()
 
             show_dir = os.path.join(media_dir, titles_grid.get_title())
-
-            global curr_show_manager
             
             curr_show_manager = ShowManager(grid, show_dir)
             curr_show_manager.draw_seasons()
@@ -226,6 +231,34 @@ def select(event):
     elif screen == Screens.Player:
         pass
         #vlc_player.stop()
+    elif screen == Screens.Search:
+        video_file, title = curr_search_screen.results_grid.get_selection()
+        is_show = video_file == None
+
+        if is_show:
+            curr_search_screen.destroy()
+
+            show_dir = os.path.join(media_dir, title)
+
+            curr_show_manager = ShowManager(grid, show_dir)
+            curr_show_manager.draw_seasons()
+
+            screen = Screens.ShowSeasonSelect
+        else:
+            if times_db.exists(video_file):
+                curr_search_screen.destroy()
+
+                curr_playback_dialog = PlaybackDialog(video_file, False)
+                curr_playback_dialog.draw()
+
+                screen = Screens.PlaybackDialog
+
+            else:
+                curr_search_screen.destroy()
+                details_pane.destroy()
+
+                play_video(video_file)
+        
     else:
         print("UNKNOWN SCREEN!")
 
@@ -279,9 +312,16 @@ def back(event):
             curr_playback_dialog.destroy()
 
             draw_titles_grid()
+            details_title.set(titles_grid.get_title())
 
             screen = Screens.MainSelect
+    elif screen == Screens.Search:
+        curr_search_screen.destroy()
 
+        draw_titles_grid()
+        details_title.set(titles_grid.get_title())
+
+        screen = Screens.MainSelect
 
 def play_video(video_file, resume=False):
     global using_omx
@@ -314,7 +354,47 @@ def play_video(video_file, resume=False):
         if not using_omx:
             vlc_player.SetTime(int(curr_time))
 
+def search(*unused, query=None):
+    global screen
+    global curr_search_screen
 
+    if query is None:
+        # Command just sent on GUI (either to open search screen or search again)
+        if screen == Screens.MainSelect:
+            curr_search_screen = SearchScreen()
+            curr_search_screen.draw()
+
+            screen = Screens.Search
+        elif screen == Screens.Search and not _isLinux and not curr_search_screen.typing:
+            curr_search_screen.start_typing()
+    else:
+        # Command sent from app with query
+        if screen == Screens.MainSelect:
+            
+            curr_search_screen = SearchScreen()
+            curr_search_screen.draw()
+
+            screen = Screens.Search
+
+            curr_search_screen.typing = False
+            curr_search_screen.entry_string.set(query)
+            curr_search_screen.search()
+            
+            root.focus()
+        elif screen == Screens.Search:
+            curr_search_screen.typing = False
+            curr_search_screen.entry_string.set(query)
+            curr_search_screen.search()
+            
+            root.focus()
+            
+def enter(*unused):
+    global screen
+
+    if screen == Screens.Search:
+        curr_search_screen.search()
+        curr_search_screen.typing = False
+        root.focus()
 
 def init_times_db():
     global times_db
@@ -356,7 +436,7 @@ class ThreadedServer(object):
 
         self.command_switch = {
             "p": play_pause_video,
-            "s": stop_video,
+            "s": search,
             "q": exit,
             "i": toggle_info,
             "up": up,
@@ -433,6 +513,9 @@ class ThreadedServer(object):
             elif "sb" in command:
                 step_size = int(command.split(':')[1])
                 step_backward(step_size)
+            elif "f" in command:
+                query = command.split(':')[1]
+                search(query=query)
             else:
                 print("Unknown command: " + command)
 
@@ -491,7 +574,7 @@ class PanelGrid(object):
         curr_col = 0
 
         for filename in sorted(os.listdir(media_dir), key=lambda x: ''.join(x.split())):
-            if filename.endswith(".mp4") or filename.endswith(".mkv") or os.path.isdir(os.path.join(media_dir, filename)): 
+            if filename.endswith(".mp4") or filename.endswith(".mkv") or os.path.isdir(os.path.join(media_dir, filename)):
                 title = filename
                 video_file = None
 
@@ -521,7 +604,7 @@ class PanelGrid(object):
                     curr_col = 0
                     curr_row += 1
 
-                print(title)
+                #print(title)
 
 
     def get_title(self):
@@ -537,11 +620,26 @@ class PanelGrid(object):
         new_row = selected_row + delt_row
         new_col = selected_col + delt_col
 
+        # This screws up the scrolling for bottom row (if not filled)
+        #if not self.test_panel_coords(new_row, new_col):
+        #    return
+
+        #print(f"New: {new_row}, {new_col}")
+        #translated = self.panel_to_grid_coords(new_row, new_col)
+        #print(f"Translated: {translated[0]}, {translated[1]}")
+
         if new_col >= self.num_cols or new_col < 0:
             return
         elif (new_row == len(self.grid) - 1) and (new_col >= len(self.grid[len(self.grid) - 1])):
             # Last row isn't fully filled
-            return
+            if selected_row < len(self.grid) - 1:
+                # We're not in the bottom row yet
+                new_col = len(self.grid[len(self.grid) - 1]) - 1
+                if new_row >= self.num_rows + self.scroll_row:
+                    self.scroll_down()
+            else:
+                # We're already in the bottom row
+                return
         elif new_row >= self.num_rows + self.scroll_row:
             if self.scroll_row >= len(self.grid) - self.num_rows:
                 return
@@ -572,9 +670,11 @@ class PanelGrid(object):
                 grid_coords = self.panel_to_grid_coords(row_idx + self.scroll_row, col_idx)
 
                 #print("Gridding " + panel.title + " to " + str(grid_coords))
+                #print("start_row: {}, panel_grid_row: {}, scroll_row: {}".format(self.start_row, row_idx + self.scroll_row, self.scroll_row))
 
                 panel.tk_object.grid(row=grid_coords[0], column=grid_coords[1], padx=title_padding, pady=title_padding, sticky=N+S+E+W)
                 panel.tk_object.config(background="#000000")
+
 
         self.grid[self.selected_panel[0]][self.selected_panel[1]].tk_object.config(background=highlight_color)
 
@@ -616,6 +716,192 @@ class PanelGrid(object):
         Example: The panel at grid[0][0] will actually be on the GUI as tk.grid(self.start_row, self.start_col, ...) """
     def panel_to_grid_coords(self, panel_grid_row, panel_grid_col):
         return (self.start_row + panel_grid_row - self.scroll_row, self.start_col + panel_grid_col)
+
+    """ Tests if panel coordinates map to valid grid coordinates.  Returns True of they are valid and false otherwise. """
+    def test_panel_coords(self, panel_grid_row, panel_grid_col):
+        return panel_grid_row < len(self.grid) and panel_grid_col < len(self.grid[panel_grid_row])
+
+    def destroy(self):
+        for row in self.grid:
+            for panel in row:
+                panel.tk_object.grid_forget()
+
+class SearchGrid(object):
+    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, images_dir):
+        self.num_rows = num_rows
+        self.num_cols = num_cols
+        self.start_row = start_row
+        self.start_col = start_col
+        self.media_dir = media_dir
+        self.images_dir = images_dir
+        self.containing_frame = containing_frame
+        self.grid = []
+        self.selected_panel = [0, 0]
+        self.scroll_row = 0
+
+    def search(self, query):
+        curr_row = 0
+        curr_col = 0
+
+        results = search_media(query)
+
+        for result in results:
+            # Returns list of three-tuples containing show name (if episode), title, and filename (if not a show)
+            show_name = result[0]
+            title = result[1]
+            video_file = result[2]
+
+            image_file = None
+
+            # Create the image filename
+            if show_name != None:
+                image_file = os.path.join(images_dir, show_name + ".jpg")
+            else:            
+                image_file = os.path.join(images_dir, title + ".jpg")
+
+            # If there is no image filename for the media, skip it
+            if not os.path.exists(image_file):
+                print(image_file)
+                print("Image not found for: " + title + ". Skipping...")
+                continue
+            # Add a new row to the 2D grid when we're at the first column
+            if curr_col == 0:
+                new_row = []
+                self.grid.append(new_row)
+
+            label_coords = [curr_row, curr_col]
+            # Add a new panel to the grid
+            self.grid[curr_row].append(Panel(title, image_file, video_file, self.containing_frame, label_coords))
+
+            # Iterate through columns, if we are out of columns go to next row
+            curr_col += 1
+            if curr_col == self.num_cols:
+                curr_col = 0
+                curr_row += 1
+
+                #print(title)
+
+        if len(results) > 0:
+            global details_title
+            details_title.set(self.get_title())
+
+    def get_title(self):
+        return self.panel_from_coords(self.selected_panel[0], self.selected_panel[1]).title
+
+    def get_video(self):
+        return self.panel_from_coords(self.selected_panel[0], self.selected_panel[1]).video_file
+
+    """ Returns two-tuple where first value is video filepath if the selection isn't a show (if it is a show, it is none).  Second value is title."""
+    def get_selection(self):
+        return (self.get_video(), self.get_title())
+
+    def move_selection(self, delt_row, delt_col):
+        selected_row = self.selected_panel[0]
+        selected_col = self.selected_panel[1]
+
+        new_row = selected_row + delt_row
+        new_col = selected_col + delt_col
+
+        if not self.test_panel_coords(new_row, new_col):
+            return
+
+        if new_col >= self.num_cols or new_col < 0:
+            return
+        elif (new_row == len(self.grid) - 1) and (new_col >= len(self.grid[len(self.grid) - 1])):
+            # Last row isn't fully filled
+            if selected_row < len(self.grid) - 1:
+                # We're not in the bottom row yet
+                new_col = len(self.grid[len(self.grid) - 1]) - 1
+                if new_row >= self.num_rows + self.scroll_row:
+                    self.scroll_down()
+            else:
+                # We're already in the bottom row
+                return
+        elif new_row >= self.num_rows + self.scroll_row:
+            if self.scroll_row >= len(self.grid) - self.num_rows:
+                return
+            self.scroll_down()
+        elif new_row < self.scroll_row:
+            if self.scroll_row <= 0:
+                return
+            self.scroll_up()
+        
+        #print("Moving selection from: (" + str(selected_row) + ", " + str(selected_col) + ") to: (" + str(new_row) + ", " + str(new_col) + ")")
+        self.selected_panel = [new_row, new_col]
+
+        self.grid[selected_row][selected_col].tk_object.config(background="#000000")
+        self.grid[self.selected_panel[0]][self.selected_panel[1]].tk_object.config(background=highlight_color)
+
+        #global title_info
+        #title_info.config(text=self.get_title())
+        global details_title
+        details_title.set(self.get_title())
+    
+
+    def draw_grid(self):
+        start_row = self.scroll_row
+        end_row = self.scroll_row + self.num_rows
+
+        for row_idx, row in enumerate(self.grid[start_row:end_row]):
+            for col_idx, panel in enumerate(row):
+                grid_coords = self.panel_to_grid_coords(row_idx + self.scroll_row, col_idx)
+
+                #print("Gridding " + panel.title + " to " + str(grid_coords))
+                #print("start_row: {}, panel_grid_row: {}, scroll_row: {}".format(self.start_row, row_idx + self.scroll_row, self.scroll_row))
+
+                panel.tk_object.grid(row=grid_coords[0], column=grid_coords[1], padx=title_padding, pady=title_padding)#, sticky=N+S+E+W)
+                panel.tk_object.config(background="#000000")
+
+        if len(self.grid) > 0 and len(self.grid[0]) > 0:
+            self.grid[self.selected_panel[0]][self.selected_panel[1]].tk_object.config(background=highlight_color)
+
+    def clean_grid(self):
+        start_row = self.scroll_row
+        end_row = self.scroll_row + self.num_rows
+
+        for row_idx, row in enumerate(self.grid[start_row:end_row]):
+            for col_idx, panel in enumerate(row):
+                panel.tk_object.grid_forget()
+
+    def reset_grid(self):
+        self.grid = []
+        self.selected_panel = [0, 0]
+        self.scroll_row = 0
+
+    def scroll_down(self):
+        self.clean_grid()
+
+        self.scroll_row += 1
+
+        self.grid[self.selected_panel[0]][self.selected_panel[1]].tk_object.config(background="#000000")
+
+        self.draw_grid()
+
+    def scroll_up(self):
+        self.clean_grid()
+
+        self.scroll_row -= 1
+
+        self.grid[self.selected_panel[0]][self.selected_panel[1]].tk_object.config(background="#000000")
+
+        self.draw_grid()
+        
+    """ Give this function the grid coords WITH ROW SCROLL SHIFT (not the translated GUI coords) """
+    def panel_from_coords(self, row, col):
+        #print("Index: " + str((self.num_cols - self.start_col) * (row) + (col)))
+        #print("Coords: (" + str(row) + ", " + str(col) + "); Index: " + str((self.num_cols - self.start_col) * (row) + (col)))
+        return self.grid[row][col]
+
+    """ The grid coordinates are stored at the 0 indices of row, column but the actual GUI grid coordinates are shifted
+        by start_row, start_col respectively.  So this function converts row, column coordinates to GUI grid coordinates. 
+
+        Example: The panel at grid[0][0] will actually be on the GUI as tk.grid(self.start_row, self.start_col, ...) """
+    def panel_to_grid_coords(self, panel_grid_row, panel_grid_col):
+        return (self.start_row + panel_grid_row - self.scroll_row, self.start_col + panel_grid_col)
+
+    """ Tests if panel coordinates map to valid grid coordinates.  Returns True of they are valid and false otherwise. """
+    def test_panel_coords(self, panel_grid_row, panel_grid_col):
+        return panel_grid_row < len(self.grid) and panel_grid_col < len(self.grid[panel_grid_row])
 
     def destroy(self):
         for row in self.grid:
@@ -887,6 +1173,96 @@ class PlaybackDialog(object):
 
         self.options_frame.pack_forget()
 
+class SearchScreen(object):
+    def __init__(self):
+        self.search_list_frame = tk.Frame(frame)
+        self.search_list_frame.config(background="#000000")
+        #for i in range(num_cols):
+        #    self.search_list_frame.grid_columnconfigure(i, weight=1)
+
+        for i in range(num_cols):
+            self.search_list_frame.columnconfigure(i, weight=1, minsize=panel_scale*panel_img_width + title_padding*2)
+
+        self.entry_string = StringVar()
+
+        self.search_entry = tk.Entry(self.search_list_frame, textvariable=self.entry_string, borderwidth=5)
+        self.search_entry.config(font=("Calibri", 32))
+        self.search_entry.config(background="#000000")
+        self.search_entry.config(foreground="#FFFFFF")
+        self.search_entry.config(insertbackground="#FFFFFF")
+
+        self.results_grid = SearchGrid(num_rows, num_cols, 1, 0, self.search_list_frame, media_dir, images_dir)
+
+        self.typing = False
+        self.showing_hint = True
+
+    def start_typing(self):
+        self.search_entry.focus()
+        self.typing = True
+
+    def draw(self):
+        grid.pack_forget()
+        titles_grid.destroy()
+
+        details_title.set('')
+
+        global frame
+
+        self.search_entry.grid(row=0, column=0, sticky=E+W, columnspan=num_cols)
+
+        if not _isLinux:
+            self.search_entry.focus()
+            self.typing = True
+
+        # List of two-tuples containing search result name and tk object
+        self.search_labels = []
+
+        """
+        search_results = ['abc123']
+        self.selected_result_idx = 0
+
+        for result in sorted(search_results):
+            search_label = tk.Label(self.search_list_frame, text=result, borderwidth=5, relief="solid", anchor='w', padx=show_padding)
+            search_label.config(font=("Calibri", 32))
+            search_label.config(background="#000000")
+            search_label.config(foreground="#FFFFFF")
+
+            self.search_labels.append((result, search_label))
+        """
+        #for i in range(num_cols):
+        #    self.search_list_frame.columnconfigure(i, weight=1)
+
+        #self.search_list_frame.rowconfigure(num_rows, weight=1)
+
+        self.search_list_frame.pack(side='right', fill=tk.BOTH, expand=True)
+        
+        """
+        for result_idx, search_label in enumerate(self.search_labels):
+            if result_idx == self.selected_result_idx:
+                search_label[1].config(background="#FFFFFF")
+                search_label[1].config(foreground="#000000")
+
+            search_label[1].grid(row=result_idx + 1, column=0, sticky=E+W)
+        """
+    def search(self):
+        #self.results_grid.containing_frame = self.search_list_frame
+        self.results_grid.clean_grid()
+        self.results_grid.reset_grid()
+
+        self.results_grid.search(self.entry_string.get())
+        self.results_grid.draw_grid()
+
+        self.search_entry.focus()
+
+    def destroy(self):
+        self.results_grid.destroy()
+
+        self.search_list_frame.pack_forget()
+
+        for search_label in self.search_labels:
+            search_label[1].grid_forget()
+            
+
 
 class FullScreenApp(object):
     def __init__(self, master, **kwargs):
@@ -895,7 +1271,7 @@ class FullScreenApp(object):
         self._geom='200x200+0+0'
         # This makes it fullscreen (I think)
         master.geometry("{0}x{1}+0+0".format(master.winfo_screenwidth()-pad, master.winfo_screenheight()-pad))
-        master.bind('<Escape>',self.toggle_geom)
+        #master.bind('<Escape>',self.toggle_geom)
     def toggle_geom(self,event):
         geom=self.master.winfo_geometry()
         print(geom,self._geom)
@@ -913,11 +1289,12 @@ frame.config(background="#000000")
 frame.pack(fill=tk.BOTH, expand=1)
 
 
-#initialize grid
+# Initialize grid
 grid = Frame(frame)
 grid.config(background="#000000")
 grid.pack()
 #grid.grid(sticky=N+S+E+W, column=0, row=0)
+
 
 '''
 #example values
@@ -941,11 +1318,13 @@ curr_show_manager = None
 
 curr_playback_dialog = None
 
+curr_search_screen = None
+
 # Where functions used to be
 
 # binding keyboard shortcuts to buttons on window
 root.bind("<p>", play_pause_video)
-root.bind("<s>", stop_video)
+root.bind("<s>", search)
 root.bind("<q>", exit)
 root.bind('<Up>', up)
 root.bind('<Down>', down)
@@ -955,6 +1334,7 @@ root.bind('<space>', select)
 root.bind('<Escape>', back)
 root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
+root.bind('<Return>', enter)
 
 media_dir = None
 
@@ -970,6 +1350,7 @@ tk_logo_img = None
 
 panel_grid = []
 panel_scale = .38
+panel_img_width = 600
 title_padding = 3
 details_pane = None
 details_pane_bg = "#333333"
@@ -984,13 +1365,15 @@ show_padding = 50
 
 from enum import Enum
 
-Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Player PlaybackDialog')
+Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search Player PlaybackDialog')
 
 screen = Screens.MainSelect
 
 titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir)
 
 details_title = StringVar()
+
+
 
 
 def draw_details_pane():
@@ -1042,6 +1425,65 @@ def draw_titles_grid():
 
     #print("Setting: (" + str(selected_panel[0]) + ", " + str(selected_panel[1]) + ") to WHITE")
 
+# Dictionary of movie names to filenames
+movies = {}
+# Dictionary of show names to lists of two tuples containing episode names and episode filenames
+shows = {}
+def generate_search_index():
+    for filename in sorted(os.listdir(media_dir), key=lambda x: ''.join(x.split())):
+        title = filename
+
+        if filename.endswith(".mp4") or filename.endswith(".mkv"): 
+            title = title[:-4]
+            video_file = os.path.join(media_dir, filename)
+
+            movies[title] = video_file
+
+        elif os.path.isdir(os.path.join(media_dir, filename)):
+            shows[title] = []
+
+            show_dir = os.path.join(media_dir, title)
+            for filename in sorted(os.listdir(show_dir)):
+                subdir = os.path.join(show_dir, filename)
+                if os.path.isdir(subdir): 
+                    for episode in sorted(os.listdir(subdir)):
+                        if episode.endswith(".mp4") or episode.endswith(".mkv"):
+                            shows[title].append((episode[:-4], os.path.join(subdir, episode)))
+    """
+    for movie, movie_filename in movies.items():
+        print("{} ==> {}".format(movie, movie_filename))
+
+    for show, show_pairs in shows.items():
+        print(show)
+        for show_pair in show_pairs:
+            print("\t{} ==> {}".format(show_pair[0], show_pair[1]))
+    """
+
+def get_img_path_from_title(title):
+    if not os.path.exists(image_file):
+        return ''
+    return os.path.join(images_dir, title + ".jpg")
+
+# Returns list of three-tuples containing show name (if episode), title, and filename (if not a show)
+def search_media(query):
+    query_lower = query.lower()
+    results = []
+
+    for movie, movie_filename in movies.items():
+        if query_lower in movie.lower():
+            results.append((None, movie, movie_filename))
+
+    for show, show_pairs in shows.items():
+        if query_lower in show.lower():
+            results.append((None, show, None))
+        for show_pair in show_pairs:
+            if query_lower in show_pair[0].lower():
+                results.append((show, show_pair[0], show_pair[1]))
+
+    return results
+
+
+generate_search_index()
 
 draw_details_pane()
 
