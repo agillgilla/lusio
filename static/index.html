@@ -1,0 +1,214 @@
+<html>
+
+<head>
+	<title>Lusio Controller</title>
+
+	<link rel="stylesheet" href="static/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type=text/javascript>
+			var stepSize = 5;
+			var stepSizesMap = new Map()
+
+			stepSizesMap.set(5, "5s");
+			stepSizesMap.set(15, "15s");
+			stepSizesMap.set(30, "30s");
+			stepSizesMap.set(60, "1m");
+			stepSizesMap.set(180, "3m");
+			stepSizesMap.set(300, "5m");
+			stepSizesMap.set(600, "10m");
+
+			stepSizesArray = [5, 15, 30, 60, 180, 300, 600];
+
+	        $(function() {
+	          $('a#up').bind('click', function() {
+	            $.getJSON('/up',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#down').bind('click', function() {
+	            $.getJSON('/down',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#left').bind('click', function() {
+	            $.getJSON('/left',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#right').bind('click', function() {
+	            $.getJSON('/right',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#select').bind('click', function() {
+	            $.getJSON('/select',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#back').bind('click', function() {
+	            $.getJSON('/back',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#play_pause').bind('click', function() {
+	            $.getJSON('/play_pause',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#sb').bind('click', function() {
+
+				var index = parseInt(document.getElementById("stepSizeButton").getAttribute("name"));
+	          	var stepSize = stepSizesArray[index];
+
+	            $.getJSON('/sb', { "step-size": stepSize },
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#sf').bind('click', function() {
+
+	          	var index = parseInt(document.getElementById("stepSizeButton").getAttribute("name"));
+	          	var stepSize = stepSizesArray[index];
+
+	            $.getJSON('/sf', { "step-size": stepSize }, 
+	                function(data) {
+
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#stepSizeLink').bind('click', function() {
+
+	            var index = parseInt(document.getElementById("stepSizeButton").getAttribute("name"));
+
+	            newIndex = index + 1;
+	            newIndex = newIndex % stepSizesArray.length;
+
+	            document.getElementById("stepSizeButton").setAttribute("name", newIndex);
+				document.getElementById("stepSizeButton").innerHTML = stepSizesMap.get(stepSizesArray[newIndex]);
+
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#search-button').bind('click', function() {
+	          	var query = document.getElementById("search").value;
+
+	            $.getJSON('/search', { "query": query }, 
+	                function(data) {
+	              		//do nothing
+	            });
+
+	            document.getElementById("search").value = "";
+	            
+	            return false;
+	          });
+	        });
+	</script>
+</head>
+
+<body>
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+	        <td class="bTop" colspan="3" align="center">
+	        	 <a href=# id=up><input type="image" src="static/images/up_arrow.png" height="100%" width="33%" /></a>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="bLeft">
+	        	<a href=# id=left><input type="image" src="static/images/left_arrow.png" height="80%" width="100%" /></a>
+	        </td>
+	        <td class="middle">
+	        	<a href=# id=select><input type="image" src="static/images/stop_media.png" height="75%" width="100%" /></a>
+	        </td>
+	        <td class="bRight">
+	        	<a href=# id=right><input type="image" src="static/images/right_arrow.png" height="80%" width="100%" /></a>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=down><input type="image" src="static/images/down_arrow.png" height="100%" width="33%" /></a>
+	        </td>
+	    </tr>
+
+	   	<tr>
+	        <td class="stepLeft">
+	        	<a href=# id=sb><input type="image" src="static/images/jump_backward.png" height="65%" width="100%" /></a>
+	        </td>
+	        <td class="playPause">
+	        	<a href=# id=play_pause><input type="image" src="static/images/play_pause.png" height="75%" width="100%" /></a>
+	        </td>
+	        <td class="stepRight">
+	        	<a href=# id=sf><input type="image" src="static/images/jump_forward.png" height="65%" width="100%" /></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=stepSizeLink><button id="stepSizeButton" name="0" width="100%" style="font-size:64px; width:100%; height:100px;">5s</button></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=back><button width="100%" style="font-size:64px; width:100%; height:100px;">BACK</button></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<form class="example" action="/action_page.php" size="100%" style="min-width:100%;">
+				  <input type="text" placeholder="Search.." id="search" style="font-size:64px;">
+				  <a href=# id=search-button><button><i class="fa fa-search" style="font-size:64px;"></i></button></a>
+				</form>
+	        </td>
+	    </tr>
+	</table>
+</body>
+
+</html>
