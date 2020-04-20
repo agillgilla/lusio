@@ -3,7 +3,9 @@
 	[Desktop Entry]
 	Name=Lusio
 	Type=Application
-	Exec=/usr/bin/python3 /home/pi/lusio/lusio.py
+	Exec=sudo /usr/bin/python3 /home/pi/lusio/lusio.py
+** Note that we execute with sudo.  This is because we run a flask server on port 80 for a web controller.  Running services using ports below 1024 requires root priveleges.
+
 3. Disable screen blanking:
 	sudo apt install xscreensaver
 
@@ -16,6 +18,8 @@ Once this has been installed, you can find the screensaver application under the
 	pip3 install python-vlc
 	pip3 install omxplayer-wrapper
 	pip3 install pickledb
+** Make sure to install these packages as the sudo user (run sudo su first)
+
 6. Disable HDMI-CEC because the Pi breaks it (at least on our Samsung TV):
    Add the following lines to /boot/config/txt:
 
