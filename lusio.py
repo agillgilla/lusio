@@ -549,6 +549,9 @@ commandDict = {
     "select": select,
     "back": back,
     "power": power,
+    "sf": step_forward,
+    "sb": step_backward,
+    "search": search,
 }
 
 webserver.setCommandDict(commandDict)

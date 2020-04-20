@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 
 # creates a Flask application, named app
 app = Flask(__name__, template_folder='static')
@@ -39,17 +40,24 @@ def select():
 def back():
     commandDict.get("back", None)(None)
 
-@app.route('/power')
-def power():
-    commandDict.get("power", None)(None)
-
 @app.route('/play_pause')
 def play_pause():
     commandDict.get("p", None)(None)
 
 @app.route('/search')
 def search():
-    commandDict.get("search", None)(None)
+    query = request.args.get('query')
+    commandDict.get("search", None)(query=query)
+
+@app.route('/sf')
+def sf():
+    step_size = request.args.get('step-size')
+    commandDict.get("sf", None)(int(step_size))
+
+@app.route('/sb')
+def sb():
+    step_size = request.args.get('step-size')
+    commandDict.get("sb", None)(int(step_size))
 
 def setCommandDict(newCommandDict):
     global commandDict
