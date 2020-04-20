@@ -1,0 +1,171 @@
+<html>
+
+<head>
+	<title>Lusio Controller</title>
+
+	<link rel="stylesheet" href="styles.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type=text/javascript>
+	        $(function() {
+	          $('a#up').bind('click', function() {
+	            $.getJSON('/up',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#down').bind('click', function() {
+	            $.getJSON('/down',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#left').bind('click', function() {
+	            $.getJSON('/left',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#right').bind('click', function() {
+	            $.getJSON('/right',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#select').bind('click', function() {
+	            $.getJSON('/select',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#back').bind('click', function() {
+	            $.getJSON('/back',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#power').bind('click', function() {
+	            $.getJSON('/power',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#play_pause').bind('click', function() {
+	            $.getJSON('/play_pause',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+
+	        $(function() {
+	          $('a#search').bind('click', function() {
+	            $.getJSON('/search',
+	                function(data) {
+	              		//do nothing
+	            });
+	            return false;
+	          });
+	        });
+	</script>
+</head>
+
+<body>
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+	        <td class="bTop" colspan="3" align="center">
+	        	 <a href=# id=up><input type="image" src="static/images/up_arrow.png" height="100%" width="33%" /></a>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="bLeft">
+	        	<a href=# id=left><input type="image" src="static/images/left_arrow.png" height="80%" width="100%" /></a>
+	        </td>
+	        <td class="middle">
+	        	<a href=# id=select><input type="image" src="static/images/stop_media.png" height="75%" width="100%" /></a>
+	        </td>
+	        <td class="bRight">
+	        	<a href=# id=right><input type="image" src="static/images/right_arrow.png" height="80%" width="100%" /></a>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=down><input type="image" src="static/images/down_arrow.png" height="100%" width="33%" /></a>
+	        </td>
+	    </tr>
+
+	   	<tr>
+	        <td class="stepLeft">
+	        	<input type="image" src="static/images/jump_backward.png" height="65%" width="100%" />
+	        </td>
+	        <td class="playPause">
+	        	<a href=# id=play_pause><input type="image" src="static/images/play_pause.png" height="75%" width="100%" /></a>
+	        </td>
+	        <td class="stepRight">
+	        	<input type="image" src="static/images/jump_forward.png" height="65%" width="100%" />
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<button width="100%" style="font-size:64px; width:100%; height:100px;">5s</button>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=back><button width="100%" style="font-size:64px; width:100%; height:100px;">BACK</button></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=search><button width="100%" style="font-size:64px; width:100%; height:100px;">SEARCH</button></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<a href=# id=power><button width="100%" style="font-size:64px; width:100%; height:100px;">POWER</button></a>
+	        </td>
+	    </tr>
+
+	    <tr>
+	        <td class="bBottom" colspan="3" align="center">
+	        	<button width="100%" style="font-size:64px; width:100%; height:100px;">CONNECT</button>
+	        </td>
+	    </tr>
+
+	</table>
+</body>
+
+</html>

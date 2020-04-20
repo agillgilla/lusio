@@ -17,6 +17,8 @@ import pickledb
 
 import examples_tkvlc
 
+import webserver
+
 
 _isLinux = sys.platform.startswith('linux')
 force_vlc = False
@@ -425,6 +427,18 @@ def save_video_position():
             curr_time = curr_time_millis // 1000
 
         times_db.set(curr_video, str(curr_time))
+
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        ip = s.getsockname()[0]
+    except:
+        ip = '127.0.0.1'
+    finally:
+        s.close()
+    return ip
                 
 class ThreadedServer(object):
     def __init__(self, host, port):
@@ -523,6 +537,24 @@ server_thread = threading.Thread(target = server_obj.listen,args = ())
 server_thread.daemon = True
 server_thread.start()
 
+commandDict = {
+    "p": play_pause_video,
+    "s": search,
+    "q": exit,
+    "i": toggle_info,
+    "up": up,
+    "down": down,
+    "left": left,
+    "right": right,
+    "select": select,
+    "back": back,
+    "power": power,
+}
+
+webserver.setCommandDict(commandDict)
+flask_server_thread = threading.Thread(target = webserver.start,args = ())
+flask_server_thread.daemon = True
+flask_server_thread.start()
 
 '''
 try:
@@ -1395,8 +1427,6 @@ def draw_details_pane():
     title_info.config(fg="#FFFFFF")
     title_info.pack(side="top", fill='both')
 
-
-
     global tk_logo_img
     logo_img = Image.open(logo_image_file)
     logo_img_width = logo_img.size[0]
@@ -1410,6 +1440,12 @@ def draw_details_pane():
 
     logo_image_label = tk.Label(details_pane, image=tk_logo_img, background=details_pane_bg)# width=int(img_width * panel_scale + highlight_thickness), height=int(img_height * panel_scale + highlight_thickness))
     logo_image_label.pack(side='bottom', fill=tk.X, anchor='s')
+
+    ip_label = Message(details_pane, text = "IP: " + str(get_ip()), width=details_pane_width)
+    ip_label.config(font=("Calibri", 36))
+    ip_label.config(background=details_pane_bg)
+    ip_label.config(fg="#FFFFFF")
+    ip_label.pack(side='bottom', fill=tk.X)
 
 
 def draw_titles_grid():
