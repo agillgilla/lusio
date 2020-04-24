@@ -49,6 +49,9 @@ curr_video = None
 # Variable for reference to video times key value store
 times_db = None
 
+def heartbeat(*unused):
+    logging.debug("Heartbeat!")
+
 def play_pause_video(event):
     if screen == Screens.Player:
         global using_omx
@@ -449,6 +452,8 @@ class ThreadedServer(object):
         self.sock.bind((self.host, self.port))
 
         self.command_switch = {
+            # H is for heartbeat!
+            "h": heartbeat,
             "p": play_pause_video,
             "s": search,
             "q": exit,
