@@ -397,7 +397,8 @@ def toggle_subtitles(event):
     if screen == Screens.Player:
         global using_omx
         if using_omx:
-            logging.debug("Subtitles:", omx_player.list_subtitles())
+            pass
+            #logging.debug("Subtitles:", omx_player.list_subtitles())
             
 def enter(*unused):
     global screen
