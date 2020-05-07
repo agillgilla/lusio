@@ -392,6 +392,12 @@ def search(*unused, query=None):
             curr_search_screen.search()
             
             root.focus()
+
+def toggle_subtitles(event):
+    if screen == Screens.Player:
+        global using_omx
+        if using_omx:
+            logging.debug("Subtitles:", omx_player.list_subtitles())
             
 def enter(*unused):
     global screen
@@ -458,6 +464,7 @@ class ThreadedServer(object):
             "s": search,
             "q": exit,
             "i": toggle_info,
+            "c": toggle_subtitles,
             "up": up,
             "down": down,
             "left": left,
@@ -549,6 +556,7 @@ commandDict = {
     "s": search,
     "q": exit,
     "i": toggle_info,
+    "c": toggle_subtitles,
     "up": up,
     "down": down,
     "left": left,
@@ -1372,6 +1380,7 @@ root.bind('<Left>', left)
 root.bind('<Right>', right)
 root.bind('<space>', select)
 root.bind('<Escape>', back)
+root.bind('<c>', toggle_subtitles)
 root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
 root.bind('<Return>', enter)
