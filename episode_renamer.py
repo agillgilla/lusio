@@ -4,11 +4,11 @@ import re
 
 season_delimiter = 'S'
 episode_delimiter = 'E'
-file_suffix = '.mp4'
+file_suffix = '.mkv'
 
 new_episodes_file = open('new_filenames.txt', 'r')
 
-for folder, subs, files in os.walk('F:\MOVIES\Monk'):
+for folder, subs, files in os.walk('D:\VIDEOS\MOVIES\CURR DOWNLOAD'):
 	#print(folder)
 	#print(subs)
 	#print(files)
@@ -32,7 +32,7 @@ for folder, subs, files in os.walk('F:\MOVIES\Monk'):
 
 			new_filename = file.split(file_suffix)[0] + " (" + episode_name + ")" + file_suffix
 
-			os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
+			#os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
 
 			print(file + "\t >> \t" + new_filename)
 			

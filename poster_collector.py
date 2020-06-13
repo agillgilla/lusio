@@ -43,7 +43,7 @@ def get_imdb_img(title, output_filename):
     return True
 
 
-directory = 'D:\VIDEOS\MOVIES'
+directory = 'C:\MOVIES'
 fetched_titles = []
 skipped_titles = []
 failed_titles = []
@@ -62,7 +62,7 @@ for filename in os.listdir(directory):
         print("Fetching " + title + "...")
         if get_imdb_img(title, output_filename):
             fetched_titles.append(title)
-            print("...Sucessfully fetched " + title)
+            print("...Successfully fetched " + title)
         else:
             print("...Failed to fetch " + title)
             failed_titles.append(title)
@@ -79,6 +79,7 @@ for filename in os.listdir(directory):
         
         print("Fetching " + title + "...")
         if get_imdb_img(title, output_filename):
+            fetched_titles.append(title)
             print("Sucessfully fetched " + title)
         else:
             print("Failed to fetch " + title)
