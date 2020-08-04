@@ -595,7 +595,9 @@ class Panel(object):
         img = Image.open(image_file)
         img_width = img.size[0]
         img_height = img.size[1]
-        img = img.resize((int(img_width * panel_scale), int(img_height * panel_scale)), Image.ANTIALIAS)
+        #img = img.resize((int(img_width * panel_scale), int(img_height * panel_scale)), Image.ANTIALIAS)
+        panel_scale = float(panel_scaled_img_width) / img_width
+        img = img.resize((int(panel_scaled_img_width), int(img_height * panel_scale)), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(img)
         self.image = img
 
@@ -1230,7 +1232,7 @@ class SearchScreen(object):
         #    self.search_list_frame.grid_columnconfigure(i, weight=1)
 
         for i in range(num_cols):
-            self.search_list_frame.columnconfigure(i, weight=1, minsize=panel_scale*panel_img_width + title_padding*2)
+            self.search_list_frame.columnconfigure(i, weight=1, minsize=panel_scaled_img_width + title_padding*2)
 
         self.entry_string = StringVar()
 
@@ -1400,14 +1402,18 @@ logo_image_file = os.path.join('logo', 'lusio_logo.jpg')
 tk_logo_img = None
 
 panel_grid = []
-panel_scale = .38
-panel_img_width = 600
+#panel_scale = .38
+screen_width = root.winfo_screenwidth()
+panel_screen_width_fraction = .11875
+panel_scaled_img_width = int(panel_screen_width_fraction * screen_width)
+panel_src_img_width = 600
 title_padding = 3
 details_pane = None
 details_pane_bg = "#333333"
 episode_title_bg = "#333333"
 title_info = None
-details_pane_width = 450
+details_pane_screen_width_fraction = .234375
+details_pane_width = int(details_pane_screen_width_fraction * screen_width)
 highlight_thickness = 8
 highlight_color = "#FFFFFF"
 num_rows = 3
