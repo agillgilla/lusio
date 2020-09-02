@@ -4,11 +4,13 @@ import re
 
 season_delimiter = 'S'
 episode_delimiter = 'E'
-file_suffix = '.mkv'
+file_suffix = '.mp4'
+dry_run = False
+episodes_directory = 'C:\MOVIES\Spongebob Squarepants'
 
-new_episodes_file = open('new_filenames.txt', 'r')
+new_episodes_file = open('new_filenames_spongebob.txt', 'r')
 
-for folder, subs, files in os.walk('D:\VIDEOS\MOVIES\CURR DOWNLOAD'):
+for folder, subs, files in os.walk(episodes_directory):
 	#print(folder)
 	#print(subs)
 	#print(files)
@@ -32,7 +34,8 @@ for folder, subs, files in os.walk('D:\VIDEOS\MOVIES\CURR DOWNLOAD'):
 
 			new_filename = file.split(file_suffix)[0] + " (" + episode_name + ")" + file_suffix
 
-			#os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
+			if not dry_run:
+				os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
 
 			print(file + "\t >> \t" + new_filename)
 			
