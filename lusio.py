@@ -130,7 +130,10 @@ def power(event):
 
 def up(event):
     if screen == Screens.MainSelect:
-        titles_grid.move_selection(-1, 0)
+        if selecting_category:
+            categories_manager.move_selection(-1)
+        else:
+            titles_grid.move_selection(-1, 0)
     elif screen == Screens.ShowSeasonSelect:
         curr_show_manager.move_season_selection(-1)
     elif screen == Screens.ShowEpisodeSelect:
@@ -143,7 +146,10 @@ def up(event):
 
 def down(event):
     if screen == Screens.MainSelect:
-        titles_grid.move_selection(1, 0)
+        if selecting_category:
+            categories_manager.move_selection(1)
+        else:
+            titles_grid.move_selection(1, 0)
     elif screen == Screens.ShowSeasonSelect:
         curr_show_manager.move_season_selection(1)
     elif screen == Screens.ShowEpisodeSelect:
@@ -156,14 +162,20 @@ def down(event):
 
 def left(event):
     if screen == Screens.MainSelect:
-        titles_grid.move_selection(0, -1)
+        if not selecting_category:
+            titles_grid.move_selection(0, -1)
     elif screen == Screens.Search:
         if not curr_search_screen.typing:
             curr_search_screen.results_grid.move_selection(0, -1)
 
 def right(event):
     if screen == Screens.MainSelect:
-        titles_grid.move_selection(0, 1)
+        global selecting_category
+        if selecting_category:
+            selecting_category = False
+            categories_manager.set_inactive()
+        else:
+            titles_grid.move_selection(0, 1)
     elif screen == Screens.Search:
         if not curr_search_screen.typing:
             curr_search_screen.results_grid.move_selection(0, 1)
@@ -175,6 +187,8 @@ def select(event):
     global curr_show_manager
     
     if screen == Screens.MainSelect:
+        if selecting_category:
+            return
         
         titles_grid.destroy()
         
@@ -194,7 +208,8 @@ def select(event):
 
                 screen = Screens.PlaybackDialog
             else:
-                details_pane.destroy()
+                details_pane.pack_forget()
+                #details_pane.destroy()
                 grid.pack_forget()
 
                 play_video(video_file)
@@ -227,7 +242,8 @@ def select(event):
             screen = Screens.PlaybackDialog
 
         else:
-            details_pane.destroy()
+            details_pane.pack_forget()
+            #details_pane.destroy()
 
             play_video(video_file)
 
@@ -260,7 +276,8 @@ def select(event):
 
             else:
                 curr_search_screen.destroy()
-                details_pane.destroy()
+                details_pane.pack_forget()
+                #details_pane.destroy()
 
                 play_video(video_file)
         
@@ -299,7 +316,8 @@ def back(event):
             omx_player.quit()
             using_omx = False
 
-        draw_details_pane()
+        #draw_details_pane()
+        details_pane.pack(side='left', fill=tk.Y, anchor='w')
         draw_titles_grid()
 
         screen = Screens.MainSelect
@@ -584,7 +602,7 @@ except KeyboardInterrupt:
 '''
 
 
-panel_images = []
+panel_images = {}
 
 class Panel(object):
     def __init__(self, title, image_file, video_file, tk_container, grid_coords):
@@ -592,24 +610,32 @@ class Panel(object):
         self.image_file = image_file
         self.video_file = video_file
 
-        img = Image.open(image_file)
-        img_width = img.size[0]
-        img_height = img.size[1]
-        #img = img.resize((int(img_width * panel_scale), int(img_height * panel_scale)), Image.ANTIALIAS)
-        panel_scale = float(panel_scaled_img_width) / img_width
-        img = img.resize((int(panel_scaled_img_width), int(img_height * panel_scale)), Image.ANTIALIAS)
-        img = ImageTk.PhotoImage(img)
-        self.image = img
-
         global panel_images
-        panel_images.append(img)
+        if title in panel_images:
+            img = panel_images[title][0]
+            img_width = img.size[0]
+            img_height = img.size[1]
+            panel_scale = float(panel_scaled_img_width) / img_width
+            self.image = panel_images[title][1]
+        else:
+            img = Image.open(image_file)
+            img_width = img.size[0]
+            img_height = img.size[1]
+            #img = img.resize((int(img_width * panel_scale), int(img_height * panel_scale)), Image.ANTIALIAS)
+            panel_scale = float(panel_scaled_img_width) / img_width
+            img_resized = img.resize((int(panel_scaled_img_width), int(img_height * panel_scale)), Image.ANTIALIAS)
+            photo_img = ImageTk.PhotoImage(img_resized)
+            self.image = photo_img
+
+            panel_images[title] = (img, photo_img)
+
 
         self.tk_object = tk.Label(tk_container, image=self.image, width=int(img_width * panel_scale + highlight_thickness), height=int(img_height * panel_scale + highlight_thickness))
 
         self.grid_coords = grid_coords
 
 class PanelGrid(object):
-    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, images_dir):
+    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, images_dir, category=None):
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.start_row = start_row
@@ -633,12 +659,22 @@ class PanelGrid(object):
                 if not os.path.isdir(os.path.join(media_dir, filename)):
                     title = title[:-4]
                     video_file = os.path.join(media_dir, filename)
+                # Strip x265 suffix for files stored on computer
+                if title.endswith(' x265'):
+                    img_title = title[:-5]
+                else:
+                    img_title = title
+
+                # If we are loading a specific category and the media isn't in it, then skip it.
+                if category != None and title not in category:
+                    continue
+
                 # Create the image filename
-                image_file = os.path.join(images_dir, title + ".jpg")
+                image_file = os.path.join(images_dir, img_title + ".jpg")
                 # If there is no image filename for the media, skip it
                 if not os.path.exists(image_file):
                     print(image_file)
-                    print("Image not found for: " + title + ". Skipping...")
+                    print("Image not found for: " + img_title + ". Skipping...")
                     continue
                 # Add a new row to the 2D grid when we're at the first column
                 if curr_col == 0:
@@ -679,7 +715,12 @@ class PanelGrid(object):
         #translated = self.panel_to_grid_coords(new_row, new_col)
         #print(f"Translated: {translated[0]}, {translated[1]}")
 
-        if new_col >= self.num_cols or new_col < 0:
+        if new_col >= self.num_cols:
+            return
+        elif new_col < 0:
+            global selecting_category
+            selecting_category = True
+            categories_manager.set_active()
             return
         elif (new_row == len(self.grid) - 1) and (new_col >= len(self.grid[len(self.grid) - 1])):
             # Last row isn't fully filled
@@ -1213,7 +1254,8 @@ class PlaybackDialog(object):
     def select(self):
         self.destroy()
 
-        details_pane.destroy()
+        details_pane.pack_forget()
+        #details_pane.destroy()
         grid.pack_forget()
 
         play_video(self.video_file, resume=self.resume_selected)
@@ -1371,6 +1413,10 @@ curr_playback_dialog = None
 
 curr_search_screen = None
 
+categories_manager = None
+
+selecting_category = False
+
 # Where functions used to be
 
 # binding keyboard shortcuts to buttons on window
@@ -1403,12 +1449,12 @@ tk_logo_img = None
 
 panel_grid = []
 #panel_scale = .38
+screen_height = root.winfo_screenheight()
 screen_width = root.winfo_screenwidth()
 panel_screen_width_fraction = .11875
 panel_scaled_img_width = int(panel_screen_width_fraction * screen_width)
 panel_src_img_width = 600
 title_padding = 3
-details_pane = None
 details_pane_bg = "#333333"
 episode_title_bg = "#333333"
 title_info = None
@@ -1431,12 +1477,116 @@ titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir)
 details_title = StringVar()
 
 
+class CategoriesManager(object):
+    def __init__(self):
+        global details_pane
+        self.categories_frame = tk.Frame(details_pane)
+        self.categories_frame.config(background=details_pane_bg)
+
+        self.selected_category_index = 0
+
+    def load_categories(self):
+        self.categories = []     
+
+        all_label_frame = LabelFrame(self.categories_frame,
+                        borderwidth=5,
+                        bg="#FFFFFF",
+                        relief=FLAT)
+        all_label_frame.pack(side='top', fill=tk.X, expand="1")
+
+        all_label = Label(all_label_frame,
+                      text="All", 
+                      font=("Calibri", 24),
+                      bg=details_pane_bg,
+                      fg="#FFFFFF",
+                      relief=FLAT)
+        all_label.pack(fill=tk.BOTH)
+
+        self.categories.append(("All", None, all_label, all_label_frame))
+
+        tv_shows = set()
+        for filename in sorted(os.listdir(media_dir), key=lambda x : x):
+            if os.path.isdir(os.path.join(media_dir, filename)):
+                filename_img = filename
+                if filename.endswith(' x265'):
+                    filename_img = filename_img[:-5]
+                image_file = os.path.join(images_dir, filename_img + ".jpg")
+                if os.path.exists(image_file):
+                    tv_shows.add(filename)
+                
+        self.create_category("TV Shows", tv_shows)
+
+        for filename in os.listdir('categories'):
+            if filename.endswith(".txt"):
+                category_name = filename[:-4]
+                category_filepath = os.path.join('categories', filename)
+                category_titles = set()
+                with open(category_filepath) as category_file:
+                    curr_title = category_file.readline().rstrip('\n')
+                    while curr_title:
+                        image_file = os.path.join(images_dir, curr_title + ".jpg")
+                        if os.path.exists(image_file):
+                            category_titles.add(curr_title)
+
+                        curr_title = category_file.readline().rstrip('\n')
+
+                self.create_category(category_name, category_titles)
+
+    def create_category(self, category_name, category_titles):
+        category_label_frame = LabelFrame(self.categories_frame,
+                        borderwidth=5,
+                        bg=details_pane_bg,
+                        relief=FLAT)
+        category_label_frame.pack(side='top', fill=tk.X, expand="1")
+
+        category_label = Label(category_label_frame,
+                      text=category_name, 
+                      font=("Calibri", 24),
+                      bg=details_pane_bg,
+                      fg="#FFFFFF",
+                      relief=FLAT)
+        category_label.pack(fill=tk.BOTH)
+
+        self.categories.append((category_name, category_titles, category_label, category_label_frame))
+
+    def draw_categories(self):
+        #self.categories_frame.pack(side='left', fill=tk.X, expand="1")
+        self.categories_frame.pack(side='bottom', fill=tk.X, pady=(screen_height / 4))
+
+    def set_active(self):
+        self.categories[self.selected_category_index][2].config(bg='#000000')
+
+    def set_inactive(self):
+        self.categories[self.selected_category_index][2].config(bg=details_pane_bg)
+
+    def move_selection(self, delta):
+        new_selected_index = self.selected_category_index + delta
+
+        if new_selected_index < 0 or new_selected_index >= len(self.categories):
+            return
+
+        self.categories[self.selected_category_index][3].config(bg=details_pane_bg)
+        self.categories[self.selected_category_index][2].config(bg=details_pane_bg)
+
+        self.selected_category_index = new_selected_index
+
+        self.categories[self.selected_category_index][3].config(bg="#FFFFFF")
+        self.categories[self.selected_category_index][2].config(bg='#000000')
+
+        global titles_grid
+        titles_grid.destroy()
+        titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir, self.get_curr_category_titles())
+        draw_titles_grid()
+
+    def get_curr_category_titles(self):
+        return self.categories[self.selected_category_index][1]
 
 
-def draw_details_pane():
+details_pane = Frame(frame, width=details_pane_width)
+
+def init_details_pane():
 
     global details_pane
-    details_pane = Frame(frame, width=details_pane_width)
     details_pane.config(background=details_pane_bg)
     #details_pane.grid(row=0, column=0, columnspan=2, rowspan=num_rows, sticky=N+S+E+W)
     details_pane.pack(side='left', fill=tk.Y, anchor='w')
@@ -1468,11 +1618,23 @@ def draw_details_pane():
     logo_image_label = tk.Label(details_pane, image=tk_logo_img, background=details_pane_bg)# width=int(img_width * panel_scale + highlight_thickness), height=int(img_height * panel_scale + highlight_thickness))
     logo_image_label.pack(side='bottom', fill=tk.X, anchor='s')
 
-    ip_label = Message(details_pane, text = "IP: " + str(get_ip()), width=details_pane_width)
+    ip_label = Message(details_pane, text = str(get_ip()), width=details_pane_width)
     ip_label.config(font=("Calibri", 36))
     ip_label.config(background=details_pane_bg)
     ip_label.config(fg="#FFFFFF")
     ip_label.pack(side='bottom', fill=tk.X)
+
+    #all_label = tk.Label(details_pane, text="All", highlightthickness=5, relief='solid', anchor='center', padx=show_padding)
+    #all_label.config(font=("Calibri", 24))
+    #all_label.config(background=details_pane_bg)
+    #all_label.config(foreground="#FFFFFF")
+    #all_label.config(highlightbackground="#FFFFFF")
+
+    global categories_manager
+    if categories_manager == None:
+        categories_manager = CategoriesManager()
+        categories_manager.load_categories()
+    categories_manager.draw_categories()
 
 
 def draw_titles_grid():
@@ -1546,7 +1708,7 @@ def search_media(query):
 
 generate_search_index()
 
-draw_details_pane()
+init_details_pane()
 
 draw_titles_grid()
 

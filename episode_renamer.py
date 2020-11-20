@@ -4,11 +4,11 @@ import re
 
 season_delimiter = 'S'
 episode_delimiter = 'E'
-file_suffix = '.mp4'
-dry_run = False
-episodes_directory = 'C:\MOVIES\Spongebob Squarepants'
+file_suffix = '.mkv'
+dry_run = True
+episodes_directory = 'C:\MOVIES\How I Met Your Mother x265'
 
-new_episodes_file = open('new_filenames_spongebob.txt', 'r')
+new_episodes_file = open('himym.txt', 'r')
 
 for folder, subs, files in os.walk(episodes_directory):
 	#print(folder)
