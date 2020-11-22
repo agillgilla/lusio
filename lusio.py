@@ -174,6 +174,7 @@ def right(event):
         if selecting_category:
             selecting_category = False
             categories_manager.set_inactive()
+            titles_grid.update_details_title()
         else:
             titles_grid.move_selection(0, 1)
     elif screen == Screens.Search:
@@ -749,9 +750,11 @@ class PanelGrid(object):
 
         #global title_info
         #title_info.config(text=self.get_title())
+        self.update_details_title()
+
+    def update_details_title(self):
         global details_title
         details_title.set(self.get_title())
-    
 
     def draw_grid(self):
         start_row = self.scroll_row
@@ -1496,7 +1499,7 @@ class CategoriesManager(object):
 
         all_label = Label(all_label_frame,
                       text="All", 
-                      font=("Calibri", 24),
+                      font=("Calibri", 32),
                       bg=details_pane_bg,
                       fg="#FFFFFF",
                       relief=FLAT)
@@ -1541,7 +1544,7 @@ class CategoriesManager(object):
 
         category_label = Label(category_label_frame,
                       text=category_name, 
-                      font=("Calibri", 24),
+                      font=("Calibri", 32),
                       bg=details_pane_bg,
                       fg="#FFFFFF",
                       relief=FLAT)
@@ -1554,10 +1557,12 @@ class CategoriesManager(object):
         self.categories_frame.pack(side='bottom', fill=tk.X, pady=(screen_height / 4))
 
     def set_active(self):
-        self.categories[self.selected_category_index][2].config(bg='#000000')
+        self.categories[self.selected_category_index][2].config(bg='#FFFFFF')
+        self.categories[self.selected_category_index][2].config(fg='#000000')
 
     def set_inactive(self):
         self.categories[self.selected_category_index][2].config(bg=details_pane_bg)
+        self.categories[self.selected_category_index][2].config(fg='#FFFFFF')
 
     def move_selection(self, delta):
         new_selected_index = self.selected_category_index + delta
@@ -1567,11 +1572,13 @@ class CategoriesManager(object):
 
         self.categories[self.selected_category_index][3].config(bg=details_pane_bg)
         self.categories[self.selected_category_index][2].config(bg=details_pane_bg)
+        self.categories[self.selected_category_index][2].config(fg='#FFFFFF')
 
         self.selected_category_index = new_selected_index
 
         self.categories[self.selected_category_index][3].config(bg="#FFFFFF")
-        self.categories[self.selected_category_index][2].config(bg='#000000')
+        self.categories[self.selected_category_index][2].config(bg='#FFFFFF')
+        self.categories[self.selected_category_index][2].config(fg='#000000')
 
         global titles_grid
         titles_grid.destroy()
