@@ -43,7 +43,7 @@ def get_imdb_img(title, output_filename):
     return True
 
 
-directory = 'C:\MOVIES'
+directory = 'D:\MOVIES'
 fetched_titles = []
 skipped_titles = []
 failed_titles = []
