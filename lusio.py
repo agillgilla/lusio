@@ -1443,8 +1443,8 @@ if _isLinux:
     media_dir = '/media/pi/Samsung_T5/MOVIES'
     #media_dir = '/home/pi/Desktop/test_media'
 else:
-    media_dir = 'C:\MOVIES'
-    #media_dir = 'D:\VIDEOS\MOVIES'
+    #media_dir = 'C:\MOVIES'
+    media_dir = 'D:\MOVIES'
 
 images_dir = 'posters'
 logo_image_file = os.path.join('logo', 'lusio_logo.jpg')
