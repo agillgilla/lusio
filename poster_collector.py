@@ -31,6 +31,10 @@ def get_imdb_img(title, output_filename):
 
     poster_path = response_json_results[0]['poster_path']
 
+    if poster_path is None:
+        print(f"\tCouldn't find {title}")
+        return False
+
     #w500_base_url = 'https://image.tmdb.org/t/p/w500'
     original_base_url = 'https://image.tmdb.org/t/p/original'
 
