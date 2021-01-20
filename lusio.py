@@ -1554,7 +1554,7 @@ class CategoriesManager(object):
 
     def draw_categories(self):
         #self.categories_frame.pack(side='left', fill=tk.X, expand="1")
-        self.categories_frame.pack(side='bottom', fill=tk.X, pady=(screen_height / 4))
+        self.categories_frame.pack(side='bottom', fill=tk.X, pady=(0, screen_height / 3 - len(self.categories) * 32))
 
     def set_active(self):
         self.categories[self.selected_category_index][2].config(bg='#FFFFFF')
@@ -1609,7 +1609,7 @@ def init_details_pane():
     title_info.config(font=("Calibri", 36))
     title_info.config(background=details_pane_bg)
     title_info.config(fg="#FFFFFF")
-    title_info.pack(side="top", fill='both')
+    title_info.pack(side="top", fill=tk.X)
 
     global tk_logo_img
     logo_img = Image.open(logo_image_file)
