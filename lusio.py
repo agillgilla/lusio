@@ -12,6 +12,7 @@ import os
 import socket
 import threading
 import time
+import json
 
 import pickledb
 
@@ -36,6 +37,8 @@ logging.basicConfig(filename='logfile.log', level=logging.DEBUG, format='[%(leve
 
 logging.info("Running now...")
 
+MEDIA_INFO_FILENAME = 'media_info.json'
+
 # Variable used to know if we are using omxplayer of vlc (for mp4 files)
 use_omx = (not force_vlc) and _isLinux
 if use_omx:
@@ -48,6 +51,8 @@ using_omx = False
 curr_video = None
 # Variable for reference to video times key value store
 times_db = None
+# Dictionary containing keys of media titles to info about the media
+media_info_dict = {}
 
 def heartbeat(*unused):
     logging.debug("Heartbeat!")
@@ -346,6 +351,12 @@ def back(event):
         details_title.set(titles_grid.get_title())
 
         screen = Screens.MainSelect
+    elif screen == Screens.InfoDialog:
+        curr_info_dialog.destroy()
+
+        draw_titles_grid()
+        details_title.set(titles_grid.get_title())
+        screen = Screens.MainSelect
 
 def play_video(video_file, resume=False):
     global using_omx
@@ -412,6 +423,17 @@ def search(*unused, query=None):
             
             root.focus()
 
+def media_info(event):
+    global screen
+    global curr_info_dialog
+
+    grid.pack_forget()
+
+    curr_info_dialog = InfoDialog(titles_grid.get_title())
+    curr_info_dialog.draw()
+    
+    screen = Screens.InfoDialog
+
 def toggle_subtitles(event):
     if screen == Screens.Player:
         global using_omx
@@ -430,6 +452,16 @@ def enter(*unused):
 def init_times_db():
     global times_db
     times_db = pickledb.load('times.db', True)
+
+def init_info_dict():
+    global media_info_dict
+
+    try:
+        with open(MEDIA_INFO_FILENAME, 'r+') as info_json_file:
+            media_info_dict = json.load(info_json_file)
+    except FileNotFoundError as fnfe:
+        logging.error("The JSON info file wasn't found:")
+        logging.error(fnfe)
 
 def omx_play(file, start_pos=None):
     file_path = Path(file)
@@ -492,6 +524,7 @@ class ThreadedServer(object):
             "select": select,
             "back": back,
             "power": power,
+            "m": media_info,
             #"ff": fastForward,
             #"rewind": rewind
         }
@@ -1269,6 +1302,69 @@ class PlaybackDialog(object):
 
         self.options_frame.pack_forget()
 
+class InfoDialog(object):
+    def __init__(self, title):
+        self.title = title
+
+        global frame
+
+        self.info_frame = tk.Frame(frame)
+        self.info_frame.config(background="#000000")
+        self.info_frame.grid_columnconfigure(0, weight=1)
+
+        media_info = media_info_dict[title]
+
+        title_text = f"{media_info['title']} ({media_info['year']})"
+
+        self.title_label = tk.Label(self.info_frame, text=title_text, borderwidth=5, relief="solid")
+        self.title_label.config(font=("Calibri", 42))
+        self.title_label.config(background="#000000")
+        self.title_label.config(foreground="#FFFFFF")
+
+        info_strip_text = f"{media_info['rated']} | {media_info['runtime']} | {media_info['genre']}"
+
+        self.info_strip = tk.Label(self.info_frame, text=info_strip_text, borderwidth=5, relief="solid")
+        self.info_strip.config(font=("Calibri", 28, 'bold'))
+        self.info_strip.config(background="#000000")
+        self.info_strip.config(foreground="#FFFFFF")
+
+        ratings_strip_text = f"IMDb: {media_info['rating_imdb']}     Rotten Tomatoes: {media_info['rating_rotten']}     Metacritic: {media_info['rating_meta']}"
+
+        self.ratings_strip = tk.Label(self.info_frame, text=ratings_strip_text, borderwidth=5, relief="solid")
+        self.ratings_strip.config(font=("Calibri", 28, 'italic'))
+        self.ratings_strip.config(background="#000000")
+        self.ratings_strip.config(foreground="#FFFFFF")
+
+        self.plot_label = Message(self.info_frame, text=media_info['plot'], borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction - .1) * screen_width))
+        self.plot_label.config(font=("Calibri", 24))
+        self.plot_label.config(background="#000000")
+        self.plot_label.config(foreground="#FFFFFF")
+
+        director_and_actors_text = f"Director: {media_info['director']}\nActors: {media_info['actors']}"
+
+        self.director_and_actors_label = tk.Message(self.info_frame, text=director_and_actors_text, borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction) * screen_width))
+        self.director_and_actors_label.config(font=("Calibri", 24))
+        self.director_and_actors_label.config(background="#000000")
+        self.director_and_actors_label.config(foreground="#FFFFFF")
+
+    def draw(self):
+        self.info_frame.pack(side='right', fill=tk.BOTH, expand=True)
+        
+        self.title_label.grid(row=0, column=0, sticky=E+W)
+        self.info_strip.grid(row=1, column=0, sticky=E+W, pady=(10, 0))
+        self.ratings_strip.grid(row=2, column=0, sticky=E+W, pady=(10, 0))
+        self.plot_label.grid(row=3, column=0, sticky=E+W, pady=(20, 0))
+        self.director_and_actors_label.grid(row=4, column=0, sticky=E+W, pady=(20, 0))
+
+    def destroy(self):
+        self.title_label.grid_forget()
+        self.info_strip.grid_forget()
+        self.ratings_strip.grid_forget()
+        self.plot_label.grid_forget()
+        self.director_and_actors_label.grid_forget()
+
+        self.info_frame.pack_forget()
+
 class SearchScreen(object):
     def __init__(self):
         self.search_list_frame = tk.Frame(frame)
@@ -1416,6 +1512,8 @@ curr_playback_dialog = None
 
 curr_search_screen = None
 
+curr_info_dialog = None
+
 categories_manager = None
 
 selecting_category = False
@@ -1432,6 +1530,7 @@ root.bind('<Left>', left)
 root.bind('<Right>', right)
 root.bind('<space>', select)
 root.bind('<Escape>', back)
+root.bind('<i>', media_info)
 root.bind('<c>', toggle_subtitles)
 root.bind('<a>', lambda unused: step_backward(5))
 root.bind('<d>', lambda unused: step_forward(5))
@@ -1471,7 +1570,7 @@ show_padding = 50
 
 from enum import Enum
 
-Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search Player PlaybackDialog')
+Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search Player PlaybackDialog InfoDialog')
 
 screen = Screens.MainSelect
 
@@ -1720,6 +1819,8 @@ init_details_pane()
 draw_titles_grid()
 
 init_times_db()
+
+init_info_dict()
 
 #b = Button(grid, text="QUIT", command=exit)
 #b.grid(column=int(num_cols/2), row=0)
