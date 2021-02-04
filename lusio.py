@@ -1317,33 +1317,33 @@ class InfoDialog(object):
 
             media_info = media_info_dict[title]
 
-            title_text = f"{media_info['title']} ({media_info['year']})"
+            title_text = f"{media_info.get('title', '?')} ({media_info.get('year', '?')})"
 
             self.title_label = tk.Label(self.info_frame, text=title_text, borderwidth=5, relief="solid")
             self.title_label.config(font=("Calibri", 42))
             self.title_label.config(background="#000000")
             self.title_label.config(foreground="#FFFFFF")
 
-            info_strip_text = f"{media_info['rated']} | {media_info['runtime']} | {media_info['genre']}"
+            info_strip_text = f"{media_info.get('rated', '?')} | {media_info.get('runtime', '?')} | {media_info.get('genre', '?')}"
 
             self.info_strip = tk.Label(self.info_frame, text=info_strip_text, borderwidth=5, relief="solid")
             self.info_strip.config(font=("Calibri", 28, 'bold'))
             self.info_strip.config(background="#000000")
             self.info_strip.config(foreground="#FFFFFF")
 
-            ratings_strip_text = f"IMDb: {media_info['rating_imdb']}     Rotten Tomatoes: {media_info['rating_rotten']}     Metacritic: {media_info['rating_meta']}"
+            ratings_strip_text = f"IMDb: {media_info.get('rating_imdb', '?')}     Rotten Tomatoes: {media_info.get('rating_rotten', '?')}     Metacritic: {media_info.get('rating_meta', '?')}"
 
             self.ratings_strip = tk.Label(self.info_frame, text=ratings_strip_text, borderwidth=5, relief="solid")
             self.ratings_strip.config(font=("Calibri", 28, 'italic'))
             self.ratings_strip.config(background="#000000")
             self.ratings_strip.config(foreground="#FFFFFF")
 
-            self.plot_label = Message(self.info_frame, text=media_info['plot'], borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction - .1) * screen_width))
+            self.plot_label = Message(self.info_frame, text=media_info.get('plot', '?'), borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction - .1) * screen_width))
             self.plot_label.config(font=("Calibri", 24))
             self.plot_label.config(background="#000000")
             self.plot_label.config(foreground="#FFFFFF")
 
-            director_and_actors_text = f"Director: {media_info['director']}\nActors: {media_info['actors']}"
+            director_and_actors_text = f"Director: {media_info.get('director', '?')}\nActors: {media_info.get('actors', '?')}"
 
             self.director_and_actors_label = tk.Message(self.info_frame, text=director_and_actors_text, borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction) * screen_width))
             self.director_and_actors_label.config(font=("Calibri", 24))
@@ -1371,7 +1371,7 @@ class InfoDialog(object):
 
     def destroy(self):
         self.title_label.grid_forget()
-        
+
         if self.info_exists:
             self.info_strip.grid_forget()
             self.ratings_strip.grid_forget()
