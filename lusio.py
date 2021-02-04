@@ -1312,56 +1312,71 @@ class InfoDialog(object):
         self.info_frame.config(background="#000000")
         self.info_frame.grid_columnconfigure(0, weight=1)
 
-        media_info = media_info_dict[title]
+        if title in media_info_dict:
+            self.info_exists = True
 
-        title_text = f"{media_info['title']} ({media_info['year']})"
+            media_info = media_info_dict[title]
 
-        self.title_label = tk.Label(self.info_frame, text=title_text, borderwidth=5, relief="solid")
-        self.title_label.config(font=("Calibri", 42))
-        self.title_label.config(background="#000000")
-        self.title_label.config(foreground="#FFFFFF")
+            title_text = f"{media_info['title']} ({media_info['year']})"
 
-        info_strip_text = f"{media_info['rated']} | {media_info['runtime']} | {media_info['genre']}"
+            self.title_label = tk.Label(self.info_frame, text=title_text, borderwidth=5, relief="solid")
+            self.title_label.config(font=("Calibri", 42))
+            self.title_label.config(background="#000000")
+            self.title_label.config(foreground="#FFFFFF")
 
-        self.info_strip = tk.Label(self.info_frame, text=info_strip_text, borderwidth=5, relief="solid")
-        self.info_strip.config(font=("Calibri", 28, 'bold'))
-        self.info_strip.config(background="#000000")
-        self.info_strip.config(foreground="#FFFFFF")
+            info_strip_text = f"{media_info['rated']} | {media_info['runtime']} | {media_info['genre']}"
 
-        ratings_strip_text = f"IMDb: {media_info['rating_imdb']}     Rotten Tomatoes: {media_info['rating_rotten']}     Metacritic: {media_info['rating_meta']}"
+            self.info_strip = tk.Label(self.info_frame, text=info_strip_text, borderwidth=5, relief="solid")
+            self.info_strip.config(font=("Calibri", 28, 'bold'))
+            self.info_strip.config(background="#000000")
+            self.info_strip.config(foreground="#FFFFFF")
 
-        self.ratings_strip = tk.Label(self.info_frame, text=ratings_strip_text, borderwidth=5, relief="solid")
-        self.ratings_strip.config(font=("Calibri", 28, 'italic'))
-        self.ratings_strip.config(background="#000000")
-        self.ratings_strip.config(foreground="#FFFFFF")
+            ratings_strip_text = f"IMDb: {media_info['rating_imdb']}     Rotten Tomatoes: {media_info['rating_rotten']}     Metacritic: {media_info['rating_meta']}"
 
-        self.plot_label = Message(self.info_frame, text=media_info['plot'], borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction - .1) * screen_width))
-        self.plot_label.config(font=("Calibri", 24))
-        self.plot_label.config(background="#000000")
-        self.plot_label.config(foreground="#FFFFFF")
+            self.ratings_strip = tk.Label(self.info_frame, text=ratings_strip_text, borderwidth=5, relief="solid")
+            self.ratings_strip.config(font=("Calibri", 28, 'italic'))
+            self.ratings_strip.config(background="#000000")
+            self.ratings_strip.config(foreground="#FFFFFF")
 
-        director_and_actors_text = f"Director: {media_info['director']}\nActors: {media_info['actors']}"
+            self.plot_label = Message(self.info_frame, text=media_info['plot'], borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction - .1) * screen_width))
+            self.plot_label.config(font=("Calibri", 24))
+            self.plot_label.config(background="#000000")
+            self.plot_label.config(foreground="#FFFFFF")
 
-        self.director_and_actors_label = tk.Message(self.info_frame, text=director_and_actors_text, borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction) * screen_width))
-        self.director_and_actors_label.config(font=("Calibri", 24))
-        self.director_and_actors_label.config(background="#000000")
-        self.director_and_actors_label.config(foreground="#FFFFFF")
+            director_and_actors_text = f"Director: {media_info['director']}\nActors: {media_info['actors']}"
+
+            self.director_and_actors_label = tk.Message(self.info_frame, text=director_and_actors_text, borderwidth=5, relief="solid", width=int((1 - details_pane_screen_width_fraction) * screen_width))
+            self.director_and_actors_label.config(font=("Calibri", 24))
+            self.director_and_actors_label.config(background="#000000")
+            self.director_and_actors_label.config(foreground="#FFFFFF")
+
+        else:
+            self.info_exists = False
+
+            self.title_label = tk.Label(self.info_frame, text="No Info", borderwidth=5, relief="solid")
+            self.title_label.config(font=("Calibri", 42))
+            self.title_label.config(background="#000000")
+            self.title_label.config(foreground="#FFFFFF")
 
     def draw(self):
         self.info_frame.pack(side='right', fill=tk.BOTH, expand=True)
         
         self.title_label.grid(row=0, column=0, sticky=E+W)
-        self.info_strip.grid(row=1, column=0, sticky=E+W, pady=(10, 0))
-        self.ratings_strip.grid(row=2, column=0, sticky=E+W, pady=(10, 0))
-        self.plot_label.grid(row=3, column=0, sticky=E+W, pady=(20, 0))
-        self.director_and_actors_label.grid(row=4, column=0, sticky=E+W, pady=(20, 0))
+
+        if self.info_exists:
+            self.info_strip.grid(row=1, column=0, sticky=E+W, pady=(10, 0))
+            self.ratings_strip.grid(row=2, column=0, sticky=E+W, pady=(10, 0))
+            self.plot_label.grid(row=3, column=0, sticky=E+W, pady=(20, 0))
+            self.director_and_actors_label.grid(row=4, column=0, sticky=E+W, pady=(20, 0))
 
     def destroy(self):
         self.title_label.grid_forget()
-        self.info_strip.grid_forget()
-        self.ratings_strip.grid_forget()
-        self.plot_label.grid_forget()
-        self.director_and_actors_label.grid_forget()
+        
+        if self.info_exists:
+            self.info_strip.grid_forget()
+            self.ratings_strip.grid_forget()
+            self.plot_label.grid_forget()
+            self.director_and_actors_label.grid_forget()
 
         self.info_frame.pack_forget()
 
