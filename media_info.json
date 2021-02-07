@@ -651,6 +651,17 @@
         "title": "Forrest Gump",
         "year": "1994"
     },
+    "Freaks and Geeks": {
+        "actors": "Linda Cardellini, John Francis Daley, James Franco, Samm Levine",
+        "director": "N/A",
+        "genre": "Comedy, Drama",
+        "plot": "A high school mathlete starts hanging out with a group of burnouts while her younger brother navigates his freshman year.",
+        "rated": "TV-14",
+        "rating_imdb": "8.8/10",
+        "runtime": "44 min",
+        "title": "Freaks and Geeks",
+        "year": "1999\u20132000"
+    },
     "Friends": {
         "actors": "Jennifer Aniston, Courteney Cox, Lisa Kudrow, Matt LeBlanc",
         "director": "N/A",
@@ -934,6 +945,17 @@
         "runtime": "152 min",
         "title": "Harry Potter and the Sorcerer's Stone",
         "year": "2001"
+    },
+    "Hawaii Five-O": {
+        "actors": "Jack Lord, James MacArthur, Kam Fong, Herman Wedemeyer",
+        "director": "N/A",
+        "genre": "Crime, Drama, Mystery",
+        "plot": "The investigations of Hawaii Five-0, an elite branch of the Hawaii State Police answerable only to the governor and headed by stalwart Steve McGarrett.",
+        "rated": "TV-PG",
+        "rating_imdb": "7.3/10",
+        "runtime": "60 min",
+        "title": "Hawaii Five-O",
+        "year": "1968\u20131980"
     },
     "Heat": {
         "actors": "Al Pacino, Robert De Niro, Val Kilmer, Jon Voight",
@@ -2931,6 +2953,17 @@
         "runtime": "110 min",
         "title": "True Grit",
         "year": "2010"
+    },
+    "Two and a Half Men": {
+        "actors": "Jon Cryer, Angus T. Jones, Conchata Ferrell, Charlie Sheen",
+        "director": "N/A",
+        "genre": "Comedy, Romance",
+        "plot": "A hedonistic jingle writer's free-wheeling life comes to an abrupt halt when his brother and 10-year-old nephew move into his beach-front house.",
+        "rated": "TV-14",
+        "rating_imdb": "7.0/10",
+        "runtime": "22 min",
+        "title": "Two and a Half Men",
+        "year": "2003\u20132015"
     },
     "Up": {
         "actors": "Edward Asner, Christopher Plummer, Jordan Nagai, Bob Peterson",
