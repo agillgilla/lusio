@@ -25,6 +25,32 @@
         "title": "300",
         "year": "2006"
     },
+    "A Bronx Tale": {
+        "actors": "Robert De Niro, Chazz Palminteri, Lillo Brancato, Francis Capra",
+        "director": "Robert De Niro",
+        "genre": "Crime, Drama, Romance",
+        "plot": "A father becomes worried when a local gangster befriends his son in the Bronx in the 1960s.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "97%",
+        "runtime": "121 min",
+        "title": "A Bronx Tale",
+        "year": "1993"
+    },
+    "A Christmas Story": {
+        "actors": "Melinda Dillon, Darren McGavin, Scott Schwartz, Jean Shepherd",
+        "director": "Bob Clark",
+        "genre": "Comedy, Family",
+        "plot": "In the 1940s, a young boy named Ralphie attempts to convince his parents, his teacher and Santa that a Red Ryder BB gun really is the perfect Christmas gift.",
+        "rated": "PG",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "77/100",
+        "rating_rotten": "89%",
+        "runtime": "93 min",
+        "title": "A Christmas Story",
+        "year": "1983"
+    },
     "A Clockwork Orange": {
         "actors": "Malcolm McDowell, Patrick Magee, Michael Bates, Warren Clarke",
         "director": "Stanley Kubrick",
@@ -128,6 +154,19 @@
         "runtime": "110 min",
         "title": "American Graffiti",
         "year": "1973"
+    },
+    "American History X": {
+        "actors": "Edward Norton, Edward Furlong, Beverly D'Angelo, Jennifer Lien",
+        "director": "Tony Kaye",
+        "genre": "Drama",
+        "plot": "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did.",
+        "rated": "R",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "62/100",
+        "rating_rotten": "83%",
+        "runtime": "119 min",
+        "title": "American History X",
+        "year": "1998"
     },
     "American Psycho": {
         "actors": "Christian Bale, Justin Theroux, Josh Lucas, Bill Sage",
@@ -320,6 +359,19 @@
         "title": "Boogie Nights",
         "year": "1997"
     },
+    "Brokeback Mountain": {
+        "actors": "Heath Ledger, Jake Gyllenhaal, Randy Quaid, Valerie Planche",
+        "director": "Ang Lee",
+        "genre": "Drama, Romance",
+        "plot": "The story of a forbidden and secretive relationship between two cowboys, and their lives over the years.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "87/100",
+        "rating_rotten": "87%",
+        "runtime": "134 min",
+        "title": "Brokeback Mountain",
+        "year": "2005"
+    },
     "Caddyshack": {
         "actors": "Chevy Chase, Rodney Dangerfield, Ted Knight, Michael O'Keefe",
         "director": "Harold Ramis",
@@ -372,6 +424,19 @@
         "title": "Casino Royale",
         "year": "2006"
     },
+    "Cast Away": {
+        "actors": "Paul Sanchez, Lari White, Leonid Citer, David Allen Brooks",
+        "director": "Robert Zemeckis",
+        "genre": "Adventure, Drama, Romance",
+        "plot": "A FedEx executive undergoes a physical and emotional transformation after crash landing on a deserted island.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "73/100",
+        "rating_rotten": "89%",
+        "runtime": "143 min",
+        "title": "Cast Away",
+        "year": "2000"
+    },
     "Catch Me If You Can": {
         "actors": "Leonardo DiCaprio, Tom Hanks, Christopher Walken, Martin Sheen",
         "director": "Steven Spielberg",
@@ -422,6 +487,19 @@
         "title": "Dallas Buyers Club",
         "year": "2013"
     },
+    "Dances with Wolves": {
+        "actors": "Kevin Costner, Mary McDonnell, Graham Greene, Rodney A. Grant",
+        "director": "Kevin Costner",
+        "genre": "Adventure, Drama, Western",
+        "plot": "Lieutenant John Dunbar, assigned to a remote western Civil War outpost, befriends wolves and Indians, making him an intolerable aberration in the military.",
+        "rated": "PG-13",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "72/100",
+        "rating_rotten": "83%",
+        "runtime": "181 min",
+        "title": "Dances with Wolves",
+        "year": "1990"
+    },
     "Dazed and Confused": {
         "actors": "Jason London, Joey Lauren Adams, Milla Jovovich, Shawn Andrews",
         "director": "Richard Linklater",
@@ -434,6 +512,19 @@
         "runtime": "102 min",
         "title": "Dazed and Confused",
         "year": "1993"
+    },
+    "Dead Poets Society": {
+        "actors": "Robin Williams, Robert Sean Leonard, Ethan Hawke, Josh Charles",
+        "director": "Peter Weir",
+        "genre": "Comedy, Drama",
+        "plot": "Maverick teacher John Keating uses poetry to embolden his boarding school students to new heights of self-expression.",
+        "rated": "PG",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "79/100",
+        "rating_rotten": "84%",
+        "runtime": "128 min",
+        "title": "Dead Poets Society",
+        "year": "1989"
     },
     "Diamonds Are Forever": {
         "actors": "Sean Connery, Jill St. John, Charles Gray, Lana Wood",
@@ -460,6 +551,19 @@
         "runtime": "132 min",
         "title": "Die Hard",
         "year": "1988"
+    },
+    "Die Hard 2": {
+        "actors": "Bruce Willis, Bonnie Bedelia, William Atherton, Reginald VelJohnson",
+        "director": "Renny Harlin",
+        "genre": "Action, Thriller",
+        "plot": "John McClane attempts to avert disaster as rogue military operatives seize control of Dulles International Airport in Washington, D.C.",
+        "rated": "R",
+        "rating_imdb": "7.2/10",
+        "rating_meta": "67/100",
+        "rating_rotten": "69%",
+        "runtime": "124 min",
+        "title": "Die Hard 2",
+        "year": "1990"
     },
     "Divergent": {
         "actors": "Shailene Woodley, Theo James, Ashley Judd, Jai Courtney",
@@ -511,6 +615,32 @@
         "runtime": "120 min",
         "title": "Drake and Josh Go Hollywood",
         "year": "2006"
+    },
+    "E.T. the Extra-Terrestrial": {
+        "actors": "Dee Wallace, Henry Thomas, Peter Coyote, Robert MacNaughton",
+        "director": "Steven Spielberg",
+        "genre": "Family, Sci-Fi",
+        "plot": "A troubled child summons the courage to help a friendly alien escape Earth and return to his home world.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "91/100",
+        "rating_rotten": "98%",
+        "runtime": "115 min",
+        "title": "E.T. the Extra-Terrestrial",
+        "year": "1982"
+    },
+    "Elf": {
+        "actors": "Will Ferrell, James Caan, Bob Newhart, Edward Asner",
+        "director": "Jon Favreau",
+        "genre": "Adventure, Comedy, Family, Fantasy, Romance",
+        "plot": "Buddy, a human, is raised amongst elves at the North Pole. When he discovers that he is not an elf, he travels to New York to search for his biological father.",
+        "rated": "PG",
+        "rating_imdb": "7.0/10",
+        "rating_meta": "64/100",
+        "rating_rotten": "84%",
+        "runtime": "97 min",
+        "title": "Elf",
+        "year": "2003"
     },
     "Eternal Sunshine of the Spotless Mind": {
         "actors": "Jim Carrey, Kate Winslet, Gerry Robert Byrne, Elijah Wood",
@@ -725,6 +855,19 @@
         "title": "Get Out",
         "year": "2017"
     },
+    "Ghostbusters": {
+        "actors": "Bill Murray, Dan Aykroyd, Sigourney Weaver, Harold Ramis",
+        "director": "Ivan Reitman",
+        "genre": "Action, Comedy, Fantasy",
+        "plot": "Three former parapsychology professors set up shop as a unique ghost removal service.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "71/100",
+        "rating_rotten": "97%",
+        "runtime": "105 min",
+        "title": "Ghostbusters",
+        "year": "1984"
+    },
     "GoldenEye": {
         "actors": "Pierce Brosnan, Sean Bean, Izabella Scorupco, Famke Janssen",
         "director": "Martin Campbell",
@@ -841,6 +984,19 @@
         "runtime": "136 min",
         "title": "Guardians of the Galaxy Vol. 2",
         "year": "2017"
+    },
+    "Hacksaw Ridge": {
+        "actors": "Andrew Garfield, Richard Pyros, Jacob Warner, Milo Gibson",
+        "director": "Mel Gibson",
+        "genre": "Biography, Drama, History, War",
+        "plot": "World War II American Army Medic Desmond T. Doss, who served during the Battle of Okinawa, refuses to kill people, and becomes the first man in American history to receive the Medal of Honor without firing a shot.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "71/100",
+        "rating_rotten": "84%",
+        "runtime": "139 min",
+        "title": "Hacksaw Ridge",
+        "year": "2016"
     },
     "Harry Potter and the Chamber of Secrets": {
         "actors": "Daniel Radcliffe, Rupert Grint, Emma Watson, Richard Griffiths",
@@ -969,6 +1125,19 @@
         "runtime": "170 min",
         "title": "Heat",
         "year": "1995"
+    },
+    "Hell or High Water": {
+        "actors": "Dale Dickey, Ben Foster, Chris Pine, William Sterchi",
+        "director": "David Mackenzie",
+        "genre": "Action, Crime, Drama, Thriller, Western",
+        "plot": "A divorced father and his ex-con older brother resort to a desperate scheme in order to save their family's ranch in West Texas.",
+        "rated": "R",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "88/100",
+        "rating_rotten": "97%",
+        "runtime": "102 min",
+        "title": "Hell or High Water",
+        "year": "2016"
     },
     "Home Alone": {
         "actors": "Macaulay Culkin, Joe Pesci, Daniel Stern, John Heard",
@@ -1148,6 +1317,19 @@
         "runtime": "130 min",
         "title": "Iron Man 3",
         "year": "2013"
+    },
+    "Jackie Brown": {
+        "actors": "Pam Grier, Samuel L. Jackson, Robert Forster, Bridget Fonda",
+        "director": "Quentin Tarantino",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "A middle-aged woman finds herself in the middle of a huge conflict that will either make her a profit or cost her life.",
+        "rated": "R",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "64/100",
+        "rating_rotten": "87%",
+        "runtime": "154 min",
+        "title": "Jackie Brown",
+        "year": "1997"
     },
     "John Wick": {
         "actors": "Keanu Reeves, Michael Nyqvist, Alfie Allen, Willem Dafoe",
@@ -1770,6 +1952,45 @@
         "title": "Pleasantville",
         "year": "1998"
     },
+    "Predator": {
+        "actors": "Arnold Schwarzenegger, Carl Weathers, Elpidia Carrillo, Bill Duke",
+        "director": "John McTiernan",
+        "genre": "Action, Adventure, Sci-Fi, Thriller",
+        "plot": "A team of commandos on a mission in a Central American jungle find themselves hunted by an extraterrestrial warrior.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "45/100",
+        "rating_rotten": "81%",
+        "runtime": "107 min",
+        "title": "Predator",
+        "year": "1987"
+    },
+    "Pretty in Pink": {
+        "actors": "Molly Ringwald, Harry Dean Stanton, Jon Cryer, Annie Potts",
+        "director": "Howard Deutch",
+        "genre": "Comedy, Drama, Romance",
+        "plot": "A poor girl must choose between the affections of dating her childhood sweetheart or a rich but sensitive playboy.",
+        "rated": "PG-13",
+        "rating_imdb": "6.8/10",
+        "rating_meta": "56/100",
+        "rating_rotten": "75%",
+        "runtime": "97 min",
+        "title": "Pretty in Pink",
+        "year": "1986"
+    },
+    "Prisoners": {
+        "actors": "Hugh Jackman, Jake Gyllenhaal, Viola Davis, Maria Bello",
+        "director": "Denis Villeneuve",
+        "genre": "Crime, Drama, Mystery, Thriller",
+        "plot": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "70/100",
+        "rating_rotten": "81%",
+        "runtime": "153 min",
+        "title": "Prisoners",
+        "year": "2013"
+    },
     "Pulp Fiction": {
         "actors": "Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta",
         "director": "Quentin Tarantino",
@@ -1795,6 +2016,19 @@
         "runtime": "106 min",
         "title": "Quantum of Solace",
         "year": "2008"
+    },
+    "Raging Bull": {
+        "actors": "Robert De Niro, Cathy Moriarty, Joe Pesci, Frank Vincent",
+        "director": "Martin Scorsese",
+        "genre": "Biography, Drama, Sport",
+        "plot": "The life of boxer Jake LaMotta, whose violence and temper that led him to the top in the ring destroyed his life outside of it.",
+        "rated": "R",
+        "rating_imdb": "8.2/10",
+        "rating_meta": "89/100",
+        "rating_rotten": "93%",
+        "runtime": "129 min",
+        "title": "Raging Bull",
+        "year": "1980"
     },
     "Raiders of the Lost Ark": {
         "actors": "Harrison Ford, Karen Allen, Paul Freeman, Ronald Lacey",
@@ -2003,6 +2237,19 @@
         "title": "Seinfeld",
         "year": "1989\u20131998"
     },
+    "Shutter Island": {
+        "actors": "Leonardo DiCaprio, Mark Ruffalo, Ben Kingsley, Max von Sydow",
+        "director": "Martin Scorsese",
+        "genre": "Mystery, Thriller",
+        "plot": "In 1954, a U.S. Marshal investigates the disappearance of a murderer who escaped from a hospital for the criminally insane.",
+        "rated": "R",
+        "rating_imdb": "8.2/10",
+        "rating_meta": "63/100",
+        "rating_rotten": "68%",
+        "runtime": "138 min",
+        "title": "Shutter Island",
+        "year": "2010"
+    },
     "Sicario": {
         "actors": "Emily Blunt, Benicio Del Toro, Josh Brolin, Victor Garber",
         "director": "Denis Villeneuve",
@@ -2015,6 +2262,19 @@
         "runtime": "121 min",
         "title": "Sicario",
         "year": "2015"
+    },
+    "Sixteen Candles": {
+        "actors": "Molly Ringwald, Justin Henry, Michael Schoeffling, Haviland Morris",
+        "director": "John Hughes",
+        "genre": "Comedy, Romance",
+        "plot": "A girl's \"sweet\" sixteenth birthday becomes anything but special, as she suffers from every embarrassment possible.",
+        "rated": "PG",
+        "rating_imdb": "7.1/10",
+        "rating_meta": "61/100",
+        "rating_rotten": "84%",
+        "runtime": "93 min",
+        "title": "Sixteen Candles",
+        "year": "1984"
     },
     "Skyfall": {
         "actors": "Daniel Craig, Judi Dench, Javier Bardem, Ralph Fiennes",
@@ -2131,6 +2391,19 @@
         "title": "Spotlight",
         "year": "2015"
     },
+    "Stand By Me": {
+        "actors": "Wil Wheaton, River Phoenix, Corey Feldman, Jerry O'Connell",
+        "director": "Rob Reiner",
+        "genre": "Adventure, Drama",
+        "plot": "After the death of one of his friends, a writer recounts a childhood journey with his friends to find the body of a missing boy.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "75/100",
+        "rating_rotten": "91%",
+        "runtime": "89 min",
+        "title": "Stand by Me",
+        "year": "1986"
+    },
     "Star Wars - Episode I - The Phantom Menace": {
         "actors": "Liam Neeson, Ewan McGregor, Natalie Portman, Jake Lloyd",
         "director": "George Lucas",
@@ -2183,6 +2456,19 @@
         "title": "Star Wars: Episode IV - A New Hope",
         "year": "1977"
     },
+    "Star Wars - Episode IX - The Rise of Skywalker": {
+        "actors": "Carrie Fisher, Mark Hamill, Adam Driver, Daisy Ridley",
+        "director": "J.J. Abrams",
+        "genre": "Action, Adventure, Fantasy, Sci-Fi",
+        "plot": "The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end.",
+        "rated": "PG-13",
+        "rating_imdb": "6.6/10",
+        "rating_meta": "53/100",
+        "rating_rotten": "51%",
+        "runtime": "141 min",
+        "title": "Star Wars: Episode IX - The Rise of Skywalker",
+        "year": "2019"
+    },
     "Star Wars - Episode V - The Empire Strikes Back": {
         "actors": "Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams",
         "director": "Irvin Kershner",
@@ -2208,6 +2494,32 @@
         "runtime": "131 min",
         "title": "Star Wars: Episode VI - Return of the Jedi",
         "year": "1983"
+    },
+    "Star Wars - Episode VII - The Force Awakens": {
+        "actors": "Harrison Ford, Mark Hamill, Carrie Fisher, Adam Driver",
+        "director": "J.J. Abrams",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "As a new threat to the galaxy rises, Rey, a desert scavenger, and Finn, an ex-stormtrooper, must join Han Solo and Chewbacca to search for the one hope of restoring peace.",
+        "rated": "PG-13",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "92%",
+        "runtime": "138 min",
+        "title": "Star Wars: Episode VII - The Force Awakens",
+        "year": "2015"
+    },
+    "Star Wars - Episode VIII - The Last Jedi": {
+        "actors": "Mark Hamill, Carrie Fisher, Adam Driver, Daisy Ridley",
+        "director": "Rian Johnson",
+        "genre": "Action, Adventure, Fantasy, Sci-Fi",
+        "plot": "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares for battle with the First Order.",
+        "rated": "PG-13",
+        "rating_imdb": "7.0/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "90%",
+        "runtime": "152 min",
+        "title": "Star Wars: Episode VIII - The Last Jedi",
+        "year": "2017"
     },
     "Superbad": {
         "actors": "Jonah Hill, Michael Cera, Christopher Mintz-Plasse, Bill Hader",
@@ -2310,6 +2622,32 @@
         "runtime": "130 min",
         "title": "The Big Short",
         "year": "2015"
+    },
+    "The Boondock Saints": {
+        "actors": "Willem Dafoe, Sean Patrick Flanery, Norman Reedus, David Della Rocco",
+        "director": "Troy Duffy",
+        "genre": "Action, Crime, Thriller",
+        "plot": "Two Irish Catholic brothers become vigilantes and wipe out Boston's criminal underworld in the name of God.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "44/100",
+        "rating_rotten": "28%",
+        "runtime": "108 min",
+        "title": "The Boondock Saints",
+        "year": "1999"
+    },
+    "The Breakfast Club": {
+        "actors": "Emilio Estevez, Paul Gleason, Anthony Michael Hall, John Kapelos",
+        "director": "John Hughes",
+        "genre": "Comedy, Drama",
+        "plot": "Five high school students meet in Saturday detention and discover how they have a lot more in common than they thought.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "66/100",
+        "rating_rotten": "89%",
+        "runtime": "97 min",
+        "title": "The Breakfast Club",
+        "year": "1985"
     },
     "The Dark Knight": {
         "actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
@@ -2681,6 +3019,32 @@
         "title": "The Parent Trap",
         "year": "1998"
     },
+    "The Prestige": {
+        "actors": "Hugh Jackman, Christian Bale, Michael Caine, Piper Perabo",
+        "director": "Christopher Nolan",
+        "genre": "Drama, Mystery, Sci-Fi, Thriller",
+        "plot": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+        "rated": "PG-13",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "66/100",
+        "rating_rotten": "76%",
+        "runtime": "130 min",
+        "title": "The Prestige",
+        "year": "2006"
+    },
+    "The Right Stuff": {
+        "actors": "Sam Shepard, Scott Glenn, Ed Harris, Dennis Quaid",
+        "director": "Philip Kaufman",
+        "genre": "Adventure, Biography, Drama, History",
+        "plot": "The story of the original Mercury 7 astronauts and their macho, seat-of-the-pants approach to the space program.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "91/100",
+        "rating_rotten": "96%",
+        "runtime": "193 min",
+        "title": "The Right Stuff",
+        "year": "1983"
+    },
     "The Shawshank Redemption": {
         "actors": "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
         "director": "Frank Darabont",
@@ -2928,6 +3292,19 @@
         "title": "Toy Story 3",
         "year": "2010"
     },
+    "Trading Places": {
+        "actors": "Denholm Elliott, Dan Aykroyd, Maurice Woods, Richard D. Fisher Jr.",
+        "director": "John Landis",
+        "genre": "Comedy",
+        "plot": "A snobbish investor and a wily street con artist find their positions reversed as part of a bet by two callous millionaires.",
+        "rated": "R",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "69/100",
+        "rating_rotten": "88%",
+        "runtime": "116 min",
+        "title": "Trading Places",
+        "year": "1983"
+    },
     "Training Day": {
         "actors": "Denzel Washington, Ethan Hawke, Scott Glenn, Tom Berenger",
         "director": "Antoine Fuqua",
@@ -2953,6 +3330,19 @@
         "runtime": "110 min",
         "title": "True Grit",
         "year": "2010"
+    },
+    "True Romance": {
+        "actors": "Christian Slater, Patricia Arquette, Dennis Hopper, Val Kilmer",
+        "director": "Tony Scott",
+        "genre": "Crime, Drama, Romance, Thriller",
+        "plot": "In Detroit, a lonely pop culture geek marries a call girl, steals cocaine from her pimp, and tries to sell it in Hollywood. Meanwhile, the owners of the cocaine, the Mob, track them down in an attempt to reclaim it.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "59/100",
+        "rating_rotten": "93%",
+        "runtime": "119 min",
+        "title": "True Romance",
+        "year": "1993"
     },
     "Two and a Half Men": {
         "actors": "Jon Cryer, Angus T. Jones, Conchata Ferrell, Charlie Sheen",
