@@ -4,11 +4,11 @@ import re
 
 season_delimiter = 'S'
 episode_delimiter = 'E'
-file_suffix = '.mkv'
-dry_run = True
-episodes_directory = 'C:\MOVIES\How I Met Your Mother x265'
+file_suffix = '.mp4'
+dry_run = False
+episodes_directory = 'D:\\MOVIES\\The New Adventures of Old Christine'
 
-new_episodes_file = open('himym.txt', 'r')
+new_episodes_file = open('naooc.txt', 'r')
 
 for folder, subs, files in os.walk(episodes_directory):
 	#print(folder)
@@ -33,6 +33,10 @@ for folder, subs, files in os.walk(episodes_directory):
 			episode_name = new_episodes_file.readline().rstrip()
 
 			new_filename = file.split(file_suffix)[0] + " (" + episode_name + ")" + file_suffix
+
+			new_filename = new_filename.replace(':', ' -')
+			new_filename = new_filename.replace('?', '')
+			new_filename = new_filename.replace('/', ',')
 
 			if not dry_run:
 				os.rename(os.path.join(folder, file), os.path.join(folder, new_filename))
