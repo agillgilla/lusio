@@ -1,4 +1,30 @@
 {
+	"3-10 to Yuma": {
+        "actors": "Russell Crowe, Christian Bale, Logan Lerman, Dallas Roberts",
+        "director": "James Mangold",
+        "genre": "Action, Crime, Drama, Western",
+        "plot": "A small-time rancher agrees to hold a captured outlaw who's awaiting a train to go to court in Yuma. A battle of wills ensues as the outlaw tries to psych out the rancher.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "89%",
+        "runtime": "122 min",
+        "title": "3:10 To Yuma",
+        "year": "2007"
+    },
+    "1917": {
+        "actors": "Dean-Charles Chapman, George MacKay, Daniel Mays, Colin Firth",
+        "director": "Sam Mendes",
+        "genre": "Drama, Thriller, War",
+        "plot": "April 6th, 1917. As a regiment assembles to wage war deep in enemy territory, two soldiers are assigned to race against time and deliver a message that will stop 1,600 men from walking straight into a deadly trap.",
+        "rated": "R",
+        "rating_imdb": "8.3/10",
+        "rating_meta": "78/100",
+        "rating_rotten": "88%",
+        "runtime": "119 min",
+        "title": "1917",
+        "year": "2019"
+    },
     "2001 A Space Odyssey": {
         "actors": "Keir Dullea, Gary Lockwood, William Sylvester, Daniel Richter",
         "director": "Stanley Kubrick",
@@ -24,6 +50,19 @@
         "runtime": "117 min",
         "title": "300",
         "year": "2006"
+    },
+    "A Beautiful Mind": {
+        "actors": "Russell Crowe, Ed Harris, Jennifer Connelly, Christopher Plummer",
+        "director": "Ron Howard",
+        "genre": "Biography, Drama",
+        "plot": "After John Nash, a brilliant but asocial mathematician, accepts secret work in cryptography, his life takes a turn for the nightmarish.",
+        "rated": "PG-13",
+        "rating_imdb": "8.2/10",
+        "rating_meta": "72/100",
+        "rating_rotten": "74%",
+        "runtime": "135 min",
+        "title": "A Beautiful Mind",
+        "year": "2001"
     },
     "A Bronx Tale": {
         "actors": "Robert De Niro, Chazz Palminteri, Lillo Brancato, Francis Capra",
@@ -63,6 +102,32 @@
         "runtime": "136 min",
         "title": "A Clockwork Orange",
         "year": "1971"
+    },
+    "A Few Good Men": {
+        "actors": "Tom Cruise, Jack Nicholson, Demi Moore, Kevin Bacon",
+        "director": "Rob Reiner",
+        "genre": "Drama, Thriller",
+        "plot": "Military lawyer Lieutenant Daniel Kaffee defends Marines accused of murder. They contend they were acting under orders.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "62/100",
+        "rating_rotten": "83%",
+        "runtime": "138 min",
+        "title": "A Few Good Men",
+        "year": "1992"
+    },
+    "A Fish Called Wanda": {
+        "actors": "John Cleese, Jamie Lee Curtis, Kevin Kline, Michael Palin",
+        "director": "Charles Crichton, John Cleese",
+        "genre": "Comedy, Crime",
+        "plot": "In London, four very different people team up to commit armed robbery, then try to doublecross each other for the loot.",
+        "rated": "R",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "95%",
+        "runtime": "108 min",
+        "title": "A Fish Called Wanda",
+        "year": "1988"
     },
     "Ace Ventura Pet Detective": {
         "actors": "Jim Carrey, Courteney Cox, Sean Young, Tone Loc",
@@ -142,6 +207,19 @@
         "title": "Amadeus",
         "year": "1984"
     },
+    "American Gangster": {
+        "actors": "Denzel Washington, Russell Crowe, Chiwetel Ejiofor, Josh Brolin",
+        "director": "Ridley Scott",
+        "genre": "Biography, Crime, Drama, Thriller",
+        "plot": "An outcast New York City cop is charged with bringing down Harlem drug lord Frank Lucas, whose real life inspired this partly biographical film.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "81%",
+        "runtime": "157 min",
+        "title": "American Gangster",
+        "year": "2007"
+    },
     "American Graffiti": {
         "actors": "Richard Dreyfuss, Ron Howard, Paul Le Mat, Charles Martin Smith",
         "director": "George Lucas",
@@ -206,6 +284,19 @@
         "runtime": "147 min",
         "title": "Apocalypse Now",
         "year": "1979"
+    },
+    "Atonement": {
+        "actors": "Saoirse Ronan, Ailidh Mackay, Brenda Blethyn, Julia West",
+        "director": "Joe Wright",
+        "genre": "Drama, Mystery, Romance, War",
+        "plot": "Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "85/100",
+        "rating_rotten": "83%",
+        "runtime": "123 min",
+        "title": "Atonement",
+        "year": "2007"
     },
     "Avatar": {
         "actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
@@ -331,6 +422,19 @@
         "title": "Before Sunrise",
         "year": "1995"
     },
+    "Before Sunset": {
+        "actors": "Ethan Hawke, Julie Delpy, Vernon Dobtcheff, Louise Lemoine Torr\u00e8s",
+        "director": "Richard Linklater",
+        "genre": "Drama, Romance",
+        "plot": "Nine years after Jesse and Celine first met, they encounter each other again on the French leg of Jesse's book tour.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "90/100",
+        "rating_rotten": "94%",
+        "runtime": "80 min",
+        "title": "Before Sunset",
+        "year": "2004"
+    },
     "Being John Malkovich": {
         "actors": "John Cusack, Cameron Diaz, Ned Bellamy, Eric Weinstein",
         "director": "Spike Jonze",
@@ -396,6 +500,32 @@
         "title": "Blade Runner",
         "year": "1982"
     },
+    "Blood Diamond": {
+        "actors": "Leonardo DiCaprio, Djimon Hounsou, Jennifer Connelly, Kagiso Kuypers",
+        "director": "Edward Zwick",
+        "genre": "Adventure, Drama, Thriller",
+        "plot": "A fisherman, a smuggler, and a syndicate of businessmen match wits over the possession of a priceless diamond.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "64/100",
+        "rating_rotten": "63%",
+        "runtime": "143 min",
+        "title": "Blood Diamond",
+        "year": "2006"
+    },
+    "Blood Simple": {
+        "actors": "John Getz, Frances McDormand, Dan Hedaya, M. Emmet Walsh",
+        "director": "Joel Coen, Ethan Coen",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "The owner of a seedy small-town Texas bar discovers that one of his employees is having an affair with his wife. A chaotic chain of misunderstandings, lies and mischief ensues after he devises a plot to have them murdered.",
+        "rated": "R",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "82/100",
+        "rating_rotten": "94%",
+        "runtime": "99 min",
+        "title": "Blood Simple",
+        "year": "1984"
+    },
     "Boogie Nights": {
         "actors": "Luis Guzm\u00e1n, Burt Reynolds, Julianne Moore, Rico Bueno",
         "director": "Paul Thomas Anderson",
@@ -408,6 +538,19 @@
         "runtime": "155 min",
         "title": "Boogie Nights",
         "year": "1997"
+    },
+    "Brazil": {
+        "actors": "Jonathan Pryce, Robert De Niro, Katherine Helmond, Ian Holm",
+        "director": "Terry Gilliam",
+        "genre": "Drama, Sci-Fi",
+        "plot": "A bureaucrat in a dystopic society becomes an enemy of the state as he pursues the woman of his dreams.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "98%",
+        "runtime": "132 min",
+        "title": "Brazil",
+        "year": "1985"
     },
     "Brokeback Mountain": {
         "actors": "Heath Ledger, Jake Gyllenhaal, Randy Quaid, Valerie Planche",
@@ -499,6 +642,19 @@
         "runtime": "141 min",
         "title": "Catch Me If You Can",
         "year": "2002"
+    },
+    "Children of Men": {
+        "actors": "Juan Gabriel Yacuzzi, Mishal Husain, Rob Curling, Jon Chevalier",
+        "director": "Alfonso Cuar\u00f3n",
+        "genre": "Adventure, Drama, Sci-Fi, Thriller",
+        "plot": "In 2027, in a chaotic world in which women have become somehow infertile, a former activist agrees to help transport a miraculously pregnant woman to a sanctuary at sea.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "92%",
+        "runtime": "109 min",
+        "title": "Children of Men",
+        "year": "2006"
     },
     "Crimes and Misdemeanors": {
         "actors": "Bill Bernstein, Martin Landau, Claire Bloom, Stephanie Roth Haberle",
@@ -615,6 +771,19 @@
         "title": "Die Hard 2",
         "year": "1990"
     },
+    "District 9": {
+        "actors": "Sharlto Copley, Jason Cope, Nathalie Boltt, Sylvaine Strike",
+        "director": "Neill Blomkamp",
+        "genre": "Action, Sci-Fi, Thriller",
+        "plot": "Violence ensues after an extraterrestrial race forced to live in slum-like conditions on Earth finds a kindred spirit in a government agent exposed to their biotechnology.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "81/100",
+        "rating_rotten": "90%",
+        "runtime": "112 min",
+        "title": "District 9",
+        "year": "2009"
+    },
     "Divergent": {
         "actors": "Shailene Woodley, Theo James, Ashley Judd, Jai Courtney",
         "director": "Neil Burger",
@@ -640,6 +809,32 @@
         "runtime": "165 min",
         "title": "Django Unchained",
         "year": "2012"
+    },
+    "Donnie Brasco": {
+        "actors": "Al Pacino, Johnny Depp, Michael Madsen, Bruno Kirby",
+        "director": "Mike Newell",
+        "genre": "Biography, Crime, Drama",
+        "plot": "An FBI undercover agent infiltrates the mob and finds himself identifying more with the mafia life, at the expense of his regular one.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "88%",
+        "runtime": "127 min",
+        "title": "Donnie Brasco",
+        "year": "1997"
+    },
+    "Donnie Darko": {
+        "actors": "Jake Gyllenhaal, Holmes Osborne, Maggie Gyllenhaal, Daveigh Chase",
+        "director": "Richard Kelly",
+        "genre": "Drama, Mystery, Sci-Fi, Thriller",
+        "plot": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a man in a large rabbit suit who manipulates him to commit a series of crimes.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "88/100",
+        "rating_rotten": "86%",
+        "runtime": "113 min",
+        "title": "Donnie Darko",
+        "year": "2001"
     },
     "Dr. No": {
         "actors": "Sean Connery, Ursula Andress, Joseph Wiseman, Jack Lord",
@@ -865,6 +1060,19 @@
         "runtime": "115 min",
         "title": "From Russia with Love",
         "year": "1963"
+    },
+    "Frost Nixon": {
+        "actors": "Frank Langella, Michael Sheen, Sam Rockwell, Kevin Bacon",
+        "director": "Ron Howard",
+        "genre": "Biography, Drama, History",
+        "plot": "A dramatic retelling of the post-Watergate television interviews between British talk-show host David Frost and former president Richard Nixon.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "93%",
+        "runtime": "122 min",
+        "title": "Frost/Nixon",
+        "year": "2008"
     },
     "Full Metal Jacket": {
         "actors": "Matthew Modine, Adam Baldwin, Vincent D'Onofrio, R. Lee Ermey",
@@ -1252,6 +1460,17 @@
         "runtime": "121 min",
         "title": "Hot Fuzz",
         "year": "2007"
+    },
+    "House": {
+        "actors": "Hugh Laurie, Omar Epps, Robert Sean Leonard, Jesse Spencer",
+        "director": "N/A",
+        "genre": "Drama, Mystery",
+        "plot": "An antisocial maverick doctor who specializes in diagnostic medicine does whatever it takes to solve puzzling cases that come his way using his crack team of doctors and his wits.",
+        "rated": "TV-14",
+        "rating_imdb": "8.7/10",
+        "runtime": "44 min",
+        "title": "House",
+        "year": "2004\u20132012"
     },
     "How I Met Your Mother": {
         "actors": "Josh Radnor, Jason Segel, Cobie Smulders, Neil Patrick Harris",
@@ -3505,6 +3724,18 @@
         "runtime": "98 min",
         "title": "Wild Target",
         "year": "2010"
+    },
+    "Willy Wonka and the Chocolate Factory": {
+        "actors": "JP Karliak, Jess Harnell, Lincoln Melcher, Mick Wingert",
+        "director": "Spike Brandt",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy, Musical",
+        "plot": "The classic Roald Dahl tale gets a modern twist when Tom and Jerry enter the amazing world of Willy Wonka's Chocolate Factory.",
+        "rated": "Not Rated",
+        "rating_imdb": "4.5/10",
+        "rating_rotten": "33%",
+        "runtime": "79 min",
+        "title": "Tom and Jerry: Willy Wonka and the Chocolate Factory",
+        "year": "2017"
     },
     "You Only Live Twice": {
         "actors": "Sean Connery, Akiko Wakabayashi, Mie Hama, Tetsur\u00f4 Tanba",
