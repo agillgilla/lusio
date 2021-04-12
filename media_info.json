@@ -1,17 +1,4 @@
 {
-	"3-10 to Yuma": {
-        "actors": "Russell Crowe, Christian Bale, Logan Lerman, Dallas Roberts",
-        "director": "James Mangold",
-        "genre": "Action, Crime, Drama, Western",
-        "plot": "A small-time rancher agrees to hold a captured outlaw who's awaiting a train to go to court in Yuma. A battle of wills ensues as the outlaw tries to psych out the rancher.",
-        "rated": "R",
-        "rating_imdb": "7.7/10",
-        "rating_meta": "76/100",
-        "rating_rotten": "89%",
-        "runtime": "122 min",
-        "title": "3:10 To Yuma",
-        "year": "2007"
-    },
     "1917": {
         "actors": "Dean-Charles Chapman, George MacKay, Daniel Mays, Colin Firth",
         "director": "Sam Mendes",
@@ -37,6 +24,19 @@
         "runtime": "149 min",
         "title": "2001: A Space Odyssey",
         "year": "1968"
+    },
+    "3-10 to Yuma": {
+        "actors": "Russell Crowe, Christian Bale, Logan Lerman, Dallas Roberts",
+        "director": "James Mangold",
+        "genre": "Action, Crime, Drama, Western",
+        "plot": "A small-time rancher agrees to hold a captured outlaw who's awaiting a train to go to court in Yuma. A battle of wills ensues as the outlaw tries to psych out the rancher.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "89%",
+        "runtime": "122 min",
+        "title": "3:10 To Yuma",
+        "year": "2007"
     },
     "300": {
         "actors": "Gerard Butler, Lena Headey, Dominic West, David Wenham",
@@ -76,6 +76,19 @@
         "runtime": "121 min",
         "title": "A Bronx Tale",
         "year": "1993"
+    },
+    "A Bug's Life": {
+        "actors": "Dave Foley, Kevin Spacey, Julia Louis-Dreyfus, Hayden Panettiere",
+        "director": "John Lasseter, Andrew Stanton(co-director)",
+        "genre": "Animation, Adventure, Comedy, Family",
+        "plot": "A misfit ant, looking for \"warriors\" to save his colony from greedy grasshoppers, recruits a group of bugs that turn out to be an inept circus troupe.",
+        "rated": "G",
+        "rating_imdb": "7.2/10",
+        "rating_meta": "77/100",
+        "rating_rotten": "92%",
+        "runtime": "95 min",
+        "title": "A Bug's Life",
+        "year": "1998"
     },
     "A Christmas Story": {
         "actors": "Melinda Dillon, Darren McGavin, Scott Schwartz, Jean Shepherd",
@@ -271,6 +284,19 @@
         "runtime": "133 min",
         "title": "American Sniper",
         "year": "2014"
+    },
+    "Ant-Man and the Wasp": {
+        "actors": "Paul Rudd, Evangeline Lilly, Michael Pe\u00f1a, Walton Goggins",
+        "director": "Peyton Reed",
+        "genre": "Action, Adventure, Comedy, Sci-Fi",
+        "plot": "As Scott Lang balances being both a superhero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.",
+        "rated": "PG-13",
+        "rating_imdb": "7.0/10",
+        "rating_meta": "70/100",
+        "rating_rotten": "87%",
+        "runtime": "118 min",
+        "title": "Ant-Man and the Wasp",
+        "year": "2018"
     },
     "Apocalypse Now": {
         "actors": "Marlon Brando, Martin Sheen, Robert Duvall, Frederic Forrest",
@@ -578,6 +604,32 @@
         "title": "Caddyshack",
         "year": "1980"
     },
+    "Captain America - Civil War": {
+        "actors": "Chris Evans, Robert Downey Jr., Scarlett Johansson, Sebastian Stan",
+        "director": "Anthony Russo, Joe Russo",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "75/100",
+        "rating_rotten": "90%",
+        "runtime": "147 min",
+        "title": "Captain America: Civil War",
+        "year": "2016"
+    },
+    "Captain America - The Winter Soldier": {
+        "actors": "Chris Evans, Samuel L. Jackson, Scarlett Johansson, Robert Redford",
+        "director": "Anthony Russo, Joe Russo",
+        "genre": "Action, Adventure, Sci-Fi, Thriller",
+        "plot": "As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat from history: an assassin known as the Winter Soldier.",
+        "rated": "PG-13",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "70/100",
+        "rating_rotten": "90%",
+        "runtime": "136 min",
+        "title": "Captain America: The Winter Soldier",
+        "year": "2014"
+    },
     "Cars": {
         "actors": "Owen Wilson, Paul Newman, Bonnie Hunt, Larry the Cable Guy",
         "director": "John Lasseter, Joe Ranft(co-director)",
@@ -706,6 +758,18 @@
         "title": "Dances with Wolves",
         "year": "1990"
     },
+    "Dark City": {
+        "actors": "Rufus Sewell, William Hurt, Kiefer Sutherland, Jennifer Connelly",
+        "director": "Alex Proyas",
+        "genre": "Mystery, Sci-Fi, Thriller",
+        "plot": "A man struggles with memories of his past, which include a wife he cannot remember and a nightmarish world no one else ever seems to wake up from.",
+        "rated": "R",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "66/100",
+        "runtime": "100 min",
+        "title": "Dark City",
+        "year": "1998"
+    },
     "Dazed and Confused": {
         "actors": "Jason London, Joey Lauren Adams, Milla Jovovich, Shawn Andrews",
         "director": "Richard Linklater",
@@ -731,6 +795,19 @@
         "runtime": "128 min",
         "title": "Dead Poets Society",
         "year": "1989"
+    },
+    "Despicable Me": {
+        "actors": "Steve Carell, Jason Segel, Russell Brand, Julie Andrews",
+        "director": "Pierre Coffin, Chris Renaud",
+        "genre": "Animation, Comedy, Crime, Family, Fantasy",
+        "plot": "When a criminal mastermind uses a trio of orphan girls as pawns for a grand scheme, he finds their love is profoundly changing him for the better.",
+        "rated": "PG",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "72/100",
+        "rating_rotten": "81%",
+        "runtime": "95 min",
+        "title": "Despicable Me",
+        "year": "2010"
     },
     "Diamonds Are Forever": {
         "actors": "Sean Connery, Jill St. John, Charles Gray, Lana Wood",
@@ -809,6 +886,19 @@
         "runtime": "165 min",
         "title": "Django Unchained",
         "year": "2012"
+    },
+    "Doctor Strange": {
+        "actors": "Benedict Cumberbatch, Chiwetel Ejiofor, Rachel McAdams, Benedict Wong",
+        "director": "Scott Derrickson",
+        "genre": "Action, Adventure, Fantasy, Sci-Fi",
+        "plot": "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts.",
+        "rated": "PG-13",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "72/100",
+        "rating_rotten": "89%",
+        "runtime": "115 min",
+        "title": "Doctor Strange",
+        "year": "2016"
     },
     "Donnie Brasco": {
         "actors": "Al Pacino, Johnny Depp, Michael Madsen, Bruno Kirby",
@@ -1000,6 +1090,19 @@
         "title": "Fight Club",
         "year": "1999"
     },
+    "Finding Nemo": {
+        "actors": "Albert Brooks, Ellen DeGeneres, Alexander Gould, Willem Dafoe",
+        "director": "Andrew Stanton, Lee Unkrich(co-director)",
+        "genre": "Animation, Adventure, Comedy, Family",
+        "plot": "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
+        "rated": "G",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "90/100",
+        "rating_rotten": "99%",
+        "runtime": "100 min",
+        "title": "Finding Nemo",
+        "year": "2003"
+    },
     "For Your Eyes Only": {
         "actors": "Roger Moore, Carole Bouquet, Topol, Lynn-Holly Johnson",
         "director": "John Glen",
@@ -1125,6 +1228,19 @@
         "runtime": "105 min",
         "title": "Ghostbusters",
         "year": "1984"
+    },
+    "Glengarry Glen Ross": {
+        "actors": "Al Pacino, Jack Lemmon, Alec Baldwin, Alan Arkin",
+        "director": "James Foley",
+        "genre": "Crime, Drama, Mystery",
+        "plot": "An examination of the machinations behind the scenes at a real estate office.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "82/100",
+        "rating_rotten": "95%",
+        "runtime": "100 min",
+        "title": "Glengarry Glen Ross",
+        "year": "1992"
     },
     "GoldenEye": {
         "actors": "Pierce Brosnan, Sean Bean, Izabella Scorupco, Famke Janssen",
@@ -1397,6 +1513,19 @@
         "title": "Hell or High Water",
         "year": "2016"
     },
+    "Hercules": {
+        "actors": "Tate Donovan, Josh Keaton, Roger Bart, Danny DeVito",
+        "director": "Ron Clements, John Musker",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy, Musical, Romance",
+        "plot": "The son of Zeus and Hera is stripped of his immortality as an infant and must become a true hero in order to reclaim it.",
+        "rated": "G",
+        "rating_imdb": "7.3/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "84%",
+        "runtime": "93 min",
+        "title": "Hercules",
+        "year": "1997"
+    },
     "Home Alone": {
         "actors": "Macaulay Culkin, Joe Pesci, Daniel Stern, John Heard",
         "director": "Chris Columbus",
@@ -1482,6 +1611,19 @@
         "runtime": "22 min",
         "title": "How I Met Your Mother",
         "year": "2005\u20132014"
+    },
+    "Ice Age": {
+        "actors": "Ray Romano, John Leguizamo, Denis Leary, Goran Visnjic",
+        "director": "Chris Wedge, Carlos Saldanha(co-director)",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "Set during the Ice Age, a sabertooth tiger, a sloth, and a wooly mammoth find a lost human infant, and they try to return him to his tribe.",
+        "rated": "PG",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "60/100",
+        "rating_rotten": "77%",
+        "runtime": "81 min",
+        "title": "Ice Age",
+        "year": "2002"
     },
     "Inception": {
         "actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
@@ -1777,6 +1919,19 @@
         "title": "Lethal Weapon",
         "year": "1987"
     },
+    "Little Miss Sunshine": {
+        "actors": "Abigail Breslin, Greg Kinnear, Paul Dano, Alan Arkin",
+        "director": "Jonathan Dayton, Valerie Faris",
+        "genre": "Comedy, Drama",
+        "plot": "A family determined to get their young daughter into the finals of a beauty pageant take a cross-country trip in their VW bus.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "91%",
+        "runtime": "101 min",
+        "title": "Little Miss Sunshine",
+        "year": "2006"
+    },
     "Live and Let Die": {
         "actors": "Roger Moore, Yaphet Kotto, Jane Seymour, Clifton James",
         "director": "Guy Hamilton",
@@ -1853,6 +2008,19 @@
         "title": "The Lord of the Rings: The Two Towers",
         "year": "2002"
     },
+    "Lost in Translation": {
+        "actors": "Scarlett Johansson, Bill Murray, Akiko Takeshita, Kazuyoshi Minamimagoe",
+        "director": "Sofia Coppola",
+        "genre": "Comedy, Drama",
+        "plot": "A faded movie star and a neglected young woman form an unlikely bond after crossing paths in Tokyo.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "89/100",
+        "rating_rotten": "95%",
+        "runtime": "102 min",
+        "title": "Lost in Translation",
+        "year": "2003"
+    },
     "Magnolia": {
         "actors": "Pat Healy, Genevieve Zweig, Mark Flanagan, Neil Flynn",
         "director": "Paul Thomas Anderson",
@@ -1904,6 +2072,19 @@
         "runtime": "94 min",
         "title": "Midnight in Paris",
         "year": "2011"
+    },
+    "Midnight Run": {
+        "actors": "Robert De Niro, Charles Grodin, Yaphet Kotto, John Ashton",
+        "director": "Martin Brest",
+        "genre": "Action, Comedy, Crime, Thriller",
+        "plot": "An accountant is chased by bounty hunters, the F.B.I., and the Mafia after jumping bail.",
+        "rated": "R",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "78/100",
+        "rating_rotten": "94%",
+        "runtime": "126 min",
+        "title": "Midnight Run",
+        "year": "1988"
     },
     "Mission Impossible - Ghost Protocol": {
         "actors": "Tom Cruise, Paula Patton, Simon Pegg, Jeremy Renner",
@@ -2007,6 +2188,32 @@
         "title": "Moon",
         "year": "2009"
     },
+    "Mulan": {
+        "actors": "Miguel Ferrer, Harvey Fierstein, Freda Foh Shen, June Foray",
+        "director": "Tony Bancroft, Barry Cook",
+        "genre": "Animation, Adventure, Family, Fantasy, Musical, War",
+        "plot": "To save her father from death in the army, a young maiden secretly goes in his place and becomes one of China's greatest heroines in the process.",
+        "rated": "G",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "71/100",
+        "rating_rotten": "86%",
+        "runtime": "88 min",
+        "title": "Mulan",
+        "year": "1998"
+    },
+    "Mulholland Drive": {
+        "actors": "Naomi Watts, Jeanne Bates, Dan Birnbaum, Laura Harring",
+        "director": "David Lynch",
+        "genre": "Drama, Mystery, Thriller",
+        "plot": "After a car wreck on the winding Mulholland Drive renders a woman amnesiac, she and a perky Hollywood-hopeful search for clues and answers across Los Angeles in a twisting venture beyond dreams and reality.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "85/100",
+        "rating_rotten": "83%",
+        "runtime": "147 min",
+        "title": "Mulholland Drive",
+        "year": "2001"
+    },
     "Napoleon Dynamite": {
         "actors": "Jon Heder, Jon Gries, Aaron Ruell, Efren Ramirez",
         "director": "Jared Hess",
@@ -2045,6 +2252,32 @@
         "runtime": "124 min",
         "title": "National Treasure: Book of Secrets",
         "year": "2007"
+    },
+    "Night at the Museum": {
+        "actors": "Ben Stiller, Carla Gugino, Dick Van Dyke, Mickey Rooney",
+        "director": "Shawn Levy",
+        "genre": "Adventure, Comedy, Family, Fantasy",
+        "plot": "A newly recruited night security guard at the Museum of Natural History discovers that an ancient curse causes the animals and exhibits on display to come to life and wreak havoc.",
+        "rated": "PG",
+        "rating_imdb": "6.4/10",
+        "rating_meta": "48/100",
+        "rating_rotten": "43%",
+        "runtime": "108 min",
+        "title": "Night at the Museum",
+        "year": "2006"
+    },
+    "Night at the Museum - Battle of the Smithsonian": {
+        "actors": "Ben Stiller, Amy Adams, Owen Wilson, Hank Azaria",
+        "director": "Shawn Levy",
+        "genre": "Adventure, Comedy, Family, Fantasy",
+        "plot": "Security guard Larry Daley infiltrates the Smithsonian Institution in order to rescue Jedediah and Octavius, who have been shipped to the museum by mistake.",
+        "rated": "PG",
+        "rating_imdb": "6.0/10",
+        "rating_meta": "42/100",
+        "rating_rotten": "44%",
+        "runtime": "105 min",
+        "title": "Night at the Museum: Battle of the Smithsonian",
+        "year": "2009"
     },
     "No Country for Old Men": {
         "actors": "Tommy Lee Jones, Javier Bardem, Josh Brolin, Woody Harrelson",
@@ -2145,6 +2378,19 @@
         "runtime": "133 min",
         "title": "One Flew Over the Cuckoo's Nest",
         "year": "1975"
+    },
+    "Ordinary People": {
+        "actors": "Donald Sutherland, Mary Tyler Moore, Judd Hirsch, Timothy Hutton",
+        "director": "Robert Redford",
+        "genre": "Drama",
+        "plot": "The accidental death of the older son of an affluent family deeply strains the relationships among the bitter mother, the good-natured father, and the guilt-ridden younger son.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "86/100",
+        "rating_rotten": "89%",
+        "runtime": "124 min",
+        "title": "Ordinary People",
+        "year": "1980"
     },
     "Percy Jackson and the Olympians - The Lightning Thief": {
         "actors": "Danielle Bourque, Samantha Considine, Tj Hansen, Emma Hill",
@@ -2364,6 +2610,19 @@
         "title": "Raising Arizona",
         "year": "1987"
     },
+    "Ratatouille": {
+        "actors": "Patton Oswalt, Ian Holm, Lou Romano, Brian Dennehy",
+        "director": "Brad Bird, Jan Pinkava(co-director)",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "A rat who can cook makes an unusual alliance with a young kitchen worker at a famous restaurant.",
+        "rated": "G",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "96/100",
+        "rating_rotten": "96%",
+        "runtime": "111 min",
+        "title": "Ratatouille",
+        "year": "2007"
+    },
     "Requiem for a Dream": {
         "actors": "Ellen Burstyn, Jared Leto, Jennifer Connelly, Marlon Wayans",
         "director": "Darren Aronofsky",
@@ -2481,6 +2740,16 @@
         "title": "Saving Private Ryan",
         "year": "1998"
     },
+    "Say Anything...": {
+        "actors": "Robert Ben Garant, Thomas Lennon, Beth Littleford, Dwayne Perkins",
+        "director": "N/A",
+        "genre": "Short",
+        "plot": "N/A",
+        "rated": "N/A",
+        "runtime": "8 min",
+        "title": "I Love 'Say Anything...'",
+        "year": "2009"
+    },
     "Scarface": {
         "actors": "Al Pacino, Steven Bauer, Michelle Pfeiffer, Mary Elizabeth Mastrantonio",
         "director": "Brian De Palma",
@@ -2532,6 +2801,58 @@
         "title": "Seinfeld",
         "year": "1989\u20131998"
     },
+    "Sherlock Holmes": {
+        "actors": "Robert Downey Jr., Jude Law, Rachel McAdams, Mark Strong",
+        "director": "Guy Ritchie",
+        "genre": "Action, Adventure, Mystery",
+        "plot": "Detective Sherlock Holmes and his stalwart partner Watson engage in a battle of wits and brawn with a nemesis whose plot is a threat to all of England.",
+        "rated": "PG-13",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "57/100",
+        "rating_rotten": "69%",
+        "runtime": "128 min",
+        "title": "Sherlock Holmes",
+        "year": "2009"
+    },
+    "Shrek": {
+        "actors": "Mike Myers, Eddie Murphy, Cameron Diaz, John Lithgow",
+        "director": "Andrew Adamson, Vicky Jenson",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "88%",
+        "runtime": "90 min",
+        "title": "Shrek",
+        "year": "2001"
+    },
+    "Shrek 2": {
+        "actors": "Mike Myers, Eddie Murphy, Cameron Diaz, Julie Andrews",
+        "director": "Andrew Adamson, Kelly Asbury, Conrad Vernon",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy, Romance",
+        "plot": "Shrek and Fiona travel to the Kingdom of Far Far Away, where Fiona's parents are King and Queen, to celebrate their marriage. When they arrive, they find they are not as welcome as they thought they would be.",
+        "rated": "PG",
+        "rating_imdb": "7.2/10",
+        "rating_meta": "75/100",
+        "rating_rotten": "89%",
+        "runtime": "93 min",
+        "title": "Shrek 2",
+        "year": "2004"
+    },
+    "Shrek the Third": {
+        "actors": "Mike Myers, Eddie Murphy, Cameron Diaz, Antonio Banderas",
+        "director": "Chris Miller, Raman Hui(co-director)",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "Reluctantly designated as the heir to the land of Far, Far Away, Shrek hatches a plan to install the rebellious Artie as the new king while Princess Fiona tries to fend off a coup d'\u00e9tat by the jilted Prince Charming.",
+        "rated": "PG",
+        "rating_imdb": "6.1/10",
+        "rating_meta": "58/100",
+        "rating_rotten": "42%",
+        "runtime": "93 min",
+        "title": "Shrek the Third",
+        "year": "2007"
+    },
     "Shutter Island": {
         "actors": "Leonardo DiCaprio, Mark Ruffalo, Ben Kingsley, Max von Sydow",
         "director": "Martin Scorsese",
@@ -2557,6 +2878,19 @@
         "runtime": "121 min",
         "title": "Sicario",
         "year": "2015"
+    },
+    "Sin City": {
+        "actors": "Jessica Alba, Devon Aoki, Alexis Bledel, Powers Boothe",
+        "director": "Frank Miller, Quentin Tarantino, Robert Rodriguez",
+        "genre": "Crime, Thriller",
+        "plot": "A movie that explores the dark and miserable town, Basin City, tells the story of three different people, all caught up in violent corruption.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "77%",
+        "runtime": "124 min",
+        "title": "Sin City",
+        "year": "2005"
     },
     "Sixteen Candles": {
         "actors": "Molly Ringwald, Justin Henry, Michael Schoeffling, Haviland Morris",
@@ -2648,6 +2982,32 @@
         "runtime": "121 min",
         "title": "Spider-Man",
         "year": "2002"
+    },
+    "Spider-Man - Far from Home": {
+        "actors": "Tom Holland, Samuel L. Jackson, Jake Gyllenhaal, Marisa Tomei",
+        "director": "Jon Watts",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "Following the events of Avengers: Endgame (2019), Spider-Man must step up to take on new threats in a world that has changed forever.",
+        "rated": "PG-13",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "69/100",
+        "rating_rotten": "90%",
+        "runtime": "129 min",
+        "title": "Spider-Man: Far from Home",
+        "year": "2019"
+    },
+    "Spider-Man - Homecoming": {
+        "actors": "Tom Holland, Michael Keaton, Robert Downey Jr., Marisa Tomei",
+        "director": "Jon Watts",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "Peter Parker balances his life as an ordinary high school student in Queens with his superhero alter-ego Spider-Man, and finds himself on the trail of a new menace prowling the skies of New York City.",
+        "rated": "PG-13",
+        "rating_imdb": "7.4/10",
+        "rating_meta": "73/100",
+        "rating_rotten": "92%",
+        "runtime": "133 min",
+        "title": "Spider-Man: Homecoming",
+        "year": "2017"
     },
     "Spider-Man 2": {
         "actors": "Tobey Maguire, Kirsten Dunst, James Franco, Alfred Molina",
@@ -2894,6 +3254,19 @@
         "title": "Thank You for Smoking",
         "year": "2005"
     },
+    "The Avengers": {
+        "actors": "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
+        "director": "Joss Whedon",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+        "rated": "PG-13",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "69/100",
+        "rating_rotten": "91%",
+        "runtime": "143 min",
+        "title": "The Avengers",
+        "year": "2012"
+    },
     "The Big Bang Theory": {
         "actors": "Johnny Galecki, Jim Parsons, Kaley Cuoco, Simon Helberg",
         "director": "N/A",
@@ -2944,6 +3317,19 @@
         "title": "The Boondock Saints",
         "year": "1999"
     },
+    "The Bourne Ultimatum": {
+        "actors": "Matt Damon, Julia Stiles, David Strathairn, Scott Glenn",
+        "director": "Paul Greengrass",
+        "genre": "Action, Mystery, Thriller",
+        "plot": "Jason Bourne dodges a ruthless C.I.A. official and his Agents from a new assassination program while searching for the origins of his life as a trained killer.",
+        "rated": "PG-13",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "85/100",
+        "rating_rotten": "92%",
+        "runtime": "115 min",
+        "title": "The Bourne Ultimatum",
+        "year": "2007"
+    },
     "The Breakfast Club": {
         "actors": "Emilio Estevez, Paul Gleason, Anthony Michael Hall, John Kapelos",
         "director": "John Hughes",
@@ -2956,6 +3342,19 @@
         "runtime": "97 min",
         "title": "The Breakfast Club",
         "year": "1985"
+    },
+    "The Conversation": {
+        "actors": "Gene Hackman, John Cazale, Allen Garfield, Frederic Forrest",
+        "director": "Francis Ford Coppola",
+        "genre": "Drama, Mystery, Thriller",
+        "plot": "A paranoid, secretive surveillance expert has a crisis of conscience when he suspects that the couple he is spying on will be murdered.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "85/100",
+        "rating_rotten": "96%",
+        "runtime": "113 min",
+        "title": "The Conversation",
+        "year": "1974"
     },
     "The Dark Knight": {
         "actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
@@ -3008,6 +3407,19 @@
         "runtime": "151 min",
         "title": "The Departed",
         "year": "2006"
+    },
+    "The Emperor's New Groove": {
+        "actors": "David Spade, John Goodman, Eartha Kitt, Patrick Warburton",
+        "director": "Mark Dindal",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "Emperor Kuzco is turned into a llama by his ex-administrator Yzma, and must now regain his throne with the help of Pacha, the gentle llama herder.",
+        "rated": "G",
+        "rating_imdb": "7.4/10",
+        "rating_meta": "70/100",
+        "rating_rotten": "85%",
+        "runtime": "78 min",
+        "title": "The Emperor's New Groove",
+        "year": "2000"
     },
     "The Evil Dead": {
         "actors": "Bruce Campbell, Ellen Sandweiss, Richard DeManincor, Betsy Baker",
@@ -3227,6 +3639,19 @@
         "title": "The Karate Kid",
         "year": "1984"
     },
+    "The Lion King": {
+        "actors": "Rowan Atkinson, Matthew Broderick, Niketa Calame-Harris, Jim Cummings",
+        "director": "Roger Allers, Rob Minkoff",
+        "genre": "Animation, Adventure, Drama, Family, Musical",
+        "plot": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+        "rated": "G",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "88/100",
+        "rating_rotten": "93%",
+        "runtime": "88 min",
+        "title": "The Lion King",
+        "year": "1994"
+    },
     "The Mandalorian": {
         "actors": "Pedro Pascal",
         "director": "N/A",
@@ -3403,6 +3828,19 @@
         "title": "The Silence of the Lambs",
         "year": "1991"
     },
+    "The Simpsons Movie": {
+        "actors": "Dan Castellaneta, Julie Kavner, Nancy Cartwright, Yeardley Smith",
+        "director": "David Silverman",
+        "genre": "Animation, Adventure, Comedy",
+        "plot": "After Homer pollutes the town's water supply, Springfield is encased in a gigantic dome by the EPA and the Simpsons are declared fugitives.",
+        "rated": "PG-13",
+        "rating_imdb": "7.3/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "87%",
+        "runtime": "87 min",
+        "title": "The Simpsons Movie",
+        "year": "2007"
+    },
     "The Social Network": {
         "actors": "Jesse Eisenberg, Rooney Mara, Bryan Barter, Dustin Fitzsimons",
         "director": "David Fincher",
@@ -3533,6 +3971,19 @@
         "title": "There Will Be Blood",
         "year": "2007"
     },
+    "Thor - Ragnarok": {
+        "actors": "Chris Hemsworth, Tom Hiddleston, Cate Blanchett, Idris Elba",
+        "director": "Taika Waititi",
+        "genre": "Action, Adventure, Comedy, Fantasy, Sci-Fi",
+        "plot": "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnar\u00f6k, the destruction of his world, at the hands of the powerful and ruthless villain Hela.",
+        "rated": "PG-13",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "93%",
+        "runtime": "130 min",
+        "title": "Thor: Ragnarok",
+        "year": "2017"
+    },
     "Thunderball": {
         "actors": "Sean Connery, Claudine Auger, Adolfo Celi, Luciana Paluzzi",
         "director": "Terence Young",
@@ -3610,6 +4061,19 @@
         "runtime": "103 min",
         "title": "Toy Story 3",
         "year": "2010"
+    },
+    "Toy Story 4": {
+        "actors": "Tom Hanks, Tim Allen, Annie Potts, Tony Hale",
+        "director": "Josh Cooley",
+        "genre": "Animation, Adventure, Comedy, Family, Fantasy",
+        "plot": "When a new toy called \"Forky\" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.",
+        "rated": "G",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "97%",
+        "runtime": "100 min",
+        "title": "Toy Story 4",
+        "year": "2019"
     },
     "Trading Places": {
         "actors": "Denholm Elliott, Dan Aykroyd, Maurice Woods, Richard D. Fisher Jr.",
