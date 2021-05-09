@@ -1,4 +1,17 @@
 {
+    "12 Years a Slave": {
+        "actors": "Chiwetel Ejiofor, Dwight Henry, Dickie Gravois, Bryan Batt",
+        "director": "Steve McQueen",
+        "genre": "Biography, Drama, History",
+        "plot": "In the antebellum United States, Solomon Northup, a free black man from upstate New York, is abducted and sold into slavery.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "96/100",
+        "rating_rotten": "95%",
+        "runtime": "134 min",
+        "title": "12 Years a Slave",
+        "year": "2013"
+    },
     "1917": {
         "actors": "Dean-Charles Chapman, George MacKay, Daniel Mays, Colin Firth",
         "director": "Sam Mendes",
@@ -141,6 +154,32 @@
         "runtime": "108 min",
         "title": "A Fish Called Wanda",
         "year": "1988"
+    },
+    "A Simple Plan": {
+        "actors": "Bill Paxton, Bridget Fonda, Billy Bob Thornton, Brent Briscoe",
+        "director": "Sam Raimi",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "Three blue-collar acquaintances come across millions of dollars in lost cash and make a plan to keep their find from the authorities, but it isn't long before complications and mistrust weave their way into the plan.",
+        "rated": "R",
+        "rating_imdb": "7.5/10",
+        "rating_meta": "82/100",
+        "rating_rotten": "91%",
+        "runtime": "121 min",
+        "title": "A Simple Plan",
+        "year": "1998"
+    },
+    "A Woman Under the Influence": {
+        "actors": "Peter Falk, Gena Rowlands, Fred Draper, Lady Rowlands",
+        "director": "John Cassavetes",
+        "genre": "Drama, Romance",
+        "plot": "Although wife and mother Mabel is loved by her husband Nick, her mental illness places a strain on the marriage.",
+        "rated": "R",
+        "rating_imdb": "8.2/10",
+        "rating_meta": "88/100",
+        "rating_rotten": "90%",
+        "runtime": "155 min",
+        "title": "A Woman Under the Influence",
+        "year": "1974"
     },
     "Ace Ventura Pet Detective": {
         "actors": "Jim Carrey, Courteney Cox, Sean Young, Tone Loc",
@@ -311,6 +350,19 @@
         "title": "Apocalypse Now",
         "year": "1979"
     },
+    "Apollo 13": {
+        "actors": "Tom Hanks, Bill Paxton, Kevin Bacon, Gary Sinise",
+        "director": "Ron Howard",
+        "genre": "Adventure, Drama, History",
+        "plot": "NASA must devise a strategy to return Apollo 13 to Earth safely after the spacecraft undergoes massive internal damage putting the lives of the three astronauts on board in jeopardy.",
+        "rated": "PG",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "77/100",
+        "rating_rotten": "96%",
+        "runtime": "140 min",
+        "title": "Apollo 13",
+        "year": "1995"
+    },
     "Atonement": {
         "actors": "Saoirse Ronan, Ailidh Mackay, Brenda Blethyn, Julia West",
         "director": "Joe Wright",
@@ -374,6 +426,32 @@
         "title": "Avengers: Infinity War",
         "year": "2018"
     },
+    "Awakenings": {
+        "actors": "Robert De Niro, Robin Williams, Julie Kavner, Ruth Nelson",
+        "director": "Penny Marshall",
+        "genre": "Biography, Drama",
+        "plot": "The victims of an encephalitis epidemic many years ago have been catatonic ever since, but now a new drug offers the prospect of reviving them.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "88%",
+        "runtime": "121 min",
+        "title": "Awakenings",
+        "year": "1990"
+    },
+    "Baby Driver": {
+        "actors": "Ansel Elgort, Jon Bernthal, Jon Hamm, Eiza Gonz\u00e1lez",
+        "director": "Edgar Wright",
+        "genre": "Action, Crime, Drama, Music, Thriller",
+        "plot": "After being coerced into working for a crime boss, a young getaway driver finds himself taking part in a heist doomed to fail.",
+        "rated": "R",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "86/100",
+        "rating_rotten": "92%",
+        "runtime": "113 min",
+        "title": "Baby Driver",
+        "year": "2017"
+    },
     "Back to the Future": {
         "actors": "Michael J. Fox, Christopher Lloyd, Lea Thompson, Crispin Glover",
         "director": "Robert Zemeckis",
@@ -434,6 +512,19 @@
         "runtime": "140 min",
         "title": "Batman Begins",
         "year": "2005"
+    },
+    "Before Midnight": {
+        "actors": "Ethan Hawke, Julie Delpy, Seamus Davey-Fitzpatrick, Jennifer Prior",
+        "director": "Richard Linklater",
+        "genre": "Drama, Romance",
+        "plot": "We meet Jesse and Celine nine years on in Greece. Almost two decades have passed since their first meeting on that train bound for Vienna.",
+        "rated": "R",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "94/100",
+        "rating_rotten": "98%",
+        "runtime": "109 min",
+        "title": "Before Midnight",
+        "year": "2013"
     },
     "Before Sunrise": {
         "actors": "Ethan Hawke, Julie Delpy, Andrea Eckert, Hanno P\u00f6schl",
@@ -513,6 +604,32 @@
         "title": "Big",
         "year": "1988"
     },
+    "Birdman": {
+        "actors": "Michael Keaton, Zach Galifianakis, Edward Norton",
+        "director": "Alejandro G. I\u00c3\u00b1\u00c3\u00a1rritu",
+        "genre": "Comedy, Drama",
+        "plot": "A washed-up superhero actor attempts to revive his fading career by writing, directing, and starring in a Broadway production.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "87/100",
+        "rating_rotten": "91%",
+        "runtime": "119 min",
+        "title": "Birdman",
+        "year": "2014"
+    },
+    "Black Swan": {
+        "actors": "Natalie Portman, Mila Kunis, Vincent Cassel, Barbara Hershey",
+        "director": "Darren Aronofsky",
+        "genre": "Drama, Thriller",
+        "plot": "A committed dancer struggles to maintain her sanity after winning the lead role in a production of Tchaikovsky's \"Swan Lake\".",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "79/100",
+        "rating_rotten": "85%",
+        "runtime": "108 min",
+        "title": "Black Swan",
+        "year": "2010"
+    },
     "Blade Runner": {
         "actors": "Harrison Ford, Rutger Hauer, Sean Young, Edward James Olmos",
         "director": "Ridley Scott",
@@ -525,6 +642,19 @@
         "runtime": "117 min",
         "title": "Blade Runner",
         "year": "1982"
+    },
+    "Blade Runner 2049": {
+        "actors": "Ryan Gosling, Dave Bautista, Robin Wright, Mark Arnold",
+        "director": "Denis Villeneuve",
+        "genre": "Action, Drama, Mystery, Sci-Fi, Thriller",
+        "plot": "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missing for thirty years.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "81/100",
+        "rating_rotten": "88%",
+        "runtime": "164 min",
+        "title": "Blade Runner 2049",
+        "year": "2017"
     },
     "Blood Diamond": {
         "actors": "Leonardo DiCaprio, Djimon Hounsou, Jennifer Connelly, Kagiso Kuypers",
@@ -552,6 +682,19 @@
         "title": "Blood Simple",
         "year": "1984"
     },
+    "Blue Velvet": {
+        "actors": "Isabella Rossellini, Kyle MacLachlan, Dennis Hopper, Laura Dern",
+        "director": "David Lynch",
+        "genre": "Drama, Mystery, Thriller",
+        "plot": "The discovery of a severed human ear found in a field leads a young man on an investigation related to a beautiful, mysterious nightclub singer and a group of psychopathic criminals who have kidnapped her child.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "94%",
+        "runtime": "120 min",
+        "title": "Blue Velvet",
+        "year": "1986"
+    },
     "Boogie Nights": {
         "actors": "Luis Guzm\u00e1n, Burt Reynolds, Julianne Moore, Rico Bueno",
         "director": "Paul Thomas Anderson",
@@ -564,6 +707,19 @@
         "runtime": "155 min",
         "title": "Boogie Nights",
         "year": "1997"
+    },
+    "Boyz n the Hood": {
+        "actors": "Hudhail Al-Amir, Lloyd Avery II, Angela Bassett, Miya McGhee",
+        "director": "John Singleton",
+        "genre": "Crime, Drama",
+        "plot": "Follows the lives of three young males living in the Crenshaw ghetto of Los Angeles, dissecting questions of race, relationships, violence, and future prospects.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "96%",
+        "runtime": "112 min",
+        "title": "Boyz n the Hood",
+        "year": "1991"
     },
     "Brazil": {
         "actors": "Jonathan Pryce, Robert De Niro, Katherine Helmond, Ian Holm",
@@ -629,6 +785,19 @@
         "runtime": "136 min",
         "title": "Captain America: The Winter Soldier",
         "year": "2014"
+    },
+    "Captain Phillips": {
+        "actors": "Tom Hanks, Catherine Keener, Barkhad Abdi, Barkhad Abdirahman",
+        "director": "Paul Greengrass",
+        "genre": "Adventure, Biography, Crime, Drama, Thriller",
+        "plot": "The true story of Captain Richard Phillips and the 2009 hijacking by Somali pirates of the U.S.-flagged MV Maersk Alabama, the first American cargo ship to be hijacked in two hundred years.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "82/100",
+        "rating_rotten": "93%",
+        "runtime": "134 min",
+        "title": "Captain Phillips",
+        "year": "2013"
     },
     "Cars": {
         "actors": "Owen Wilson, Paul Newman, Bonnie Hunt, Larry the Cable Guy",
@@ -770,6 +939,19 @@
         "title": "Dark City",
         "year": "1998"
     },
+    "Dark Waters": {
+        "actors": "Mark Ruffalo, Anne Hathaway, Tim Robbins, Bill Pullman",
+        "director": "Todd Haynes",
+        "genre": "Biography, Drama, History, Thriller",
+        "plot": "A corporate defense attorney takes on an environmental lawsuit against a chemical company that exposes a lengthy history of pollution.",
+        "rated": "PG-13",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "73/100",
+        "rating_rotten": "89%",
+        "runtime": "126 min",
+        "title": "Dark Waters",
+        "year": "2019"
+    },
     "Dazed and Confused": {
         "actors": "Jason London, Joey Lauren Adams, Milla Jovovich, Shawn Andrews",
         "director": "Richard Linklater",
@@ -795,6 +977,19 @@
         "runtime": "128 min",
         "title": "Dead Poets Society",
         "year": "1989"
+    },
+    "Deadpool": {
+        "actors": "Ryan Reynolds, Karan Soni, Ed Skrein, Michael Benyaer",
+        "director": "Tim Miller",
+        "genre": "Action, Adventure, Comedy, Sci-Fi",
+        "plot": "A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "65/100",
+        "rating_rotten": "85%",
+        "runtime": "108 min",
+        "title": "Deadpool",
+        "year": "2016"
     },
     "Despicable Me": {
         "actors": "Steve Carell, Jason Segel, Russell Brand, Julie Andrews",
@@ -900,6 +1095,19 @@
         "title": "Doctor Strange",
         "year": "2016"
     },
+    "Dog Day Afternoon": {
+        "actors": "Penelope Allen, Sully Boyar, John Cazale, Beulah Garrick",
+        "director": "Sidney Lumet",
+        "genre": "Biography, Crime, Drama, Thriller",
+        "plot": "Three amateur bank robbers plan to hold up a bank. A nice simple robbery: Walk in, take the money, and run. Unfortunately, the supposedly uncomplicated heist suddenly becomes a bizarre nightmare as everything that could go wrong does.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "86/100",
+        "rating_rotten": "96%",
+        "runtime": "125 min",
+        "title": "Dog Day Afternoon",
+        "year": "1975"
+    },
     "Donnie Brasco": {
         "actors": "Al Pacino, Johnny Depp, Michael Madsen, Bruno Kirby",
         "director": "Mike Newell",
@@ -951,6 +1159,19 @@
         "title": "Drake and Josh Go Hollywood",
         "year": "2006"
     },
+    "Dunkirk": {
+        "actors": "Fionn Whitehead, Damien Bonnard, Aneurin Barnard, Lee Armstrong",
+        "director": "Christopher Nolan",
+        "genre": "Action, Drama, History, Thriller, War",
+        "plot": "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "94/100",
+        "rating_rotten": "92%",
+        "runtime": "106 min",
+        "title": "Dunkirk",
+        "year": "2017"
+    },
     "E.T. the Extra-Terrestrial": {
         "actors": "Dee Wallace, Henry Thomas, Peter Coyote, Robert MacNaughton",
         "director": "Steven Spielberg",
@@ -963,6 +1184,32 @@
         "runtime": "115 min",
         "title": "E.T. the Extra-Terrestrial",
         "year": "1982"
+    },
+    "Edge of Tomorrow": {
+        "actors": "Tom Cruise, Emily Blunt, Brendan Gleeson, Bill Paxton",
+        "director": "Doug Liman",
+        "genre": "Action, Adventure, Sci-Fi",
+        "plot": "A soldier fighting aliens gets to relive the same day over and over again, the day restarting every time he dies.",
+        "rated": "PG-13",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "71/100",
+        "rating_rotten": "91%",
+        "runtime": "113 min",
+        "title": "Edge of Tomorrow",
+        "year": "2014"
+    },
+    "Edward Scissorhands": {
+        "actors": "Johnny Depp, Winona Ryder, Dianne Wiest, Anthony Michael Hall",
+        "director": "Tim Burton",
+        "genre": "Drama, Fantasy, Romance",
+        "plot": "An artificial man, who was incompletely constructed and has scissors for hands, leads a solitary life. Then one day, a suburban lady meets him and introduces him to her world.",
+        "rated": "PG-13",
+        "rating_imdb": "7.9/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "90%",
+        "runtime": "105 min",
+        "title": "Edward Scissorhands",
+        "year": "1990"
     },
     "Elf": {
         "actors": "Will Ferrell, James Caan, Bob Newhart, Edward Asner",
@@ -1116,6 +1363,19 @@
         "title": "For Your Eyes Only",
         "year": "1981"
     },
+    "Ford v Ferrari": {
+        "actors": "Matt Damon, Christian Bale, Jon Bernthal, Caitriona Balfe",
+        "director": "James Mangold",
+        "genre": "Action, Biography, Drama, Sport",
+        "plot": "American car designer Carroll Shelby and driver Ken Miles battle corporate interference and the laws of physics to build a revolutionary race car for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966.",
+        "rated": "PG-13",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "81/100",
+        "rating_rotten": "92%",
+        "runtime": "152 min",
+        "title": "Ford v Ferrari",
+        "year": "2019"
+    },
     "Forrest Gump": {
         "actors": "Tom Hanks, Rebecca Williams, Sally Field, Michael Conner Humphreys",
         "director": "Robert Zemeckis",
@@ -1267,6 +1527,19 @@
         "runtime": "110 min",
         "title": "Goldfinger",
         "year": "1964"
+    },
+    "Gone Girl": {
+        "actors": "Ben Affleck, Rosamund Pike, Neil Patrick Harris, Tyler Perry",
+        "director": "David Fincher",
+        "genre": "Drama, Mystery, Thriller",
+        "plot": "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.",
+        "rated": "R",
+        "rating_imdb": "8.1/10",
+        "rating_meta": "79/100",
+        "rating_rotten": "87%",
+        "runtime": "149 min",
+        "title": "Gone Girl",
+        "year": "2014"
     },
     "Good Will Hunting": {
         "actors": "Matt Damon, Ben Affleck, Stellan Skarsg\u00e5rd, John Mighton",
@@ -1513,6 +1786,19 @@
         "title": "Hell or High Water",
         "year": "2016"
     },
+    "Her": {
+        "actors": "Joaquin Phoenix, Lynn Adrianna Freedman, Lisa Renee Pitts, Gabe Gomez",
+        "director": "Spike Jonze",
+        "genre": "Drama, Romance, Sci-Fi",
+        "plot": "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.",
+        "rated": "R",
+        "rating_imdb": "8.0/10",
+        "rating_meta": "90/100",
+        "rating_rotten": "94%",
+        "runtime": "126 min",
+        "title": "Her",
+        "year": "2013"
+    },
     "Hercules": {
         "actors": "Tate Donovan, Josh Keaton, Roger Bart, Danny DeVito",
         "director": "Ron Clements, John Musker",
@@ -1637,6 +1923,19 @@
         "runtime": "148 min",
         "title": "Inception",
         "year": "2010"
+    },
+    "Incredibles 2": {
+        "actors": "Craig T. Nelson, Holly Hunter, Sarah Vowell, Huck Milner",
+        "director": "Brad Bird",
+        "genre": "Animation, Action, Adventure, Comedy, Family, Sci-Fi",
+        "plot": "The Incredibles family takes on a new mission which involves a change in family roles: Bob Parr (Mr. Incredible) must manage the house while his wife Helen (Elastigirl) goes out to save the world.",
+        "rated": "PG",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "80/100",
+        "rating_rotten": "93%",
+        "runtime": "118 min",
+        "title": "Incredibles 2",
+        "year": "2018"
     },
     "Indiana Jones And The Last Crusade": {
         "actors": "Harrison Ford, Sean Connery, Denholm Elliott, Alison Doody",
@@ -1896,15 +2195,31 @@
         "title": "Legally Blonde",
         "year": "2001"
     },
+    "Lemony Snicket's A Series of Unfortunate Events": {
+        "actors": "Jim Carrey, Liam Aiken, Emily Browning, Kara Hoffman",
+        "director": "Brad Silberling",
+        "genre": "Adventure, Comedy, Family, Fantasy",
+        "plot": "When a massive fire kills their parents, three children are delivered to the custody of cousin and stage actor Count Olaf, who is secretly plotting to steal their parents' vast fortune.",
+        "rated": "PG",
+        "rating_imdb": "6.8/10",
+        "rating_meta": "62/100",
+        "rating_rotten": "72%",
+        "runtime": "108 min",
+        "title": "A Series of Unfortunate Events",
+        "year": "2004"
+    },
     "Leon The Professional": {
-        "actors": "N/A",
-        "director": "N/A",
-        "genre": "Documentary, Short",
-        "plot": "N/A",
-        "rated": "N/A",
-        "runtime": "N/A",
-        "title": "Jean Reno on Leon: The Professional",
-        "year": "2014"
+        "actors": "Jean Reno, Gary Oldman, Natalie Portman",
+        "director": "Luc Besson",
+        "genre": "Action, Crime, Drama",
+        "plot": "Mathilda, a 12-year-old girl, is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade.",
+        "rated": "R",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "64/100",
+        "rating_rotten": "74%",
+        "runtime": "110 min",
+        "title": "Leon: The Professional",
+        "year": "1994"
     },
     "Lethal Weapon": {
         "actors": "Mel Gibson, Danny Glover, Gary Busey, Mitchell Ryan",
@@ -2034,6 +2349,32 @@
         "title": "Magnolia",
         "year": "1999"
     },
+    "Manchester by the Sea": {
+        "actors": "Casey Affleck, Ben O'Brien, Kyle Chandler, Richard Donelly",
+        "director": "Kenneth Lonergan",
+        "genre": "Drama",
+        "plot": "A depressed uncle is asked to take care of his teenage nephew after the boy's father dies.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "96/100",
+        "rating_rotten": "96%",
+        "runtime": "137 min",
+        "title": "Manchester by the Sea",
+        "year": "2016"
+    },
+    "Me and Earl and the Dying Girl": {
+        "actors": "Thomas Mann, RJ Cyler, Olivia Cooke, Nick Offerman",
+        "director": "Alfonso Gomez-Rejon",
+        "genre": "Comedy, Drama",
+        "plot": "High schooler Greg, who spends most of his time making parodies of classic movies with his co-worker Earl, finds his outlook forever altered after befriending a classmate who has just been diagnosed with cancer.",
+        "rated": "PG-13",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "74/100",
+        "rating_rotten": "81%",
+        "runtime": "105 min",
+        "title": "Me and Earl and the Dying Girl",
+        "year": "2015"
+    },
     "Memento": {
         "actors": "Guy Pearce, Carrie-Anne Moss, Joe Pantoliano, Mark Boone Junior",
         "director": "Christopher Nolan",
@@ -2085,6 +2426,19 @@
         "runtime": "126 min",
         "title": "Midnight Run",
         "year": "1988"
+    },
+    "Miller's Crossing": {
+        "actors": "Gabriel Byrne, Marcia Gay Harden, John Turturro, Jon Polito",
+        "director": "Joel Coen, Ethan Coen",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "Tom Reagan, an advisor to a Prohibition-era crime boss, tries to keep the peace between warring mobs but gets caught in divided loyalties.",
+        "rated": "R",
+        "rating_imdb": "7.7/10",
+        "rating_meta": "66/100",
+        "rating_rotten": "92%",
+        "runtime": "115 min",
+        "title": "Miller's Crossing",
+        "year": "1990"
     },
     "Mission Impossible - Ghost Protocol": {
         "actors": "Tom Cruise, Paula Patton, Simon Pegg, Jeremy Renner",
@@ -2188,6 +2542,32 @@
         "title": "Moon",
         "year": "2009"
     },
+    "Moonrise Kingdom": {
+        "actors": "Bruce Willis, Edward Norton, Bill Murray, Frances McDormand",
+        "director": "Wes Anderson",
+        "genre": "Comedy, Drama, Romance",
+        "plot": "A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "84/100",
+        "rating_rotten": "93%",
+        "runtime": "94 min",
+        "title": "Moonrise Kingdom",
+        "year": "2012"
+    },
+    "Mrs. Doubtfire": {
+        "actors": "Robin Williams, Sally Field, Pierce Brosnan, Harvey Fierstein",
+        "director": "Chris Columbus",
+        "genre": "Comedy, Drama, Family",
+        "plot": "After a bitter divorce, an actor disguises himself as a female housekeeper to spend time with his children held in custody by his former wife.",
+        "rated": "PG-13",
+        "rating_imdb": "7.0/10",
+        "rating_meta": "53/100",
+        "rating_rotten": "71%",
+        "runtime": "125 min",
+        "title": "Mrs. Doubtfire",
+        "year": "1993"
+    },
     "Mulan": {
         "actors": "Miguel Ferrer, Harvey Fierstein, Freda Foh Shen, June Foray",
         "director": "Tony Bancroft, Barry Cook",
@@ -2213,6 +2593,19 @@
         "runtime": "147 min",
         "title": "Mulholland Drive",
         "year": "2001"
+    },
+    "My Cousin Vinny": {
+        "actors": "Joe Pesci, Ralph Macchio, Marisa Tomei, Mitchell Whitfield",
+        "director": "Jonathan Lynn",
+        "genre": "Comedy, Crime",
+        "plot": "Two New Yorkers accused of murder in rural Alabama while on their way back to college call in the help of one of their cousins, a loudmouth lawyer with no trial experience.",
+        "rated": "R",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "68/100",
+        "rating_rotten": "86%",
+        "runtime": "120 min",
+        "title": "My Cousin Vinny",
+        "year": "1992"
     },
     "Napoleon Dynamite": {
         "actors": "Jon Heder, Jon Gries, Aaron Ruell, Efren Ramirez",
