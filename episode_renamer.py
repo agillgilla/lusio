@@ -4,11 +4,11 @@ import re
 
 season_delimiter = 'S'
 episode_delimiter = 'E'
-file_suffix = '.mp4'
+file_suffix = '.mkv'
 dry_run = False
-episodes_directory = 'D:\\MOVIES\\The New Adventures of Old Christine'
+episodes_directory = 'D:\\MOVIES\\CURR DOWNLOAD\\The Fresh Prince of Bel-Air x265'
 
-new_episodes_file = open('naooc.txt', 'r')
+new_episodes_file = open('tfpoba.txt', 'r')
 
 for folder, subs, files in os.walk(episodes_directory):
 	#print(folder)

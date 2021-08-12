@@ -1389,6 +1389,17 @@
         "title": "Forrest Gump",
         "year": "1994"
     },
+    "Frasier": {
+        "actors": "Kelsey Grammer, Jane Leeves, David Hyde Pierce",
+        "director": "N/A",
+        "genre": "Comedy",
+        "plot": "Dr. Frasier Crane moves back to his hometown of Seattle, where he lives with his father, and works as a radio psychiatrist.",
+        "rated": "TV-PG",
+        "rating_imdb": "8.1/10",
+        "runtime": "22 min",
+        "title": "Frasier",
+        "year": "1993\u20132004"
+    },
     "Freaks and Geeks": {
         "actors": "Linda Cardellini, John Francis Daley, James Franco, Samm Levine",
         "director": "N/A",
@@ -2212,7 +2223,7 @@
         "actors": "Jean Reno, Gary Oldman, Natalie Portman",
         "director": "Luc Besson",
         "genre": "Action, Crime, Drama",
-        "plot": "Mathilda, a 12-year-old girl, is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade.",
+        "plot": "Mathilda, a 12-year-old girl, is reluctantly taken in by L\u00c3\u00a9on, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his prot\u00c3\u00a9g\u00c3\u00a9e and learns the assassin's trade.",
         "rated": "R",
         "rating_imdb": "8.5/10",
         "rating_meta": "64/100",
@@ -2784,6 +2795,19 @@
         "runtime": "124 min",
         "title": "Ordinary People",
         "year": "1980"
+    },
+    "Over the Hedge": {
+        "actors": "Bruce Willis, Garry Shandling, Steve Carell",
+        "director": "Tim Johnson, Karey Kirkpatrick",
+        "genre": "Animation, Adventure, Comedy",
+        "plot": "A scheming raccoon fools a mismatched family of forest creatures into helping him repay a debt of food, by invading the new suburban sprawl that popped up while they were hibernating...and learns a lesson about family himself.",
+        "rated": "PG",
+        "rating_imdb": "6.7/10",
+        "rating_meta": "67/100",
+        "rating_rotten": "75%",
+        "runtime": "83 min",
+        "title": "Over the Hedge",
+        "year": "2006"
     },
     "Percy Jackson and the Olympians - The Lightning Thief": {
         "actors": "Danielle Bourque, Samantha Considine, Tj Hansen, Emma Hill",
@@ -3582,6 +3606,19 @@
         "title": "Star Wars: Episode VIII - The Last Jedi",
         "year": "2017"
     },
+    "Straight Time": {
+        "actors": "Dustin Hoffman, Theresa Russell, Gary Busey",
+        "director": "Ulu Grosbard, Dustin Hoffman",
+        "genre": "Crime, Drama",
+        "plot": "After being released on parole, a career burglar assaults his former probation officer, returns to a life of crime, and goes on the run.",
+        "rated": "R",
+        "rating_imdb": "7.4/10",
+        "rating_meta": "64/100",
+        "rating_rotten": "80%",
+        "runtime": "114 min",
+        "title": "Straight Time",
+        "year": "1978"
+    },
     "Superbad": {
         "actors": "Jonah Hill, Michael Cera, Christopher Mintz-Plasse, Bill Hader",
         "director": "Greg Mottola",
@@ -3594,6 +3631,19 @@
         "runtime": "113 min",
         "title": "Superbad",
         "year": "2007"
+    },
+    "Superhero Movie": {
+        "actors": "Drake Bell, Leslie Nielsen, Sara Paxton",
+        "director": "Craig Mazin",
+        "genre": "Action, Comedy, Sci-Fi",
+        "plot": "Home Video Trailer from The Weinstein Company",
+        "rated": "PG-13",
+        "rating_imdb": "4.6/10",
+        "rating_meta": "33/100",
+        "rating_rotten": "17%",
+        "runtime": "75 min",
+        "title": "Superhero Movie",
+        "year": "2008"
     },
     "Taken": {
         "actors": "Liam Neeson, Maggie Grace, Leland Orser, Jon Gries",
@@ -3837,6 +3887,17 @@
         "runtime": "85 min",
         "title": "The Evil Dead",
         "year": "1981"
+    },
+    "The Fresh Prince of Bel-Air": {
+        "actors": "Will Smith, James Avery, Alfonso Ribeiro",
+        "director": "N/A",
+        "genre": "Comedy",
+        "plot": "A streetwise, poor young man from Philadelphia is sent by his mother to live with his aunt, uncle and cousins in their Bel-Air mansion.",
+        "rated": "TV-PG",
+        "rating_imdb": "7.9/10",
+        "runtime": "22 min",
+        "title": "The Fresh Prince of Bel-Air",
+        "year": "1990\u20131996"
     },
     "The Girl With The Dragon Tattoo": {
         "actors": "Daniel Craig, Rooney Mara, Christopher Plummer, Stellan Skarsg\u00e5rd",
