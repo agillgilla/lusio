@@ -5,6 +5,7 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 
 # Setup autostart on boot
+mkdir /home/pi/.config/autostart
 echo '[Desktop Entry]
 Name=Lusio
 Type=Application
@@ -26,6 +27,7 @@ cd /home/pi/lusio
 pip install -r requirements.txt
 
 # Disable HDMI-CEC
+sudo su
 sudo echo '
 hdmi_ignore_cec_init=1
 hdmi_ignore_cec=1' >> /boot/config.txt
