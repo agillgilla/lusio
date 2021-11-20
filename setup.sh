@@ -28,4 +28,4 @@ pip install -r requirements.txt
 # Disable HDMI-CEC
 echo '
 hdmi_ignore_cec_init=1
-hdmi_ignore_cec=1' >> /boot/config/txt
+hdmi_ignore_cec=1' >> /boot/config.txt
