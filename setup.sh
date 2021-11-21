@@ -24,7 +24,7 @@ sudo apt install -y vlc
 
 # Install python packages
 cd /home/pi/lusio
-sudo pip install -r requirements.txt
+sudo pip3 install -r requirements.txt
 
 # Disable HDMI-CEC
 sudo sh -c "echo '
