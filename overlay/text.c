@@ -253,7 +253,7 @@ int text_create(const char *font_file, long face_index, float point, int dpi) {
 }
 
 void get_textdata(int text_id, int *text_width, int *text_height, char **text_bitmap_data) {
-    TextData *textdata = textdata_list[text_id];
+    TextData *textdata = textdata_list[text_id - 1];
     
     *text_width = textdata->width;
     *text_height = textdata->height;

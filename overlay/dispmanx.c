@@ -32,6 +32,8 @@ static uint32_t g_canvas_width;
 static uint32_t g_video_width;
 static uint32_t g_video_height;
 
+int startTimestampTextId;
+
 #ifndef ALIGN_TO_16
 #define ALIGN_TO_16(x)  ((x + 15) & ~15)
 #endif
@@ -119,11 +121,11 @@ void dispmanx_add_text(const char *str, int strlen)
     // This comes out to a font size of 48 on a 1440p display
     int font_size = round(g_modeInfo.height / 30.0);
 
-	int text_id = text_create(font_file, 0, font_size, 256);
+	 startTimestampTextId = text_create(font_file, 0, font_size, 256);
 	
-	text_set_text(text_id, str, strlen);
+	 text_set_text(startTimestampTextId, str, strlen);
 	
-	redraw_text(text_id);
+	 redraw_text(startTimestampTextId);
 }
 
 void dispmanx_init(void)
@@ -212,21 +214,21 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
 
 void dispmanx_loop(void) 
 {
-    int start_text_id = 0;
-
     int start_timestamp_width;
     int start_timestamp_height;
     char *start_bitmap_data; 
 
-    get_textdata(start_text_id, &start_timestamp_width, &start_timestamp_height, &start_bitmap_data);
+    get_textdata(startTimestampTextId, &start_timestamp_width, &start_timestamp_height, &start_bitmap_data);
 
-    dispmanx_draw_text_overlay(start_text_id, 101, g_modeInfo.height - start_timestamp_height);
+    dispmanx_draw_text_overlay(startTimestampTextId, 100, g_modeInfo.height - start_timestamp_height);
 	
+	 /*
     char c = getchar();
     printf("Char: %c", c);
     
     dispmanx_destroy();
     return;
+    */	
 	
     while (1) {
         msleep(20);
