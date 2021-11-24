@@ -16,16 +16,12 @@
 #include <sys/statvfs.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include <alsa/asoundlib.h>
-#include <libavformat/avformat.h>
-#include <libavcodec/avcodec.h>
 #include <libavutil/mathematics.h>
 #include <getopt.h>
 
 #include "bcm_host.h"
 #include "ilclient.h"
 
-#include "state.h"
 #include "log.h"
 #include "text.h"
 #include "dispmanx.h"
@@ -89,6 +85,14 @@ int main(int argc, char **argv) {
         timestamp_set_stroke_color(timestamp_stroke_color);
         timestamp_set_stroke_width(timestamp_stroke_width);
         timestamp_set_letter_spacing(timestamp_letter_spacing);
-        timestamp_fix_position(video_width_32, video_height_16);
+        timestamp_fix_position(200, 200);
     }
+    
+    dispmanx_init();
+    
+    dispmanx_add_text("ARJUN", 5);
+
+    dispmanx_create_text_overlay();
+    
+    dispmanx_loop();
 }

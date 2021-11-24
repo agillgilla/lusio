@@ -1,5 +1,5 @@
-#ifndef PICAM_DISPMANX_H
-#define PICAM_DISPMANX_H
+#ifndef DISPMANX_H
+#define DISPMANX_H
 
 #include <stdint.h>
 
@@ -14,7 +14,10 @@
 // display to which we will output the preview overlays
 #define DISP_DISPLAY_DEFAULT     0
 
-void dispmanx_init(uint32_t bg_color, uint32_t video_width, uint32_t video_height);
+int msleep(long msec);
+void dispmanx_init(void);
+void dispmanx_add_text(const char *str, int strlen);
+void dispmanx_loop(void);
 void dispmanx_destroy(void);
 void dispmanx_update_text_overlay(void);
 

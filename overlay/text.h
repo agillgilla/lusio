@@ -35,6 +35,8 @@ typedef struct text_bounds {
   int height;
 } text_bounds;
 
+void get_textdata(int text_id, int *text_width, int *text_height, char **text_bitmap_data);
+
 /**
  * Initializes text library.
  */
@@ -133,6 +135,8 @@ int text_destroy(int text_id);
  * Calculates a bounding box for the text object.
  */
 int text_get_bounds(int text_id, const char *text, size_t text_len, text_bounds *bounds);
+
+int roundUp(int numToRound, int multiple);
 
 /**
  * Draw glyphs to internal buffer. Once this is called, the bitmap
