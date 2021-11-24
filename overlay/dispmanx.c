@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include <assert.h>
+#include <math.h>
 
 #include <bcm_host.h>
 
@@ -112,11 +113,14 @@ void dispmanx_add_text(const char *str, int strlen)
 {
 	const char *font_file = "arial.ttf";
 	
-	int textid = text_create(font_file, 0, 31, 256);
+    // This comes out to a font size of 48 on a 1440p display
+    int font_size = round(g_modeInfo.height / 30.0);
+
+	int text_id = text_create(font_file, 0, font_size, 256);
 	
-	text_set_text(textid, str, strlen);
+	text_set_text(text_id, str, strlen);
 	
-	redraw_text(textid);
+	redraw_text(text_id);
 }
 
 void dispmanx_init(void)
@@ -147,7 +151,7 @@ void dispmanx_sync(DISPMANX_UPDATE_HANDLE_T update)
 	vc_dispmanx_update_submit_sync(update);
 }
 
-void dispmanx_draw_text_overlay(void) 
+void dispmanx_draw_text_overlay(int text_id, int x, int y) 
 {
     // Render all text bitmaps
     text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0
@@ -157,7 +161,7 @@ void dispmanx_draw_text_overlay(void)
     int text_height;
     char *text_bitmap_data; 
 
-    get_textdata(0, &text_width, &text_height, &text_bitmap_data);
+    get_textdata(text_id, &text_width, &text_height, &text_bitmap_data);
 
     int alignedWidth = ALIGN_TO_16(text_width);
     int alignedHeight = ALIGN_TO_16(text_height);
@@ -171,17 +175,17 @@ void dispmanx_draw_text_overlay(void)
     VC_RECT_T dst_rect;
     VC_DISPMANX_ALPHA_T alpha;
 
-    DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update( 10 );
-    vc_dispmanx_rect_set( &src_rect, 0, 0, text_width << 16, text_height << 16 );
-    uint32_t OutW_ = ALIGN_UP( text_width, 32 );
+    DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
+    vc_dispmanx_rect_set(&src_rect, 0, 0, text_width << 16, text_height << 16);
+    uint32_t OutW_ = ALIGN_UP(text_width, 32);
     //vc_dispmanx_rect_set( &dst_rect, OutW_, text_height, text_width, text_height);
-    vc_dispmanx_rect_set(&dst_rect, 500, 500, text_width, text_height);
+    vc_dispmanx_rect_set(&dst_rect, x, y, text_width, text_height);
 
     vc_dispmanx_element_add(
         update,
         g_display,
         100,
-        &dst_rect, res, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE );    
+        &dst_rect, res, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
     
     dispmanx_sync(update);
     
@@ -205,7 +209,15 @@ void dispmanx_draw_text_overlay(void)
 
 void dispmanx_loop(void) 
 {
-	dispmanx_draw_text_overlay();	
+    int start_text_id = 0;
+
+    int start_timestamp_width;
+    int start_timestamp_height;
+    char *start_bitmap_data; 
+
+    get_textdata(start_text_id, &start_timestamp_width, &start_timestamp_height, &start_bitmap_data);
+
+	dispmanx_draw_text_overlay(start_text_id, 100, g_modeInfo.height - start_timestamp_height);
 	
 	while (1) {
 		msleep(20);
@@ -247,7 +259,6 @@ void dispmanx_update_text_overlay(void)
     int ret;
     //clock_t start_time = clock();
     
-
     // reset overlay to fully-transparent
     memset(g_canvas, 0, g_canvas_size);
 #ifdef DEBUG_FILL_TEXT_OVERLAY // really nice: see refresehed areas (layout boxes)
@@ -261,7 +272,7 @@ void dispmanx_update_text_overlay(void)
     // write data to back resource
     vc_dispmanx_rect_set(&dst_rect, 0, 0, g_canvas_width, g_canvas_height);
     int pitch = g_canvas_width * DISP_CANVAS_BYTES_PER_PIXEL;
-	printf("GOT HERRRRRE\n");
+
     ret = vc_dispmanx_resource_write_data(g_backResource, VC_IMAGE_ARGB8888, pitch, g_canvas, &dst_rect);
     assert(ret == 0);
 	
