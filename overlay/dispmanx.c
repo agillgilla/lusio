@@ -35,7 +35,7 @@ static uint32_t g_video_height;
 int startTimestampTextId;
 int endTimestampTextId;
 
-#define TIMESTAMP_PADDING = 100;
+#define TIMESTAMP_PADDING 100
 
 #ifndef ALIGN_TO_16
 #define ALIGN_TO_16(x)  ((x + 15) & ~15)
@@ -80,12 +80,13 @@ void dispmanx_create_text_overlay(void)
                                                      0 };
 #endif
 
+/*
     // we will be using double buffering - we're creating two resources with the size of the screen
     g_frontResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, width, height, &vc_image_ptr);
     assert(g_frontResource);
     g_backResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, width, height, &vc_image_ptr);
     assert(g_backResource);
-
+*/
     g_canvas_height = height;
     g_canvas_width  = width;
     int pitch = g_canvas_width * DISP_CANVAS_BYTES_PER_PIXEL;
@@ -137,12 +138,12 @@ void set_end_timestamp(const char *str, int strlen) {
 
 int dispmanx_add_text(const char *str, int strlen)
 {
-	const char *font_file = "arial.ttf";
+    const char *font_file = "arial.ttf";
 	
     // This comes out to a font size of 48 on a 1440p display
     int font_size = round(g_modeInfo.height / 30.0);
 
-	return = text_create(font_file, 0, font_size, 256);
+    return text_create(font_file, 0, font_size, 256);
 }
 
 void dispmanx_init(void)
@@ -241,7 +242,7 @@ void dispmanx_loop(void)
     int end_timestamp_width;
     int end_timestamp_height;
 
-    get_textsize(startTimestampTextId, &start_timestamp_width, &end_timestamp_width);
+    get_textsize(endTimestampTextId, &end_timestamp_width, &end_timestamp_height);
 
     dispmanx_draw_text_overlay(endTimestampTextId, g_modeInfo.width - end_timestamp_width - TIMESTAMP_PADDING, g_modeInfo.height - end_timestamp_height);
 	
