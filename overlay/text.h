@@ -35,7 +35,11 @@ typedef struct text_bounds {
   int height;
 } text_bounds;
 
+// Don't call this too many times or from too many places (more than one?)
+// OR ELSE THE APPLICATION WILL CRASH, OR OVERLAY WILL ACT VERY WEIRD
 void get_textdata(int text_id, int *text_width, int *text_height, char **text_bitmap_data);
+
+void get_textsize(int text_id, int *text_width, int *text_height);
 
 /**
  * Initializes text library.

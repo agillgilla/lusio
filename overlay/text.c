@@ -252,12 +252,21 @@ int text_create(const char *font_file, long face_index, float point, int dpi) {
     return text_id;
 }
 
+// Don't call this too many times or from too many places (more than one?)
+// OR ELSE THE APPLICATION WILL CRASH, OR OVERLAY WILL ACT VERY WEIRD
 void get_textdata(int text_id, int *text_width, int *text_height, char **text_bitmap_data) {
     TextData *textdata = textdata_list[text_id - 1];
     
     *text_width = textdata->width;
     *text_height = textdata->height;
     *text_bitmap_data = textdata->bitmap;
+}
+
+void get_textsize(int text_id, int *text_width, int *text_height) {
+    TextData *textdata = textdata_list[text_id - 1];
+    
+    *text_width = textdata->width;
+    *text_height = textdata->height;
 }
 
 /**

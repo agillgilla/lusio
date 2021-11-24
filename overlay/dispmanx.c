@@ -216,9 +216,8 @@ void dispmanx_loop(void)
 {
     int start_timestamp_width;
     int start_timestamp_height;
-    char *start_bitmap_data; 
 
-    get_textdata(startTimestampTextId, &start_timestamp_width, &start_timestamp_height, &start_bitmap_data);
+    get_textsize(startTimestampTextId, &start_timestamp_width, &start_timestamp_height);
 
     dispmanx_draw_text_overlay(startTimestampTextId, 100, g_modeInfo.height - start_timestamp_height);
 	
