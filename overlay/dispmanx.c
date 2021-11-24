@@ -23,6 +23,7 @@ static DISPMANX_RESOURCE_HANDLE_T  g_frontResource;
 static DISPMANX_RESOURCE_HANDLE_T  g_backResource;
 
 static DISPMANX_RESOURCE_HANDLE_T  g_startTimestampResource;
+static DISPMANX_RESOURCE_HANDLE_T  g_endTimestampResource;
 
 static uint8_t* g_canvas;
 static uint32_t g_canvas_size;
@@ -174,7 +175,7 @@ void dispmanx_sync(DISPMANX_UPDATE_HANDLE_T update)
 	vc_dispmanx_update_submit_sync(update);
 }
 
-void dispmanx_draw_text_overlay(int text_id, int x, int y) 
+void dispmanx_draw_text_overlay(int text_id, int x, int y, void *resource) 
 {
     // Render all text bitmaps
     text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0
@@ -192,7 +193,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
 
     uint32_t img_ptr;
 
-    g_startTimestampResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, text_width, text_height, &img_ptr);
+    *(DISPMANX_RESOURCE_HANDLE_T *)resource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, text_width, text_height, &img_ptr);
 
     VC_RECT_T src_rect;
     VC_RECT_T dst_rect;
@@ -208,7 +209,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
         update,
         g_display,
         text_layer,
-        &dst_rect, g_startTimestampResource, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
+        &dst_rect, *(DISPMANX_RESOURCE_HANDLE_T *)resource, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
     
     dispmanx_sync(update);
     
@@ -221,7 +222,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
     vc_dispmanx_rect_set(&rect, 0, 0, text_width, text_height);
 
     vc_dispmanx_resource_write_data(
-        g_startTimestampResource,
+        *(DISPMANX_RESOURCE_HANDLE_T *)resource,
         VC_IMAGE_ARGB8888,
         pitch,
         text_bitmap_data,
@@ -237,14 +238,14 @@ void dispmanx_loop(void)
 
     get_textsize(startTimestampTextId, &start_timestamp_width, &start_timestamp_height);
 
-    dispmanx_draw_text_overlay(startTimestampTextId, TIMESTAMP_PADDING, g_modeInfo.height - start_timestamp_height);
+    dispmanx_draw_text_overlay(startTimestampTextId, TIMESTAMP_PADDING, g_modeInfo.height - start_timestamp_height, &g_startTimestampResource);
 
     int end_timestamp_width;
     int end_timestamp_height;
 
     get_textsize(endTimestampTextId, &end_timestamp_width, &end_timestamp_height);
 
-    dispmanx_draw_text_overlay(endTimestampTextId, g_modeInfo.width - end_timestamp_width - TIMESTAMP_PADDING, g_modeInfo.height - end_timestamp_height);
+    dispmanx_draw_text_overlay(endTimestampTextId, g_modeInfo.width - end_timestamp_width - TIMESTAMP_PADDING, g_modeInfo.height - end_timestamp_height, &g_endTimestampResource);
 	
 	 /*
     char c = getchar();
