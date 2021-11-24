@@ -2,6 +2,7 @@
 #include "log.h"
 #include "text.h"
 
+#include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
 #include <math.h>
@@ -20,6 +21,8 @@ static DISPMANX_MODEINFO_T         g_modeInfo;
 
 static DISPMANX_RESOURCE_HANDLE_T  g_frontResource;
 static DISPMANX_RESOURCE_HANDLE_T  g_backResource;
+
+static DISPMANX_RESOURCE_HANDLE_T  g_startTimestampResource;
 
 static uint8_t* g_canvas;
 static uint32_t g_canvas_size;
@@ -156,7 +159,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
     // Render all text bitmaps
     text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0
 
-    int text_layer = 100;
+    int text_layer = 101;
     int text_width;
     int text_height;
     char *text_bitmap_data; 
@@ -169,7 +172,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
 
     uint32_t img_ptr;
 
-    DISPMANX_RESOURCE_HANDLE_T res = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, text_width, text_height, &img_ptr);
+    g_startTimestampResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, text_width, text_height, &img_ptr);
 
     VC_RECT_T src_rect;
     VC_RECT_T dst_rect;
@@ -184,8 +187,8 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
     vc_dispmanx_element_add(
         update,
         g_display,
-        100,
-        &dst_rect, res, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
+        text_layer,
+        &dst_rect, g_startTimestampResource, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
     
     dispmanx_sync(update);
     
@@ -198,7 +201,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y)
     vc_dispmanx_rect_set(&rect, 0, 0, text_width, text_height);
 
     vc_dispmanx_resource_write_data(
-        res,
+        g_startTimestampResource,
         VC_IMAGE_ARGB8888,
         pitch,
         text_bitmap_data,
@@ -217,16 +220,24 @@ void dispmanx_loop(void)
 
     get_textdata(start_text_id, &start_timestamp_width, &start_timestamp_height, &start_bitmap_data);
 
-	dispmanx_draw_text_overlay(start_text_id, 100, g_modeInfo.height - start_timestamp_height);
+    dispmanx_draw_text_overlay(start_text_id, 101, g_modeInfo.height - start_timestamp_height);
 	
-	while (1) {
-		msleep(20);
+    char c = getchar();
+    printf("Char: %c", c);
+    
+    dispmanx_destroy();
+    return;
+	
+    while (1) {
+        msleep(20);
+        
+        //printf("GOT HERE\n");
 
-		//dispmanx_update_text_overlay();
+        //dispmanx_update_text_overlay();
 
-		DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
-		dispmanx_sync(update);
-	}
+        DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
+        dispmanx_sync(update);
+    }
 }
 
 #define ELEMENT_REMOVE_IF_EXISTS(_elem) do { if (_elem) { ret = vc_dispmanx_element_remove(update, _elem); assert(ret == 0); } } while(0)
@@ -248,6 +259,8 @@ void dispmanx_destroy(void)
 
     RESOURCE_DELETE_IF_EXISTS(g_frontResource);
     RESOURCE_DELETE_IF_EXISTS(g_backResource);
+    
+    RESOURCE_DELETE_IF_EXISTS(g_startTimestampResource);
 
     ret = vc_dispmanx_display_close(g_display);
     assert(ret == 0);
