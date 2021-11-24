@@ -17,6 +17,8 @@
 int msleep(long msec);
 void dispmanx_init(void);
 void dispmanx_add_text(const char *str, int strlen);
+void dispmanx_create_text_overlay(void);
+void dispmanx_draw_text_overlay(void);
 void dispmanx_loop(void);
 void dispmanx_destroy(void);
 void dispmanx_update_text_overlay(void);

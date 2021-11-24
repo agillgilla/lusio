@@ -3,3 +3,8 @@ bloopers.mp4
 logfile.log
 log_err
 *.db
+
+*.o
+overlay
+*.c~
+*.h~

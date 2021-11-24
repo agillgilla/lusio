@@ -91,8 +91,6 @@ int main(int argc, char **argv) {
     dispmanx_init();
     
     dispmanx_add_text("ARJUN", 5);
-
-    dispmanx_create_text_overlay();
     
     dispmanx_loop();
 }

@@ -53,8 +53,7 @@ static void fill_rect(VC_IMAGE_TYPE_T type, void *canvas, int width, int height,
 }
 #endif
 
-/*
-static void dispmanx_create_text_overlay(void)
+void dispmanx_create_text_overlay(void)
 {
     VC_RECT_T dst_rect, src_rect;
     DISPMANX_UPDATE_HANDLE_T update;
@@ -108,7 +107,6 @@ static void dispmanx_create_text_overlay(void)
     assert(ret == 0);
     log_debug("dispmanx: text overlay created!\n");
 }
-*/
 
 void dispmanx_add_text(const char *str, int strlen)
 {
@@ -149,8 +147,8 @@ void dispmanx_sync(DISPMANX_UPDATE_HANDLE_T update)
 	vc_dispmanx_update_submit_sync(update);
 }
 
-static void dispmanx_create_text_overlay(void) 
-{    
+void dispmanx_draw_text_overlay(void) 
+{
     // Render all text bitmaps
     text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0
 
@@ -206,7 +204,9 @@ static void dispmanx_create_text_overlay(void)
 }
 
 void dispmanx_loop(void) 
-{	
+{
+	dispmanx_draw_text_overlay();	
+	
 	while (1) {
 		msleep(20);
 
