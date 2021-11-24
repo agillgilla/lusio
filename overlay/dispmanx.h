@@ -23,4 +23,7 @@ void dispmanx_loop(void);
 void dispmanx_destroy(void);
 void dispmanx_update_text_overlay(void);
 
+void set_start_timestamp(const char *str, int strlen);
+void set_end_timestamp(const char *str, int strlen);
+
 #endif

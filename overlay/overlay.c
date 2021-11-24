@@ -90,7 +90,10 @@ int main(int argc, char **argv) {
     
     dispmanx_init();
     
-    dispmanx_add_text("ARJUN", 5);
+    //dispmanx_add_text("ARJUN", 5);
+
+    void set_start_timestamp("ARJUN", 5);
+    void set_end_timestamp("GILL", 4);
     
     dispmanx_loop();
 }

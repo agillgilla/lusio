@@ -33,6 +33,9 @@ static uint32_t g_video_width;
 static uint32_t g_video_height;
 
 int startTimestampTextId;
+int endTimestampTextId;
+
+#define TIMESTAMP_PADDING = 100;
 
 #ifndef ALIGN_TO_16
 #define ALIGN_TO_16(x)  ((x + 15) & ~15)
@@ -114,18 +117,32 @@ void dispmanx_create_text_overlay(void)
     log_debug("dispmanx: text overlay created!\n");
 }
 
-void dispmanx_add_text(const char *str, int strlen)
+void set_start_timestamp(const char *str, int strlen) {
+
+    startTimestampTextId = dispmanx_add_text(str, strlen);
+
+    text_set_text(startTimestampTextId, str, strlen);
+    
+    redraw_text(startTimestampTextId);
+}
+
+void set_end_timestamp(const char *str, int strlen) {
+
+    endTimestampTextId = dispmanx_add_text(str, strlen);
+
+    text_set_text(endTimestampTextId, str, strlen);
+    
+    redraw_text(endTimestampTextId);
+}
+
+int dispmanx_add_text(const char *str, int strlen)
 {
 	const char *font_file = "arial.ttf";
 	
     // This comes out to a font size of 48 on a 1440p display
     int font_size = round(g_modeInfo.height / 30.0);
 
-	 startTimestampTextId = text_create(font_file, 0, font_size, 256);
-	
-	 text_set_text(startTimestampTextId, str, strlen);
-	
-	 redraw_text(startTimestampTextId);
+	return = text_create(font_file, 0, font_size, 256);
 }
 
 void dispmanx_init(void)
@@ -219,7 +236,14 @@ void dispmanx_loop(void)
 
     get_textsize(startTimestampTextId, &start_timestamp_width, &start_timestamp_height);
 
-    dispmanx_draw_text_overlay(startTimestampTextId, 100, g_modeInfo.height - start_timestamp_height);
+    dispmanx_draw_text_overlay(startTimestampTextId, TIMESTAMP_PADDING, g_modeInfo.height - start_timestamp_height);
+
+    int end_timestamp_width;
+    int end_timestamp_height;
+
+    get_textsize(startTimestampTextId, &start_timestamp_width, &end_timestamp_width);
+
+    dispmanx_draw_text_overlay(endTimestampTextId, g_modeInfo.width - end_timestamp_width - TIMESTAMP_PADDING, g_modeInfo.height - end_timestamp_height);
 	
 	 /*
     char c = getchar();
