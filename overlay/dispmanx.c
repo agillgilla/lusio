@@ -141,10 +141,13 @@ int dispmanx_add_text(const char *str, int strlen)
 {
     const char *font_file = "arial.ttf";
 	
-    // This comes out to a font size of 48 on a 1440p display
-    int font_size = round(g_modeInfo.height / 30.0);
+    // This comes out to a font size of 32 on a 1440p display
+    int font_size = round(g_modeInfo.width / 128.0);
+    font_size = 72;
+    
+    printf("Font size: %d\n", font_size);
 
-    return text_create(font_file, 0, font_size, 256);
+    return text_create(font_file, 0, font_size, 96);
 }
 
 void dispmanx_init(void)
@@ -248,12 +251,12 @@ void dispmanx_loop(void)
     dispmanx_draw_text_overlay(endTimestampTextId, g_modeInfo.width - end_timestamp_width - TIMESTAMP_PADDING, g_modeInfo.height - end_timestamp_height, &g_endTimestampResource);
 	
 	 /*
-    char c = getchar();
+	 char c = getchar();
     printf("Char: %c", c);
     
     dispmanx_destroy();
     return;
-    */	
+    */
 	
     while (1) {
         msleep(20);
@@ -262,8 +265,8 @@ void dispmanx_loop(void)
 
         //dispmanx_update_text_overlay();
 
-        DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
-        dispmanx_sync(update);
+        //DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
+        //dispmanx_sync(update);
     }
 }
 

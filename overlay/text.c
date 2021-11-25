@@ -925,6 +925,7 @@ static int draw_glyphs(TextData *textdata) {
 
     tmp_textdata->width = max_width;
     tmp_textdata->height = ceil(box_height);
+    //tmp_textdata->height = roundUp(ceil(box_height), 16);
     tmp_textdata->bitmap = calloc(1, tmp_textdata->width * tmp_textdata->height * BYTES_PER_PIXEL);
     if (tmp_textdata->bitmap == NULL) {
         fprintf(stderr, "cannot allocate memory for text bitmap: %d bytes\n",
