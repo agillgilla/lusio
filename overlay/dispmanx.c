@@ -25,6 +25,8 @@ static DISPMANX_RESOURCE_HANDLE_T  g_backResource;
 static DISPMANX_RESOURCE_HANDLE_T  g_startTimestampResource;
 static DISPMANX_RESOURCE_HANDLE_T  g_endTimestampResource;
 
+static DISPMANX_ELEMENT_HANDLE_T   g_textElement;
+
 static uint8_t* g_canvas;
 static uint32_t g_canvas_size;
 static uint32_t g_canvas_height;
@@ -81,13 +83,12 @@ void dispmanx_create_text_overlay(void)
                                                      0 };
 #endif
 
-/*
     // we will be using double buffering - we're creating two resources with the size of the screen
     g_frontResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, width, height, &vc_image_ptr);
     assert(g_frontResource);
     g_backResource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, width, height, &vc_image_ptr);
     assert(g_backResource);
-*/
+
     g_canvas_height = height;
     g_canvas_width  = width;
     int pitch = g_canvas_width * DISP_CANVAS_BYTES_PER_PIXEL;
@@ -113,6 +114,10 @@ void dispmanx_create_text_overlay(void)
 
     update = vc_dispmanx_update_start(0);
     assert(update);
+    
+    g_textElement = vc_dispmanx_element_add(update, g_display, 101, &dst_rect, g_frontResource, &src_rect,
+                                      DISPMANX_PROTECTION_NONE, 0 /*&alpha*/, NULL, DISPMANX_STEREOSCOPIC_MONO);
+    assert(g_textElement);
 
     ret = vc_dispmanx_update_submit_sync(update);
     assert(ret == 0);
@@ -141,9 +146,9 @@ int dispmanx_add_text(const char *str, int strlen)
 {
     const char *font_file = "arial.ttf";
 	
-    // This comes out to a font size of 32 on a 1440p display
-    int font_size = round(g_modeInfo.width / 128.0);
-    font_size = 72;
+    // This comes out to a font size of 80 on a 1440p display
+    int font_size = round(g_modeInfo.width / 30.0);
+    //font_size = 84;
     
     printf("Font size: %d\n", font_size);
 
@@ -195,7 +200,7 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y, void *resource)
     int pitchAligned = ALIGN_TO_16(text_width);
 
     uint32_t img_ptr;
-
+/*
     *(DISPMANX_RESOURCE_HANDLE_T *)resource = vc_dispmanx_resource_create(VC_IMAGE_ARGB8888, text_width, text_height, &img_ptr);
 
     VC_RECT_T src_rect;
@@ -215,8 +220,8 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y, void *resource)
         &dst_rect, *(DISPMANX_RESOURCE_HANDLE_T *)resource, &src_rect, DISPMANX_PROTECTION_NONE, &alpha, NULL, DISPMANX_NO_ROTATE);    
     
     dispmanx_sync(update);
-    
-    update = dispmanx_start_update(10);
+*/
+    DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
 
     VC_RECT_T rect;
     uint32_t pitch = 0;
@@ -224,18 +229,32 @@ void dispmanx_draw_text_overlay(int text_id, int x, int y, void *resource)
     pitch = ALIGN_UP(text_width * 4, 32);
     vc_dispmanx_rect_set(&rect, 0, 0, text_width, text_height);
 
+/*
     vc_dispmanx_resource_write_data(
         *(DISPMANX_RESOURCE_HANDLE_T *)resource,
         VC_IMAGE_ARGB8888,
         pitch,
         text_bitmap_data,
         &rect );
+*/
+    
+    printf("Writing resource data...\n");    
+    
+    int result = vc_dispmanx_resource_write_data(g_frontResource,
+         VC_IMAGE_ARGB8888,
+         pitch,
+         text_bitmap_data,
+         &rect);
+    printf("Done.\n");
+    assert(result == 0);
 
     dispmanx_sync(update);
 }
 
 void dispmanx_loop(void) 
 {
+    //dispmanx_update_text_overlay();
+	
     int start_timestamp_width;
     int start_timestamp_height;
 
@@ -260,10 +279,10 @@ void dispmanx_loop(void)
 	
     while (1) {
         msleep(20);
-        
-        //printf("GOT HERE\n");
+                
+        printf("GOT HERE\n");
 
-        //dispmanx_update_text_overlay();
+        dispmanx_update_text_overlay();
 
         //DISPMANX_UPDATE_HANDLE_T update = dispmanx_start_update(10);
         //dispmanx_sync(update);
@@ -308,16 +327,19 @@ void dispmanx_update_text_overlay(void)
     fill_rect(VC_IMAGE_ARGB8888, g_canvas, g_canvas_width, g_canvas_height,  0, 0, g_canvas_width, g_canvas_height,     0x33ff0000);
 #endif
 
-
     // render texts
-    text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0
-	
+    text_draw_all(g_canvas, g_canvas_width, g_canvas_height, 0); // is_video = 0	
+	 
     // write data to back resource
     vc_dispmanx_rect_set(&dst_rect, 0, 0, g_canvas_width, g_canvas_height);
     int pitch = g_canvas_width * DISP_CANVAS_BYTES_PER_PIXEL;
 
+    printf("Writing text overlay data...\n");
+
     ret = vc_dispmanx_resource_write_data(g_backResource, VC_IMAGE_ARGB8888, pitch, g_canvas, &dst_rect);
     assert(ret == 0);
+    
+    printf("Done.\n");
 	
     // change the source of text overlay
     DISPMANX_UPDATE_HANDLE_T update = vc_dispmanx_update_start(0);

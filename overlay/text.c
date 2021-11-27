@@ -913,7 +913,7 @@ static int draw_glyphs(TextData *textdata) {
     }
     
     // Round max_width to nearest multiple of 4
-    max_width = roundUp(max_width, 16);
+    //max_width = roundUp(max_width, 16);
 
     TextData *tmp_textdata = malloc(sizeof(TextData));
     if (tmp_textdata == NULL) {
@@ -1263,10 +1263,12 @@ int text_draw_all(uint8_t *canvas, int canvas_width, int canvas_height, int is_v
                 }
             }
         }
+        /*
         FILE * pFile;
         pFile = fopen ("text.raw", "wb");
         fwrite (textdata->bitmap , sizeof(char), textdata->width * textdata->height * 4, pFile);
         fclose (pFile);
+        */
     }
     log_debug("\n\ntext_draw_all(is_video=%d) took %d ms, has_changed=%d\n", is_video, (clock() - start_time) * 1000 / CLOCKS_PER_SEC, has_anything_changed);
     printf("Done with text_draw_all\n");  
