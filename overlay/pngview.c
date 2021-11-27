@@ -84,7 +84,7 @@ int createTextBitmap(const char *str, int strlen)
     return text_create(font_file, 0, font_size, 96);
 }
 
-void drawTextOverlay(int textId, IMAGE_LAYER_T *imageLayer, int32_t x, int32_t y) {
+void drawTextOverlay(int textId, uint32_t display, int32_t layer, IMAGE_LAYER_T *imageLayer, int32_t x, int32_t y, bool xFromRight, bool yFromBottom) {
     int textWidth;
     int textHeight;
     char *textBitmapData; 
@@ -92,35 +92,43 @@ void drawTextOverlay(int textId, IMAGE_LAYER_T *imageLayer, int32_t x, int32_t y
     get_textdata(textId, &textWidth, &textHeight, &textBitmapData);
 
     initImageWithData(
-        &(imageLayer.image),
+        &(imageLayer->image),
         VC_IMAGE_RGBA32,
         textWidth,
         textHeight,
         false,
         textBitmapData);
     
-    printf("Image dimensions: %dx%d\n", imageLayer.image.width, imageLayer.image.height);
-    printf("Image aligned dimensions: %dx%d\n", imageLayer.image.pitch / (imageLayer.image.bitsPerPixel / 8), imageLayer.image.alignedHeight);   
+    printf("Image dimensions: %dx%d\n", imageLayer->image.width, imageLayer->image.height);
+    printf("Image aligned dimensions: %dx%d\n", imageLayer->image.pitch / (imageLayer->image.bitsPerPixel / 8), imageLayer->image.alignedHeight);   
 
     //---------------------------------------------------------------------
 
-    createResourceImageLayer(&imageLayer, layer);
+    createResourceImageLayer(imageLayer, layer);
 
     //---------------------------------------------------------------------
 
-    update = vc_dispmanx_update_start(0);
+    DISPMANX_UPDATE_HANDLE_T update = vc_dispmanx_update_start(0);
     assert(update != 0);
+    
+    int computedX = x;
+    int computedY = y;
+    
+    if (xFromRight) {
+        computedX = x - imageLayer->image.width;
+    }
+    
+    if (yFromBottom) {
+        computedY = y - imageLayer->image.height;
+    }
 
-    xOffset = info.width - endImageLayer.image.width - TIMESTAMP_PADDING;
-    yOffset = info.height - endImageLayer.image.height;
-
-    addElementImageLayerOffset(&imageLayer,
-                               xOffset,
-                               yOffset,
+    addElementImageLayerOffset(imageLayer,
+                               computedX,
+                               computedY,
                                display,
                                update);
 
-    result = vc_dispmanx_update_submit_sync(update);
+    int result = vc_dispmanx_update_submit_sync(update);
     assert(result == 0);
 }
 
@@ -129,11 +137,8 @@ int main(int argc, char *argv[])
     // Transparent (no) background.  Opaque black background causes graphics driver to crash?
     int32_t layer = 101;
     uint32_t displayNumber = 0;
-    int32_t xOffset = 0;
-    int32_t yOffset = 0;
     
-    // initialize text library
-    // TODO: Uncomment this!    
+    // Initialize text library   
     text_init();
 
     //---------------------------------------------------------------------   
@@ -150,6 +155,8 @@ int main(int argc, char *argv[])
     DISPMANX_MODEINFO_T info;
     int result = vc_dispmanx_display_get_info(display, &info);
     assert(result == 0);
+    
+    
 
     //---------------------------------------------------------------------   
     
@@ -178,7 +185,7 @@ int main(int argc, char *argv[])
 
     get_textsize(startTimestampTextId, &startTextWidth, &startTextHeight);
 
-    drawTextOverlay(startTimestampTextId, &startImageLayer, TIMESTAMP_PADDING, info.height - startImageLayer.image.height);
+    drawTextOverlay(startTimestampTextId, display, layer, &startImageLayer, TIMESTAMP_PADDING, info.height, false, true);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// START TIMESTAMP //////////////////////////////////////////////
@@ -195,7 +202,7 @@ int main(int argc, char *argv[])
 
     get_textsize(endTimestampTextId, &endTextWidth, &endTextHeight);
 
-    drawTextOverlay(startTimestampTextId, &startImageLayer, endImageLayer.image.width - TIMESTAMP_PADDING, info.height - endImageLayer.image.height);
+    drawTextOverlay(endTimestampTextId, display, layer, &endImageLayer, info.width - TIMESTAMP_PADDING, info.height, true, true);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////// END TIMESTAMP ///////////////////////////////////////////////
@@ -211,7 +218,8 @@ int main(int argc, char *argv[])
         usleep(sleepMilliseconds * 1000);
     }
 
-    destroyImageLayer(&imageLayer);
+    destroyImageLayer(&startImageLayer);
+    destroyImageLayer(&endImageLayer);
 
     //---------------------------------------------------------------------
 
