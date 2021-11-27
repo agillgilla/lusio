@@ -7,12 +7,13 @@ from PIL import ImageTk, Image
 # VLC NEEDS TO BE INSTALLED
 import vlc
 
-import sys
 import os
+import json
 import socket
+import subprocess
+import sys
 import threading
 import time
-import json
 
 import pickledb
 
@@ -53,6 +54,8 @@ curr_video = None
 times_db = None
 # Dictionary containing keys of media titles to info about the media
 media_info_dict = {}
+# Process handle for OMX position overlay
+overlay_process = None
 
 def heartbeat(*unused):
     logging.debug("Heartbeat!")
@@ -63,7 +66,9 @@ def play_pause_video(event):
         if using_omx:
             if omx_player.is_playing():
                 omx_player.pause()
+                show_pause_overlay(omx_player.position(), omx_player.duration())
             else:
+                hide_pause_overlay()
                 omx_player.play()
         else:
             vlc_player.OnPause()
@@ -488,6 +493,18 @@ def save_video_position():
             curr_time = curr_time_millis // 1000
 
         times_db.set(curr_video, str(curr_time))
+
+def show_pause_overlay(curr_seconds, total_seconds):
+    global overlay_process
+    if overlay_process == None:
+        overlay_process = subprocess.Popen(f"overlay/overlay {curr_seconds} {total_seconds}")
+
+def hide_pause_overlay():
+    global overlay_process
+    if overlay_process != None:
+        overlay_process.terminate()
+        overlay_process.wait()
+        overlay_process = None
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
