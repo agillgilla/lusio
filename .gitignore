@@ -5,6 +5,6 @@ log_err
 *.db
 
 *.o
-overlay
 *.c~
 *.h~
+Makefile~
