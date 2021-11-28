@@ -44,6 +44,8 @@ uint32_t g_canvas_size;
 uint32_t g_canvas_width;
 uint32_t g_canvas_height;
 
+DISPMANX_MODEINFO_T info;
+
 int startTimestampTextId;
 int endTimestampTextId;
 
@@ -76,9 +78,8 @@ int createTextBitmap(const char *str, int strlen)
 {
     const char *font_file = "arial.ttf";
 	
-    // This comes out to a font size of 80 on a 1440p display
-    //int font_size = round(g_modeInfo.width / 30.0);
-    int font_size = 72;
+    // This comes out to a font size of 72 on a 1440p display
+    int font_size = round(info.height / 20.0);
     
     printf("Font size: %d\n", font_size);
 
@@ -140,7 +141,7 @@ void getProgressBarInfo(int screenWidth, int screenHeight, IMAGE_LAYER_T *imageL
     *progressBarHeight = round(screenHeight / 30.0);
     *progressOutlineThickness = round(*progressBarHeight / 5.0);
     *progressBarX = (screenWidth / 2) - (*progressBarWidth / 2);
-    *progressBarY = screenHeight - imageLayer->image.height - PROGRESS_PADDING;
+    *progressBarY = screenHeight - imageLayer->image.height - (round(screenHeight * .042) - 10);//PROGRESS_PADDING;
 }
 
 void drawProgressBarOutline(uint32_t display, int32_t layer, IMAGE_LAYER_T *imageLayer, int screenWidth, int screenHeight)
@@ -328,10 +329,8 @@ int main(int argc, char *argv[])
 
     //---------------------------------------------------------------------
 
-    DISPMANX_MODEINFO_T info;
     int result = vc_dispmanx_display_get_info(display, &info);
     assert(result == 0);
-    
     
 
     //---------------------------------------------------------------------   

@@ -40,12 +40,19 @@ logging.info("Running now...")
 
 MEDIA_INFO_FILENAME = 'media_info.json'
 
+overlay_program_dir = None
+overlay_program_path = None
+
 # Variable used to know if we are using omxplayer of vlc (for mp4 files)
 use_omx = (not force_vlc) and _isLinux
 if use_omx:
     from omxplayer.player import OMXPlayer
     from omxplayer.player import OMXPlayerDeadError
     from pathlib import Path
+    
+    overlay_program_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'overlay')
+    overlay_program_path = os.path.join(overlay_program_dir, 'overlay')
+
 # Variable used to know if we are currently playing something with omxplayer
 using_omx = False
 # Variable used to know what video we are currently playing
@@ -497,7 +504,7 @@ def save_video_position():
 def show_pause_overlay(curr_seconds, total_seconds):
     global overlay_process
     if overlay_process == None:
-        overlay_process = subprocess.Popen(f"overlay/overlay {curr_seconds} {total_seconds}")
+        overlay_process = subprocess.Popen([str(overlay_program_path), str(int(curr_seconds)), str(int(total_seconds))], cwd=overlay_program_dir)
 
 def hide_pause_overlay():
     global overlay_process

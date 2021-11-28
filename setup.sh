@@ -34,3 +34,7 @@ hdmi_ignore_cec=1' >> /boot/config.txt"
 # Install text overlay library build dependencies
 sudo apt install libgtk-3-dev
 sudo apt install libgles2-mesa-dev
+
+# Build overlay
+cd /home/pi/lusio/overlay
+make all
