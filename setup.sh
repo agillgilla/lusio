@@ -30,3 +30,7 @@ sudo pip3 install -r requirements.txt
 sudo sh -c "echo '
 hdmi_ignore_cec_init=1
 hdmi_ignore_cec=1' >> /boot/config.txt"
+
+# Install text overlay library build dependencies
+sudo apt install libgtk-3-dev
+sudo apt install libgles2-mesa-dev
