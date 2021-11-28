@@ -133,6 +133,7 @@ def exit(*unused):
         vlc_player.OnDestroy()
     global using_omx
     if using_omx:
+        hide_pause_overlay()
         omx_player.quit()
     root.destroy()
 
@@ -331,6 +332,7 @@ def back(event):
             vlc_player.OnDestroy()
         global using_omx
         if using_omx:
+            hide_pause_overlay()
             omx_player.quit()
             using_omx = False
 
