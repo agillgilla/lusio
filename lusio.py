@@ -1083,7 +1083,7 @@ class ShowManager:
         # List of three-tuples containing season name, tk object, and list of episode filenames
         self.season_labels = []
 
-        for filename in sorted(os.listdir(self.show_dir)):
+        for filename in sorted(os.listdir(self.show_dir), key=lambda filename: '{:02d}'.format(int(filename.split('Season ')[1])) if ('Season ' in filename) else filename):
             subdir = os.path.join(self.show_dir, filename)
             if os.path.isdir(subdir): 
                 season = filename
