@@ -2065,6 +2065,17 @@
         "title": "Iron Man 3",
         "year": "2013"
     },
+    "It's Always Sunny in Philadelphia": {
+        "actors": "Charlie Day, Glenn Howerton, Rob McElhenney",
+        "director": "N/A",
+        "genre": "Comedy",
+        "plot": "Five friends with big egos and small brains are the proprietors of an Irish pub in Philadelphia.",
+        "rated": "TV-MA",
+        "rating_imdb": "8.8/10",
+        "runtime": "22 min",
+        "title": "It's Always Sunny in Philadelphia",
+        "year": "2005\u2013"
+    },
     "Jackie Brown": {
         "actors": "Pam Grier, Samuel L. Jackson, Robert Forster, Bridget Fonda",
         "director": "Quentin Tarantino",
@@ -4331,6 +4342,17 @@
         "runtime": "120 min",
         "title": "The Social Network",
         "year": "2010"
+    },
+    "The Sopranos": {
+        "actors": "James Gandolfini, Lorraine Bracco, Edie Falco",
+        "director": "N/A",
+        "genre": "Crime, Drama",
+        "plot": "New Jersey mob boss Tony Soprano deals with personal and professional issues in his home and business life that affect his mental state, leading him to seek professional psychiatric counseling.",
+        "rated": "TV-MA",
+        "rating_imdb": "9.2/10",
+        "runtime": "55 min",
+        "title": "The Sopranos",
+        "year": "1999\u20132007"
     },
     "The Spy Who Loved Me": {
         "actors": "Roger Moore, Barbara Bach, Curd J\u00fcrgens, Richard Kiel",
