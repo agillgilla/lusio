@@ -1874,6 +1874,19 @@
         "title": "Horrible Bosses",
         "year": "2011"
     },
+    "Horrible Bosses 2": {
+        "actors": "Jason Bateman, Jason Sudeikis, Charlie Day",
+        "director": "Sean Anders",
+        "genre": "Comedy, Crime",
+        "plot": "Dale, Kurt and Nick decide to start their own business but things don't go as planned because of a slick investor, prompting the trio to pull off a harebrained and misguided kidnapping scheme.",
+        "rated": "R",
+        "rating_imdb": "6.3/10",
+        "rating_meta": "40/100",
+        "rating_rotten": "35%",
+        "runtime": "108 min",
+        "title": "Horrible Bosses 2",
+        "year": "2014"
+    },
     "Hot Fuzz": {
         "actors": "Simon Pegg, Martin Freeman, Bill Nighy, Robert Popper",
         "director": "Edgar Wright",
@@ -4522,6 +4535,19 @@
         "runtime": "119 min",
         "title": "Tomorrow Never Dies",
         "year": "1997"
+    },
+    "Top Gun": {
+        "actors": "Tom Cruise, Tim Robbins, Kelly McGillis",
+        "director": "Tony Scott",
+        "genre": "Action, Drama",
+        "plot": "As students at the United States Navy's elite fighter weapons school compete to be best in the class, one daring young pilot learns a few things from a civilian instructor that are not taught in the classroom.",
+        "rated": "PG",
+        "rating_imdb": "6.9/10",
+        "rating_meta": "50/100",
+        "rating_rotten": "58%",
+        "runtime": "110 min",
+        "title": "Top Gun",
+        "year": "1986"
     },
     "Toy Story": {
         "actors": "Tom Hanks, Tim Allen, Don Rickles, Jim Varney",
