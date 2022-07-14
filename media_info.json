@@ -3359,6 +3359,19 @@
         "title": "Sixteen Candles",
         "year": "1984"
     },
+    "Sky High": {
+        "actors": "Kurt Russell, Kelly Preston, Michael Angarano",
+        "director": "Mike Mitchell",
+        "genre": "Action, Comedy, Family",
+        "plot": "Set in an era where superheroes are commonly known and accepted, young William Stronghold, the son of the Commander and Jetstream, tries to find a balance between being a normal teenager and an extraordinary being.",
+        "rated": "PG",
+        "rating_imdb": "6.3/10",
+        "rating_meta": "62/100",
+        "rating_rotten": "73%",
+        "runtime": "100 min",
+        "title": "Sky High",
+        "year": "2005"
+    },
     "Skyfall": {
         "actors": "Daniel Craig, Judi Dench, Javier Bardem, Ralph Fiennes",
         "director": "Sam Mendes",
