@@ -498,15 +498,15 @@ def omx_play(file, start_pos=None):
     file_path = Path(file)
     global omx_player
 
-    args = None
+    args = []
 
     if start_pos is not None:
-        args = '--pos {0}'.format(time.strftime('%H:%M:%S', time.gmtime(start_pos)))
+        args += ['--pos', time.strftime('%H:%M:%S', time.gmtime(start_pos))]
 
     if config_json["alsa_audio"]:
-        args += ' -o alsa'
+        args += ['-o', 'alsa']
 
-    if args is None:
+    if len(args) == 0:
         omx_player = OMXPlayer(file_path)
     else:
         omx_player = OMXPlayer(file_path, args=args)
