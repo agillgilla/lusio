@@ -8,3 +8,4 @@ log_err
 *.c~
 *.h~
 Makefile~
+config.json

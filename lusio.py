@@ -39,6 +39,7 @@ logging.basicConfig(filename='logfile.log', level=logging.DEBUG, format='[%(leve
 logging.info("Running now...")
 
 MEDIA_INFO_FILENAME = 'media_info.json'
+CONFIG_FILENAME = 'config.json'
 
 overlay_program_dir = None
 overlay_program_path = None
@@ -63,6 +64,10 @@ times_db = None
 media_info_dict = {}
 # Process handle for OMX position overlay
 overlay_process = None
+# Dictionary of configuration values
+config_json = {
+    "alsa_audio": False
+}
 
 def heartbeat(*unused):
     logging.debug("Heartbeat!")
@@ -463,6 +468,18 @@ def enter(*unused):
         curr_search_screen.typing = False
         root.focus()
 
+def load_config():
+    global config_json
+    try:
+        with open(CONFIG_FILENAME) as f:
+            config_json = json.load(f)
+    except FileNotFoundError:
+        logging.info(f"Config file {CONFIG_FILENAME} doesn't exist! Creating one with default values...")
+        
+        with open(CONFIG_FILENAME, 'w') as f:
+            json.dump(config_json, f)
+
+
 def init_times_db():
     global times_db
     times_db = pickledb.load('times.db', True)
@@ -480,10 +497,19 @@ def init_info_dict():
 def omx_play(file, start_pos=None):
     file_path = Path(file)
     global omx_player
-    if start_pos == None:
+
+    args = None
+
+    if start_pos is not None:
+        args = '--pos {0}'.format(time.strftime('%H:%M:%S', time.gmtime(start_pos)))
+
+    if config_json["alsa_audio"]:
+        args += ' -o alsa'
+
+    if args is None:
         omx_player = OMXPlayer(file_path)
     else:
-        omx_player = OMXPlayer(file_path, args='--pos {0}'.format(time.strftime('%H:%M:%S', time.gmtime(start_pos))))
+        omx_player = OMXPlayer(file_path, args=args)
 
 def save_video_position():
     if screen == Screens.Player:
@@ -1862,6 +1888,8 @@ draw_titles_grid()
 init_times_db()
 
 init_info_dict()
+
+load_config()
 
 #b = Button(grid, text="QUIT", command=exit)
 #b.grid(column=int(num_cols/2), row=0)
