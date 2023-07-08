@@ -4573,6 +4573,19 @@
         "title": "Top Gun",
         "year": "1986"
     },
+    "Top Gun Maverick": {
+        "actors": "Tom Cruise, Jennifer Connelly, Miles Teller",
+        "director": "Joseph Kosinski",
+        "genre": "Action, Drama",
+        "plot": "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission that demands the ultimate sacrifice from those chosen to ...",
+        "rated": "PG-13",
+        "rating_imdb": "8.3/10",
+        "rating_meta": "78/100",
+        "rating_rotten": "96%",
+        "runtime": "130 min",
+        "title": "Top Gun: Maverick",
+        "year": "2022"
+    },
     "Toy Story": {
         "actors": "Tom Hanks, Tim Allen, Don Rickles, Jim Varney",
         "director": "John Lasseter",
@@ -4724,6 +4737,19 @@
         "rating_rotten": "98%",
         "runtime": "115 min",
         "title": "Wheels",
+        "year": "2014"
+    },
+    "Whiplash": {
+        "actors": "Miles Teller, J.K. Simmons, Melissa Benoist",
+        "director": "Damien Chazelle",
+        "genre": "Drama, Music",
+        "plot": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+        "rated": "R",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "89/100",
+        "rating_rotten": "94%",
+        "runtime": "106 min",
+        "title": "Whiplash",
         "year": "2014"
     },
     "Wild Target": {
