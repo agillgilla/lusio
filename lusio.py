@@ -40,6 +40,7 @@ logging.info("Running now...")
 
 MEDIA_INFO_FILENAME = 'media_info.json'
 CONFIG_FILENAME = 'config.json'
+MEDIA_DIRNAME = 'MOVIES'
 
 overlay_program_dir = None
 overlay_program_path = None
@@ -1606,11 +1607,26 @@ root.bind('<Return>', enter)
 media_dir = None
 
 if _isLinux:
-    media_dir = '/media/pi/Samsung_T5/MOVIES'
-    #media_dir = '/home/pi/Desktop/test_media'
+    drive_dir = '/media/pi/'
+
+    # Scan drives
+    with os.scandir(drive_dir) as it:
+        for entry in it:
+            if entry.is_dir():
+                # Scan drive for MOVIES folder
+                with os.scandir(entry.path) as sub_it:
+                    for sub_entry in sub_it:
+                        if sub_entry.is_dir() and sub_entry.name == MEDIA_DIRNAME:
+                            media_dir = sub_entry.path
 else:
-    #media_dir = 'C:\MOVIES'
-    media_dir = 'D:\MOVIES'
+    media_dir = 'D:\\MOVIES'
+
+if media_dir is None:
+    logging.error("No media directory was found!")
+    exit(1)
+else:
+    print(f"Using media directory: {media_dir}")
+
 
 images_dir = 'posters'
 logo_image_file = os.path.join('logo', 'lusio_logo.jpg')
