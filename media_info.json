@@ -734,6 +734,18 @@
         "title": "Brazil",
         "year": "1985"
     },
+    "Breaking Bad": {
+        "actors": "Bryan Cranston, Aaron Paul, Anna Gunn",
+        "director": "N/A",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
+        "rated": "TV-MA",
+        "rating_imdb": "9.5/10",
+        "rating_rotten": "96%",
+        "runtime": "49 min",
+        "title": "Breaking Bad",
+        "year": "2008\u20132013"
+    },
     "Brokeback Mountain": {
         "actors": "Heath Ledger, Jake Gyllenhaal, Randy Quaid, Valerie Planche",
         "director": "Ang Lee",
