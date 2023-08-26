@@ -578,6 +578,17 @@
         "title": "Bend It Like Beckham",
         "year": "2002"
     },
+    "Better Call Saul": {
+        "actors": "Bob Odenkirk, Rhea Seehorn, Jonathan Banks",
+        "director": "N/A",
+        "genre": "Crime, Drama",
+        "plot": "The trials and tribulations of criminal lawyer Jimmy McGill in the years leading up to his fateful run-in with Walter White and Jesse Pinkman.",
+        "rated": "TV-MA",
+        "rating_imdb": "9.0/10",
+        "runtime": "46 min",
+        "title": "Better Call Saul",
+        "year": "2015\u20132022"
+    },
     "Beverly Hills Cop": {
         "actors": "Eddie Murphy, Judge Reinhold, John Ashton, Lisa Eilbacher",
         "director": "Martin Brest",
@@ -2719,6 +2730,19 @@
         "title": "Night at the Museum: Battle of the Smithsonian",
         "year": "2009"
     },
+    "Nightcrawler": {
+        "actors": "Jake Gyllenhaal, Rene Russo, Bill Paxton",
+        "director": "Dan Gilroy",
+        "genre": "Crime, Drama, Thriller",
+        "plot": "When Louis Bloom, a con man desperate for work, muscles into the world of L.A. crime journalism, he blurs the line between observer and participant to become the star of his own story.",
+        "rated": "R",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "76/100",
+        "rating_rotten": "95%",
+        "runtime": "117 min",
+        "title": "Nightcrawler",
+        "year": "2014"
+    },
     "No Country for Old Men": {
         "actors": "Tommy Lee Jones, Javier Bardem, Josh Brolin, Woody Harrelson",
         "director": "Ethan Coen, Joel Coen",
@@ -4176,6 +4200,19 @@
         "runtime": "126 min",
         "title": "The Karate Kid",
         "year": "1984"
+    },
+    "The King of Comedy": {
+        "actors": "Robert De Niro, Jerry Lewis, Diahnne Abbott",
+        "director": "Martin Scorsese",
+        "genre": "Comedy, Crime, Drama",
+        "plot": "Rupert Pupkin is a passionate yet unsuccessful comic who craves nothing more than to be in the spotlight and to achieve this, he stalks and kidnaps his idol to take the spotlight for himself.",
+        "rated": "PG",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "73/100",
+        "rating_rotten": "90%",
+        "runtime": "109 min",
+        "title": "The King of Comedy",
+        "year": "1982"
     },
     "The Lion King": {
         "actors": "Rowan Atkinson, Matthew Broderick, Niketa Calame-Harris, Jim Cummings",
