@@ -345,6 +345,7 @@ def back(event):
         #draw_details_pane()
         details_pane.pack(side='left', fill=tk.Y, anchor='w')
         draw_titles_grid()
+        titles_grid.update_details_title()
 
         screen = Screens.MainSelect
     elif screen == Screens.PlaybackDialog:
@@ -377,6 +378,12 @@ def back(event):
         draw_titles_grid()
         details_title.set(titles_grid.get_title())
         screen = Screens.MainSelect
+    elif screen == Screens.SearchInfoDialog:
+        curr_info_dialog.destroy()
+
+        curr_search_screen.show()
+        
+        screen = Screens.Search
 
 def play_video(video_file, resume=False):
     global using_omx
@@ -447,12 +454,22 @@ def media_info(event):
     global screen
     global curr_info_dialog
 
-    grid.pack_forget()
+    if screen == Screens.MainSelect:
+        grid.pack_forget()
 
-    curr_info_dialog = InfoDialog(titles_grid.get_title())
-    curr_info_dialog.draw()
-    
-    screen = Screens.InfoDialog
+        curr_info_dialog = InfoDialog(titles_grid.get_title())
+        curr_info_dialog.draw()
+        
+        screen = Screens.InfoDialog
+    elif screen == Screens.Search:
+        curr_search_screen.hide()
+
+        video_file, title = curr_search_screen.results_grid.get_selection()
+
+        curr_info_dialog = InfoDialog(title)
+        curr_info_dialog.draw()
+
+        screen = Screens.SearchInfoDialog
 
 def toggle_subtitles(event):
     if screen == Screens.Player:
@@ -1521,6 +1538,12 @@ class SearchScreen(object):
 
         for search_label in self.search_labels:
             search_label[1].grid_forget()
+
+    def hide(self):
+        self.search_list_frame.pack_forget()
+
+    def show(self):
+        self.search_list_frame.pack(side='right', fill=tk.BOTH, expand=True)
             
 
 
@@ -1653,7 +1676,7 @@ show_padding = 50
 
 from enum import Enum
 
-Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search Player PlaybackDialog InfoDialog')
+Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search Player PlaybackDialog InfoDialog SearchInfoDialog')
 
 screen = Screens.MainSelect
 
@@ -1864,7 +1887,7 @@ def generate_search_index():
     """
     for movie, movie_filename in movies.items():
         print("{} ==> {}".format(movie, movie_filename))
-
+    
     for show, show_pairs in shows.items():
         print(show)
         for show_pair in show_pairs:
