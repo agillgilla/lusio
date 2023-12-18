@@ -391,7 +391,7 @@ def play_video(video_file, resume=False):
     
     if use_omx and video_file.endswith(".mp4"):
         if resume:
-            curr_time = times_db.get(video_file)
+            curr_time = times_db.get(video_file)[0]
 
             omx_play(video_file, start_pos=int(float(curr_time)))
         else:
@@ -411,7 +411,7 @@ def play_video(video_file, resume=False):
     screen = Screens.Player
 
     if resume:
-        curr_time = times_db.get(video_file)
+        curr_time = times_db.get(video_file)[0]
 
         if not using_omx:
             vlc_player.SetTime(int(curr_time))
@@ -537,6 +537,7 @@ def save_video_position():
         if using_omx:
             try:
                 curr_time = omx_player.position()
+                duration = omx_player.duration()
             except OMXPlayerDeadError as oplde:
                 if times_db.exists(curr_video):
                     times_db.rem(curr_video)
@@ -544,8 +545,9 @@ def save_video_position():
         else:
             curr_time_millis = vlc_player.GetTime()
             curr_time = curr_time_millis // 1000
+            duration = vlc_player.GetDuration() // 1000
 
-        times_db.set(curr_video, str(curr_time))
+        times_db.set(curr_video, (str(curr_time), duration))
 
 def show_pause_overlay(curr_seconds, total_seconds):
     global overlay_process
@@ -704,6 +706,12 @@ try:
 except KeyboardInterrupt:
     sys.exit(0)
 '''
+
+def _create_circle_arc(self, x, y, r, **kwargs):
+    if "start" in kwargs and "end" in kwargs:
+        kwargs["extent"] = kwargs.pop("end") - kwargs["start"]
+    return self.create_arc(x-r, y-r, x+r, y+r, **kwargs)
+tk.Canvas.create_circle_arc = _create_circle_arc
 
 
 panel_images = {}
@@ -1122,7 +1130,7 @@ class ShowManager:
         self.list_frame = tk.Frame(frame)
         self.list_frame.config(background="#000000")
         #self.list_frame.grid_rowconfigure(0, weight=1)
-        self.list_frame.grid_columnconfigure(0, weight=1)
+        self.list_frame.grid_columnconfigure(1, weight=1)
 
         # List of three-tuples containing season name, tk object, and list of episode filenames
         self.season_labels = []
@@ -1140,9 +1148,22 @@ class ShowManager:
                         episode_label.config(background="#000000")
                         episode_label.config(foreground="#FFFFFF")
 
-                        episodes_list.append((episode[:-4], episode_label, os.path.join(subdir, episode)))
                         #print(episodes_list[-1])
 
+                        if times_db.exists(os.path.join(subdir, episode)):
+
+                            times = times_db.get(os.path.join(subdir, episode))
+                            percent_watched = float(times[0]) / float(times[1])
+                            
+                            end_degrees = 90 + percent_watched * 360
+
+                            canvas_size = screen_height / 36
+                            canvas = tk.Canvas(self.list_frame, width=canvas_size, height=canvas_size, borderwidth=0, highlightthickness=0, bg="black")
+                            canvas.create_circle_arc(canvas_size / 2, canvas_size / 2, canvas_size / 2, fill="white", outline="", start=90, end=end_degrees)
+
+                            episodes_list.append((episode[:-4], episode_label, os.path.join(subdir, episode), canvas))
+                        else:
+                            episodes_list.append((episode[:-4], episode_label, os.path.join(subdir, episode), None))
                 
                 season_label = tk.Label(self.list_frame, text=season, borderwidth=5, relief="solid", anchor='w', padx=show_padding)
                 season_label.config(font=("Calibri", 32))
@@ -1165,7 +1186,7 @@ class ShowManager:
                 season_label[1].config(background="#FFFFFF")
                 season_label[1].config(foreground="#000000")
 
-            season_label[1].grid(row=season_idx, column=0, sticky=E+W)
+            season_label[1].grid(row=season_idx, column=0, columnspan=2, sticky=E+W)
             #season_label[1].pack(side='top', fill=tk.X)
 
     def move_season_selection(self, delta_row):
@@ -1207,7 +1228,7 @@ class ShowManager:
         self.season_title_label.config(background=episode_title_bg)
         self.season_title_label.config(foreground="#FFFFFF")
         #self.season_title_label.pack(side='top', fill=tk.X)
-        self.season_title_label.grid(row=0, column=0, sticky=E+W)
+        self.season_title_label.grid(row=0, column=0, columnspan=2, sticky=E+W)
         
         curr_grid_row = 1
 
@@ -1222,7 +1243,10 @@ class ShowManager:
                 episode_tuple[1].config(foreground="#FFFFFF")
 
             #episode_tuple[1].pack(side='top', fill=tk.X)
-            episode_tuple[1].grid(row=curr_grid_row, column=0, sticky=E+W)
+            episode_tuple[1].grid(row=curr_grid_row, column=1, sticky=E+W)
+
+            if episode_tuple[3] is not None:
+                episode_tuple[3].grid(row=curr_grid_row, column=0, padx=10)
 
             curr_grid_row += 1
 
@@ -1291,6 +1315,8 @@ class ShowManager:
         episodes_list = self.season_labels[self.selected_season_idx][2]
         for episode_tuple in episodes_list:
             episode_tuple[1].grid_forget()
+            if episode_tuple[3] is not None:
+                episode_tuple[3].grid_forget()
 
     def destroy(self):
         for season_label in self.season_labels:

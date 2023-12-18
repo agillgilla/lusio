@@ -437,6 +437,10 @@ class Player(tk.Frame):
         if self.player:
             return self.player.get_time()
 
+    def GetDuration(self):
+        if self.player:
+            return self.player.get_length()
+
     def SetTime(self, seconds):
         if self.player:
             time = seconds * 1e3
