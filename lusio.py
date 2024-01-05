@@ -41,6 +41,7 @@ logging.info("Running now...")
 MEDIA_INFO_FILENAME = 'media_info.json'
 CONFIG_FILENAME = 'config.json'
 MEDIA_DIRNAME = 'MOVIES'
+DEFAULT_POSTER_FILE = 'default_poster.jpg'
 
 overlay_program_dir = None
 overlay_program_path = None
@@ -714,6 +715,13 @@ def _create_circle_arc(self, x, y, r, **kwargs):
 tk.Canvas.create_circle_arc = _create_circle_arc
 
 
+def get_img_path_from_title(title):
+    image_file = os.path.join(images_dir, title + ".jpg")
+    if not os.path.exists(image_file):
+        return DEFAULT_POSTER_FILE
+    return image_file
+
+
 panel_images = {}
 
 class Panel(object):
@@ -747,13 +755,12 @@ class Panel(object):
         self.grid_coords = grid_coords
 
 class PanelGrid(object):
-    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, images_dir, category=None):
+    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, category=None):
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.start_row = start_row
         self.start_col = start_col
         self.media_dir = media_dir
-        self.images_dir = images_dir
         self.containing_frame = containing_frame
         self.grid = []
         self.selected_panel = [0, 0]
@@ -781,13 +788,16 @@ class PanelGrid(object):
                 if category != None and title not in category:
                     continue
 
+
+                image_file = get_img_path_from_title(img_title)
                 # Create the image filename
-                image_file = os.path.join(images_dir, img_title + ".jpg")
+                #image_file = os.path.join(images_dir, img_title + ".jpg")
                 # If there is no image filename for the media, skip it
                 if not os.path.exists(image_file):
                     print(image_file)
-                    print("Image not found for: " + img_title + ". Skipping...")
-                    continue
+                    #image_file = DEFAULT_POSTER_FILE
+                    print("Image not found for: " + img_title + ". Using default...")
+                    #continue
                 # Add a new row to the 2D grid when we're at the first column
                 if curr_col == 0:
                     new_row = []
@@ -933,13 +943,12 @@ class PanelGrid(object):
                 panel.tk_object.grid_forget()
 
 class SearchGrid(object):
-    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir, images_dir):
+    def __init__(self, num_rows, num_cols, start_row, start_col, containing_frame, media_dir):
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.start_row = start_row
         self.start_col = start_col
         self.media_dir = media_dir
-        self.images_dir = images_dir
         self.containing_frame = containing_frame
         self.grid = []
         self.selected_panel = [0, 0]
@@ -961,9 +970,9 @@ class SearchGrid(object):
 
             # Create the image filename
             if show_name != None:
-                image_file = os.path.join(images_dir, show_name + ".jpg")
+                image_file = get_img_path_from_title(show_name)
             else:            
-                image_file = os.path.join(images_dir, title + ".jpg")
+                image_file = get_img_path_from_title(title)
 
             # If there is no image filename for the media, skip it
             if not os.path.exists(image_file):
@@ -1494,7 +1503,7 @@ class SearchScreen(object):
         self.search_entry.config(foreground="#FFFFFF")
         self.search_entry.config(insertbackground="#FFFFFF")
 
-        self.results_grid = SearchGrid(num_rows, num_cols, 1, 0, self.search_list_frame, media_dir, images_dir)
+        self.results_grid = SearchGrid(num_rows, num_cols, 1, 0, self.search_list_frame, media_dir)
 
         self.typing = False
         self.showing_hint = True
@@ -1706,7 +1715,7 @@ Screens = Enum('Screens', 'MainSelect ShowSeasonSelect ShowEpisodeSelect Search 
 
 screen = Screens.MainSelect
 
-titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir)
+titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir)
 
 details_title = StringVar()
 
@@ -1744,9 +1753,8 @@ class CategoriesManager(object):
                 filename_img = filename
                 if filename.endswith(' x265'):
                     filename_img = filename_img[:-5]
-                image_file = os.path.join(images_dir, filename_img + ".jpg")
-                if os.path.exists(image_file):
-                    tv_shows.add(filename)
+                image_file = get_img_path_from_title(filename_img)
+                tv_shows.add(filename)
                 
         self.create_category("TV Shows", tv_shows)
 
@@ -1758,9 +1766,8 @@ class CategoriesManager(object):
                 with open(category_filepath) as category_file:
                     curr_title = category_file.readline().rstrip('\n')
                     while curr_title:
-                        image_file = os.path.join(images_dir, curr_title + ".jpg")
-                        if os.path.exists(image_file):
-                            category_titles.add(curr_title)
+                        image_file = get_img_path_from_title(curr_title)
+                        category_titles.add(curr_title)
 
                         curr_title = category_file.readline().rstrip('\n')
 
@@ -1813,7 +1820,7 @@ class CategoriesManager(object):
 
         global titles_grid
         titles_grid.destroy()
-        titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, images_dir, self.get_curr_category_titles())
+        titles_grid = PanelGrid(num_rows, num_cols, 0, 2, grid, media_dir, self.get_curr_category_titles())
         draw_titles_grid()
 
     def get_curr_category_titles(self):
@@ -1919,11 +1926,6 @@ def generate_search_index():
         for show_pair in show_pairs:
             print("\t{} ==> {}".format(show_pair[0], show_pair[1]))
     """
-
-def get_img_path_from_title(title):
-    if not os.path.exists(image_file):
-        return ''
-    return os.path.join(images_dir, title + ".jpg")
 
 # Returns list of three-tuples containing show name (if episode), title, and filename (if not a show)
 def search_media(query):
