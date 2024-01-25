@@ -51,6 +51,17 @@
         "title": "3:10 To Yuma",
         "year": "2007"
     },
+    "30 Rock": {
+        "actors": "Tina Fey, Alec Baldwin, Tracy Morgan",
+        "director": "N/A",
+        "genre": "Comedy",
+        "plot": "Liz Lemon, head writer of the sketch-comedy show \"TGS with Tracy Jordan\", must deal with an arrogant new boss and a crazy new star while trying to run a successful television show without losing her mind.",
+        "rated": "TV-14",
+        "rating_imdb": "8.3/10",
+        "runtime": "22 min",
+        "title": "30 Rock",
+        "year": "2006\u20132013"
+    },
     "300": {
         "actors": "Gerard Butler, Lena Headey, Dominic West, David Wenham",
         "director": "Zack Snyder",
@@ -3596,6 +3607,16 @@
         "runtime": "89 min",
         "title": "Stand by Me",
         "year": "1986"
+    },
+    "Stand-Up Specials": {
+        "actors": "",
+        "director": "N/A",
+        "genre": "Comedy",
+        "plot": "N/A",
+        "rated": "N/A",
+        "runtime": "N/A",
+        "title": "Stand-Up Specials",
+        "year": "----"
     },
     "Star Wars - Episode I - The Phantom Menace": {
         "actors": "Liam Neeson, Ewan McGregor, Natalie Portman, Jake Lloyd",
