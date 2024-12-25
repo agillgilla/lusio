@@ -1534,6 +1534,19 @@
         "title": "Ghostbusters",
         "year": "1984"
     },
+    "Gladiator": {
+        "actors": "Russell Crowe, Joaquin Phoenix, Connie Nielsen",
+        "director": "Ridley Scott",
+        "genre": "Action, Adventure, Drama",
+        "plot": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+        "rated": "R",
+        "rating_imdb": "8.5/10",
+        "rating_meta": "67/100",
+        "rating_rotten": "80%",
+        "runtime": "155 min",
+        "title": "Gladiator",
+        "year": "2000"
+    },
     "Glengarry Glen Ross": {
         "actors": "Al Pacino, Jack Lemmon, Alec Baldwin, Alan Arkin",
         "director": "James Foley",
@@ -2560,6 +2573,19 @@
         "runtime": "131 min",
         "title": "Mission: Impossible - Rogue Nation",
         "year": "2015"
+    },
+    "Moana": {
+        "actors": "Auli'i Cravalho, Dwayne Johnson, Rachel House",
+        "director": "Ron Clements, John Musker, Don Hall",
+        "genre": "Animation, Adventure, Comedy",
+        "plot": "In ancient Polynesia, when a terrible curse incurred by the demigod Maui reaches Moana's island, she answers the Ocean's call to seek out Maui to set things right.",
+        "rated": "PG",
+        "rating_imdb": "7.6/10",
+        "rating_meta": "81/100",
+        "rating_rotten": "95%",
+        "runtime": "107 min",
+        "title": "Moana",
+        "year": "2016"
     },
     "Moneyball": {
         "actors": "Brad Pitt, Jonah Hill, Philip Seymour Hoffman, Robin Wright",
@@ -3849,6 +3875,19 @@
         "runtime": "143 min",
         "title": "The Avengers",
         "year": "2012"
+    },
+    "The Batman": {
+        "actors": "Robert Pattinson, Zo\u00eb Kravitz, Jeffrey Wright",
+        "director": "Matt Reeves",
+        "genre": "Action, Crime, Drama",
+        "plot": "When a sadistic serial killer begins murdering key political figures in Gotham, the Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+        "rated": "PG-13",
+        "rating_imdb": "7.8/10",
+        "rating_meta": "72/100",
+        "rating_rotten": "85%",
+        "runtime": "176 min",
+        "title": "The Batman",
+        "year": "2022"
     },
     "The Big Bang Theory": {
         "actors": "Johnny Galecki, Jim Parsons, Kaley Cuoco, Simon Helberg",
